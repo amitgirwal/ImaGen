@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Upload
 from .forms import UploadForm
+
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def index(request):
@@ -24,4 +26,9 @@ def resizeImage(request):
     context = {}
     return render(request, 'index.html', context)
 
+
+
+
+def temp(request):
+    return render(request, 'imagenapp/temp.html')
 
