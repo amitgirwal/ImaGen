@@ -1,1 +1,48 @@
-<h1>Hello World!</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImaGen</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+</head>
+<body>
+    {{ msg }}
+    <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">  
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" >
+    </form>
+
+    <table>
+        <th>
+            <td>S. No.</td>
+            <td>Name</td>
+            <td>Image</td>
+            <td>Action</td>
+            <td>Date/Time</td>
+            <td>View</td>
+            <td>Download</td>
+        </th>
+        {% for img in images %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ img.name }}</td>
+            <td>{{ img.action }}</td>
+            <td>{{ img.updated }}</td>
+            <td>
+                <img width="100px" src="{{ img.image.url }}" alt="{{ img.name }}">
+            </td>
+            <td>
+                <a href="{{ img.image.url }}" download  >Download</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

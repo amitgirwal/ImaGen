@@ -5,6 +5,7 @@ __pycache__/
 
 # virtual env backend
 backend/venv/
+images/ 
 
 # C extensions
 *.so
