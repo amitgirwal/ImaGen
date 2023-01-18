@@ -1,4 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 body {
-    font-family: sans-serif;
-    background-color: rgb(208, 225, 240);
+    font-family: 'Roboto', sans-serif !important;
+    background-color: rgb(241 248 254);
+}
+
+.form-select,
+.form-select option {
+    text-transform: capitalize;
+}
+
+select option {
+    text-transform: capitalize !important;
 }

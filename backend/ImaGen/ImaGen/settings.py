@@ -18,6 +18,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates')
 
+
+# messages
+from django.contrib.messages import constants as messages
+
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
+ 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -41,10 +54,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Installed apps
-    
+    "crispy_forms",
+    "crispy_bootstrap5",
+
     # Application
     'imagenapp',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
