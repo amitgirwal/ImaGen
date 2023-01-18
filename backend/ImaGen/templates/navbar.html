@@ -11,9 +11,35 @@
           </li>
           
         </ul>
-        <a href="#" class="btn btn-outline-light">Signup</a>
-        <a href="#" class="btn btn-outline-light mx-2">Login</a>
+        
+        <ul class="navbar-nav ml-auto mb-2 mb-lg-0 float-right">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-current="page" href="#">{{request.user.name}}</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggl d-flex align-items-centere" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="22" alt="Portrait of a Woman" loading="lazy">
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Dashboard</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="btn btn-outline-light btn-sm" aria-current="page" href="{% url 'signup' %}">Signup</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="btn btn-outline-light btn-sm" aria-current="page" href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}          
+        </ul> 
+        
         
       </div>
     </div>
   </nav>
+
+  

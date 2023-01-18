@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 
     # Application
     'imagenapp',
+    'accounts',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -125,13 +126,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# User Model
+AUTH_USER_MODEL = 'accounts.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
