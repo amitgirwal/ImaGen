@@ -21,8 +21,6 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates')
 
 # messages
 from django.contrib.messages import constants as messages
-
-
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',
         messages.INFO: 'alert-info',
@@ -150,10 +148,31 @@ STATICFILES_DIRS = [
 ]
 
 # Media files
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/media')
+# Url for media access
 MEDIA_URL = '/media/'
+
+# Storage for media path
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ 
+# Emailing settings
+ 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True 
+EMAIL_PORT = 587
+
+from .env import getEmail, getPassword
+
+EMAIL_FROM = getEmail()
+EMAIL_HOST_USER = getEmail()
+EMAIL_HOST_PASSWORD = getPassword()
+
+
+
+PASSWORD_RESET_TIMEOUT = 14400
