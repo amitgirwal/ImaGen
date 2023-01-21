@@ -1,28 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %} Image Convert {% endblock %}
+{% block title %} Image Filter {% endblock %}
 {% block content %}
 
 <div class="row">
     <div class="col-6">
         <div class="card border rounded p-3">
             <form action="{% url 'image_convert' %}" method="POST" enctype="multipart/form-data">
-                <h3 class="text mx-auto">Image To {{action|upper}}</h3>
+                <h3 class="text mx-auto">Image Filter <span class="font-weight-bold"></span>{{action|title}}</h3>
                 {% csrf_token %}
                 {{form|crispy}}
-                <button class="btn btn-success w-100 btn-lg" type="submit"><i class="fa-sharp fa-solid fa-images"></i>
-                    Convert Image</button>
-
+                <button class="btn btn-success w-100 btn-lg" type="submit"><i class="fa-sharp fa-solid fa-exchange"></i>
+                    Apply Filter</button>
             </form>
         </div>
     </div>
     <div class="col-6">
         {% if uploaded_file_url %}
         <div class="card border rounded ">
-            <img style="object-fit: cover;
-            object-position: center;
-            height: 500px;" src="{{ uploaded_file_url }}" alt="download image">
+            <img style="height: 300px;" src="{{ uploaded_file_url }}" alt="download image">
             <div class="p-2 mt-2">
                 <a class="btn btn-info w-100 btn-lg my-2" href="{{ uploaded_file_url }}" target="_blank"><i
                       class="fa-solid fa-eye"></i> &nbsp; View </a>
@@ -33,13 +30,13 @@
         {% endif %}
     </div>
 </div>
-{% endblock %}
 
+{% endblock %}
 {% block jsscript %}
 <script>
-    let action = "{{action}}".toUpperCase();
+    let action = "{{action|upper}}";
     $( document ).ready(function() {
-         $("#id_convert").val(action);
+         $("#id_filter").val(action);
     });
 </script>
 {% endblock %}

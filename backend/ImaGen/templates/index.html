@@ -3,64 +3,48 @@
 {% load crispy_forms_tags %}
 {% block title %} Home {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col-4">
-            <div class="card border rounded p-3">
-                <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">  
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    
-                    <button class="btn btn-primary" type="submit"><i class="fa-sharp fa-solid fa-plus"></i> Save Image</button>
-                </form>
-            </div>
-           
-        </div>
-        <div class="col-8">
-         
-            {% if images %}
-            <table class="table table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Filter</th>
-                  <th scope="col">Date Time</th>
-                  <th scope="col">Image</th>
-                  <th scope="col">Download</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                  {% for img in images %}
-                <tr>
-                  <th scope="row">{{ forloop.counter }}</th>
-                  <td>{{ img.name }}</td>
-                  <td>{{ img.action }}</td>
-                  <td>{{ img.updated|date }}</td>
-                  <td><img width="50px" src="{{ img.image.url }}" alt="{{ img.name }}"></td>
-                  <td><a href="{{ img.image.url }}" download  class="btn btn-outline-light btn-sm">Download</a></td>
-                  <td>
-                       
-                      <a href="{% url 'image_delete' img.id %}" class="btn btn-danger btn-sm">
-                          <i class="fa-solid fa-trash"></i> Delete</a>
-
-
-                       
-                  </td>
-                </tr>
-                
-                {% endfor %}
-              </tbody>
-            </table>
-            {% endif %}
-
-            
-             
-        </div>
+<div class="row">
+  <div class="col-4">
+    <div class="card border rounded p-3">
+      <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-primary" type="submit"><i class="fa-sharp fa-solid fa-plus"></i> Save Image</button>
+      </form>
     </div>
-
- 
-   
-    {% endblock %}
- 
-    
+  </div>
+  <div class="col-8">
+    {% if images %}
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Filter</th>
+          <th scope="col">Date Time</th>
+          <th scope="col">Image</th>
+          <th scope="col">Download</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for img in images %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ img.name }}</td>
+          <td>{{ img.action }}</td>
+          <td>{{ img.updated|date }}</td>
+          <td><img width="50px" src="{{ img.image.url }}" alt="{{ img.name }}"></td>
+          <td><a href="{{ img.image.url }}" download class="btn btn-outline-light btn-sm">Download</a></td>
+          <td>
+            <a href="{% url 'image_delete' img.id %}" class="btn btn-danger btn-sm">
+              <i class="fa-solid fa-trash"></i> Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

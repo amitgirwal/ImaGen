@@ -2,15 +2,24 @@
 
 body {
     font-family: 'Roboto', sans-serif !important;
-    /* background-color: rgb(241 248 254); */
-    background-color: #ffffff;
+    background-color: rgb(241 248 254);
+    /* background-color: #ffffff; */
 }
 
 .form-select,
-.form-select option {
-    text-transform: capitalize;
-}
-
+.form-select option,
 select option {
     text-transform: capitalize !important;
+}
+
+ 
+
+.logo {
+    font-weight: 700;
+    color: aquamarine;
+    text-shadow: 1px 1.5px #16c2e0;
+}
+
+.logo:hover {
+    color: aquamarine !important;
 }

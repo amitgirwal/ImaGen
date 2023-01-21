@@ -1,9 +1,24 @@
 import cv2
+from django.core.files.storage import FileSystemStorage
 
+import os
+from django.core.files.base import ContentFile
+from django.shortcuts import render
+from django.views.generic import View
+from django.views.generic.base import TemplateView
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, HttpResponse,\
+    HttpResponseBadRequest, HttpResponseNotAllowed
+ 
+from django.utils.decorators import method_decorator
+from django.http import Http404
+from django.conf import settings
+
+from PIL import Image, ImageFilter, ImageEnhance
 
 def compressImage(image, action):
     img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    print("Not Filter......")
+     
     if action == 'NO_FILTER':
         filtered = image
     return filtered
@@ -61,4 +76,45 @@ def convert_all(path="images/"):
             if imagefile.endswith(".png") or imagefile.endswith(".jpg") or imagefile.endswith(".jpeg"):
                 convert_to_webp(imagefile, os.path.join(root, ""))
 
- 
+
+# Image Convert Path: static/media
+def printStar():
+	print('\n\n')
+	print('#'*100)
+
+def getFileNameExt(upload_name):
+    file_name = upload_name.split('.')[0]
+    extension = upload_name.split('.')[-1]
+    return file_name, extension
+
+def getImagePathUrlByFilesRequest(req_image):
+    fs = FileSystemStorage()
+    image_file = fs.save(str(req_image), ContentFile(req_image.read()))
+    upload_url = fs.url(image_file)
+    upload_path = fs.path(image_file)
+    upload_name = str(image_file)
+    return upload_url, upload_path, upload_name, image_file
+
+def convertAndSaveImage(upload_path, image_file, file_name, action):
+    action = action.lower()
+    img = Image.open(upload_path)
+    file_name, extension = getFileNameExt(upload_path)
+    file_url_name = file_name.split("\\")[-1] +'.'+action
+
+    if action == extension:
+        return 
+    if action == 'png':
+        img.save(file_name+'.png', "png", lossless=True)
+    elif action == 'jpg':
+        img.save(file_name+'.jpg', "jpg", lossless=True)
+    elif action == 'jpeg':
+        img.save(file_name+'.jpeg', "jpeg", lossless=True)
+    elif action == 'webp':
+        img.save(file_name+'.webp', "webp", quality=85)
+    elif action == 'svg':
+        img.save(file_name+'.svg', "svg", quality=65)
+    else:
+        return 
+    return file_url_name
+
+

@@ -5,10 +5,7 @@ import numpy as np
 from io import BytesIO
 from django.core.files.base import ContentFile
 
-
-
-# Create your models here.
-
+# Image Upload Filter
 ACTION = (
     ('NO_FILTER', 'no filter'),
     ('COLORIZED', 'colorized'),
@@ -17,8 +14,6 @@ ACTION = (
     ('BINARY', 'binary'),
     ('INVERT', 'invert'),
 )
-
-
 class Upload(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images')
@@ -61,7 +56,8 @@ class Upload(models.Model):
         super().save(*args, **kwargs)
 
 
-QUALITY = (
+# Image convert image
+CONVERT = (
     ('NO_FILTER', 'No Filter'),
     ('PNG', 'PNG'),
     ('JPG', 'JPG'),
@@ -69,23 +65,16 @@ QUALITY = (
     ('WEBP', 'WEBP'),
     ('SVG', 'SVG'),
 )
-class ImageQuality(models.Model):
-    name = models.CharField(max_length=100)
+class ImageConvert(models.Model):
     image = models.ImageField(upload_to='quality')
-    quality = models.CharField(max_length=100, choices=QUALITY)
+    convert = models.CharField(max_length=100, choices=CONVERT)
 
     def __str__(self):
-        return self.name
-
-    # def save(self, *args, **kwargs):
-    #     new_image = compress(self.image)
-    #     self.image = new_image
-    #     super().save(*args, **kwargs)
+        return str(self.id)
 
     def save(self, *args, **kwargs):
         pil_img = Image.open(self.image)
         cv_img = np.array(pil_img)
-        
         img = compressImage1(cv_img, self.quality)
         im_pil = Image.fromarray(img)
         buffer = BytesIO()
@@ -93,3 +82,20 @@ class ImageQuality(models.Model):
         image_png = buffer.getvalue()
         self.image.save(str(self.image), ContentFile(image_png), save=False)
         super().save(*args, **kwargs)
+
+
+# Image filter  
+FILTER = (
+    ('NO_FILTER', 'No filter'),
+    ('COLORIZED', 'Colorized'),
+    ('GRAYSCALE', 'Grayscale'),
+    ('BLURRED', 'Blurred'),
+    ('BINARY', 'Binary'),
+    ('INVERT', 'Invert'),
+)
+class ImageFilter(models.Model):
+    image = models.ImageField(upload_to='filter')
+    filter = models.CharField(max_length=100, choices=FILTER)
+
+    def __str__(self):
+        return str(self.id)
