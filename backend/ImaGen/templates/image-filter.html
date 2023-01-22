@@ -21,8 +21,7 @@
         <div class="card border rounded ">
             <img style="height: 300px;" src="{{ uploaded_file_url }}" alt="download image">
             <div class="p-2 mt-2">
-                <a class="btn btn-info w-100 btn-lg my-2" href="{{ uploaded_file_url }}" target="_blank"><i
-                      class="fa-solid fa-eye"></i> &nbsp; View </a>
+                
                 <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
                       class="fa-solid fa-download"></i> &nbsp; Download </a>
             </div>
@@ -30,6 +29,7 @@
         {% endif %}
     </div>
 </div>
+ 
 
 {% endblock %}
 {% block jsscript %}

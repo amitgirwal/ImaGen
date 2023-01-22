@@ -7,6 +7,7 @@ __pycache__/
 backend/venv/
 env.py
 images/ 
+media/
 
 # C extensions
 *.so
