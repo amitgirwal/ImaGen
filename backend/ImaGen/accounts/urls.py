@@ -14,6 +14,8 @@ urlpatterns = [
 
    path('view-user/<int:pk>', views.viewUser , name='view-user'),
 
+   path('loginajax', views.loginajax , name='loginajax'),
+
    # Reset Password
    # path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
    # path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),

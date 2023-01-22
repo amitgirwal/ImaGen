@@ -56,16 +56,39 @@
         </li>
         
       </ul>
+
+
+      
       <div class="d-flex">
         <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0"
           style="justify-content: center; align-items: center; gap: 10px">
-          
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-current="page" href="#">{{request.user.name}}</a>
+          </li>
+
+          <li class="nav-item dropdown ml-2">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="22" alt="Portrait of a Woman" loading="lazy">
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">Dashboard</a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+              </li>
+            </ul>
+          </li> 
+          {% else %}
           <li class="nav-item">
             <a class="btn btn-sm btn-outline-light" aria-current="page" href="{% url 'login' %}">Login</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-sm btn-outline-light" aria-current="page" href="{% url 'signup' %}">Signup</a>
           </li>
+          {% endif %}
         </ul>
       </div>
     </div>
