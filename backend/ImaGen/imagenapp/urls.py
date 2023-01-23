@@ -16,5 +16,6 @@ urlpatterns = [
     path('', views.index , name='home'),
     path('image-convert', views.imageConvert , name='image_convert'),
     path('image-filter', views.imageFilter , name='image_filter'),
+    path('image-quality', views.imageQuality , name='image_quality'),
 
 ]

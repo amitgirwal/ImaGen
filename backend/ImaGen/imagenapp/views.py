@@ -4,10 +4,10 @@ from django.contrib import messages
 
 # custom import
 from .models import Upload, ImageConvert, ImageFilter
-from .forms import UploadForm, ImageConvertForm, ImageFilterForm
+from .forms import UploadForm, ImageConvertForm, ImageFilterForm, ImageQualityForm
 
 # image utils
-from .utils import getImagePathUrlByFilesRequest, convertAndSaveImage, getFileNameExt, printStar
+from .utils import getImagePathUrlByFilesRequest, convertAndSaveImage, getFileNameExt, printStar, reduceQualitySaveImage, filterSaveImage
 
 # storage
 from django.core.files.storage import FileSystemStorage
@@ -65,7 +65,7 @@ def imageFilter(request):
         action = request.POST.get('filter')
         upload_url, upload_path, upload_name, image_file = getImagePathUrlByFilesRequest(image)
         file_name, extension = getFileNameExt(upload_name)
-        applyFilterSaveImage(upload_path, image_file, file_name, action)
+        filterSaveImage(upload_path, image_file, file_name, action)
         uploaded_file_url = upload_url
         print(upload_url, upload_path, image_file, upload_name)
         printStar()
@@ -75,3 +75,25 @@ def imageFilter(request):
         'action': action
     }
     return render(request, 'image-filter.html', context)
+
+
+# Image Compress
+def imageQuality(request):
+    uploaded_file_url = None
+    action = request.GET.get('action')
+    if request.method == 'POST':
+        printStar()    
+        image = request.FILES['image']
+        action = request.POST.get('quality')
+        upload_url, upload_path, upload_name, image_file = getImagePathUrlByFilesRequest(image)
+        file_name, extension = getFileNameExt(upload_name)
+        reduceQualitySaveImage(upload_path, image_file, file_name, action)
+        uploaded_file_url = upload_url
+        printStar()
+    context = {
+        'form': ImageQualityForm(),
+        'uploaded_file_url': uploaded_file_url,
+        'action': action
+    }
+    return render(request, 'image-quality.html', context)
+

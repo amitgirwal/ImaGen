@@ -14,7 +14,8 @@ from django.utils.decorators import method_decorator
 from django.http import Http404
 from django.conf import settings
 
-from PIL import Image, ImageFilter, ImageEnhance
+from PIL import Image, ImageFilter, ImageEnhance, ImageOps
+
 
 def compressImage(image, action):
     img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -57,8 +58,10 @@ def get_filtered_image(image, action):
     return filtered
 
 
-from PIL import Image
-import os
+def get_file_size_in_bytes(file_path):
+   """ Get size of file at given path in bytes"""
+   size = os.path.getsize(file_path)
+   return size
 
 def convert_to_webp(filename, path="images/"):
     extension = filename.split('.')[-1]
@@ -117,4 +120,88 @@ def convertAndSaveImage(upload_path, image_file, file_name, action):
         return 
     return file_url_name
 
+  
+def reduceQualitySaveImage(upload_path, image_file, file_name, action):
+    action = int(action)
+    img = Image.open(upload_path)
+    file_name, extension = getFileNameExt(upload_path)
+    file_url_name = upload_path
+    if type(action) is int and (action>1 and action<100):
+        action = action
+    else:
+        action = 95
+    print('file_url_name: ', file_url_name,  type(action))
+    print('quality: ', action)
+    img.save(file_url_name, quality=action)
+    return file_url_name
 
+
+# ACTION = (
+#     ('NO_FILTER', 'no filter'),
+#     ('COLORIZED', 'colorized'),
+#     ('GRAYSCALE', 'grayscale'),
+#     ('BLURRED', 'blurred'),
+#     ('BINARY', 'binary'),
+#     ('INVERT', 'invert'),
+# )
+def filterSaveImage(upload_path, image_file, file_name, action):
+    img = Image.open(upload_path)
+    file_name, extension = getFileNameExt(upload_path)
+    file_url_name = file_name.split("\\")[-1] +'.'+action
+
+    if action == 'NO_FILTER':
+        img.save(upload_path, "png", lossless=True)
+    elif action == 'COLORIZED':
+        img = ImageOps.colorize(img, black ="blue", white ="white")
+        img.save(upload_path, "png", lossless=True)
+    elif action == 'GRAYSCALE':
+        img = ImageOps.grayscale(img)
+        img.save(upload_path, "png", lossless=True)
+    elif action == 'BLURRED':
+        img = img.filter(ImageFilter.BLUR)
+        img.save(upload_path, "png", lossless=True)
+    elif action == 'BINARY':
+        img.save(upload_path, "png", lossless=True)
+    elif action == 'INVERT':
+        img.save(upload_path, "png", lossless=True)
+    return file_url_name
+
+# image, action
+# def filterSaveImage(upload_path, image_file, file_name, action):
+#     pil_img = Image.open(image_file)
+#     image = image_file
+#     cv_img = np.array(pil_img)
+#     img = None
+#     img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+#     filtered = None
+#     if action == 'NO_FILTER':
+#         filtered = image
+#     elif action == 'COLORIZED':
+#         filtered = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+#     elif action == 'GRAYSCALE':
+#         filtered = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#     elif action == 'BLURRED':
+#         width, height = img.shape[:2]
+#         if width > 500:
+#             k = (50, 50)
+#         elif width > 200 and width <=500:
+#             k = (25,25)
+#         else:
+#             k = (10,10)
+#         blur = cv2.blur(img, k)
+#         filtered = cv2.cvtColor(blur, cv2.COLOR_BGR2RGB)
+#     elif action == 'BINARY':
+#         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#         _, filtered = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
+#     elif action == 'INVERT':
+#         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#         _, img = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
+#         filtered = cv2.bitwise_not(img)
+    
+#     img = filtered
+#     im_pil = Image.fromarray(img)
+#     buffer = BytesIO() 
+#     im_pil.save(buffer, format='png')
+#     image_png = buffer.getvalue()
+
+#     return image_png

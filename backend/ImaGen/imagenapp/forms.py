@@ -15,3 +15,9 @@ class ImageFilterForm(forms.ModelForm):
     class Meta:
         model = ImageFilter
         fields =  '__all__'
+
+class ImageQualityForm(forms.Form):
+    image = forms.ImageField()
+    quality = forms.CharField(max_length=200, initial=95)
+
+    
