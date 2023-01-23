@@ -1,29 +1,53 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %} Home {% endblock %}
+{% block title %} Temp {% endblock %}
 {% block content %}
 
-<div class="row">
+<div class="row" data-bs-theme="dark">
     <div class="col-6">
-        <div class="card border rounded p-3">
-            <form action="{% url 'addeffects' %}" method="POST" enctype="multipart/form-data"> 
-                <h3>Image Compress</h3> 
+        <div class="card border rounded p-3" data-bs-theme="dark">
+            <form action="{% url 'temp' %}" method="POST" enctype="multipart/form-data">
+                <h3 class="text mx-auto">PDF Converter</h3>
                 {% csrf_token %}
                 {{form|crispy}}
-                <button class="btn btn-success w-100 btn-lg" type="submit"><i class="fa-sharp fa-solid fa-exchange"></i> &nbsp; Convert Image</button>
-                {% if uploaded_file_url %}
-                    <p>File uploaded at: 
-                        <a  href="{{ uploaded_file_url }}" download> {{ uploaded_file_url }} </a>
-                    </p>
-                {% endif %}
+                <button class="btn btn-success w-100 btn-lg" type="submit">
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    &nbsp;Image To PDF</button>
             </form>
         </div>
     </div>
-    <div class="col-8">
+    <div class="col-6">
+        <img style="height: 300px;" alt="Preview Image" id="imgPreview">
+        {% if uploaded_file_url %}
+        <div class="card border rounded ">
+            <img style="height: 300px;" src="{{ uploaded_file_url }}" alt="download image" id="imgPreview">
+            <div class="p-2 mt-2">
+                <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
+                      class="fa-solid fa-download"></i> &nbsp; Download </a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
-   
-{% endblock %}
  
-    
+
+{% endblock %}
+{% block jsscript %}
+<script>
+    $(document).ready(()=>{
+      $('#id_image').change(function(){
+        const file = this.files[0];
+        console.log(file);
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            console.log(event.target.result);
+            $('#imgPreview').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+</script>
+{% endblock %}

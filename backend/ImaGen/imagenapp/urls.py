@@ -18,4 +18,9 @@ urlpatterns = [
     path('image-filter', views.imageFilter , name='image_filter'),
     path('image-quality', views.imageQuality , name='image_quality'),
 
+
+
+
+    path('temp', views.temp , name='temp'),
+
 ]

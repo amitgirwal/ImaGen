@@ -205,3 +205,41 @@ def filterSaveImage(upload_path, image_file, file_name, action):
 #     image_png = buffer.getvalue()
 
 #     return image_png
+
+
+
+import img2pdf 
+
+def imgToPDF(upload_path, image_file, file_name):
+    file_name, extension = getFileNameExt(upload_path)
+    file_url_name = file_name.split("\\")[-1] +'.pdf'
+
+    img = Image.open(upload_path)
+    img = img.convert('RGB')  
+    img.save(file_url_name, format="PDF")
+    print(file_url_name)
+    print(file_name)
+    print(extension)
+    return file_url_name
+    # img = Image.open(upload_path)
+    # file_name, extension = getFileNameExt(upload_path)
+    # file_url_name = file_name.split("\\")[-1] +'.pdf'
+
+    # # converting into chunks using img2pdf 
+    # pdf_bytes = img2pdf.convert(image_file) 
+    
+    # # img.save(upload_path, "png", lossless=True)
+    # # opening or creating pdf file 
+    # file = open(pdf_path, "wb") 
+
+    # # writing pdf files with chunks 
+    # file.write(pdf_bytes) 
+
+    # # closing image file 
+    # img.close() 
+
+    # # closing pdf file 
+    # file.close() 
+    # return file_url_name
+
+

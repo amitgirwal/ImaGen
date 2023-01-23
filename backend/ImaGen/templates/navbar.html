@@ -86,16 +86,18 @@
               </li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">
+                  <i class="fa-solid fa-power-off"></i>Logout</a>
               </li>
             </ul>
           </li> 
           {% else %}
           <li class="nav-item">
-            <a class="btn btn-sm btn-outline-light" aria-current="page" href="{% url 'login' %}">Login</a>
+            <a class="btn btn-outline-light" aria-current="page" href="{% url 'login' %}">
+              <i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-sm btn-outline-light" aria-current="page" href="{% url 'signup' %}">Signup</a>
+            <a class="btn btn-light" aria-current="page" href="{% url 'signup' %}">Sign Up</a>
           </li>
           {% endif %}
         </ul>

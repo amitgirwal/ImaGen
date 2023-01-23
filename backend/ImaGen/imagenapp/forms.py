@@ -20,4 +20,9 @@ class ImageQualityForm(forms.Form):
     image = forms.ImageField()
     quality = forms.CharField(max_length=200, initial=95)
 
+
+
+class ImageToPDFForm(forms.Form):
+    image = forms.ImageField()
+
     
