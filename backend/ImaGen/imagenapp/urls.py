@@ -17,6 +17,7 @@ urlpatterns = [
     path('image-convert', views.imageConvert , name='image_convert'),
     path('image-filter', views.imageFilter , name='image_filter'),
     path('image-quality', views.imageQuality , name='image_quality'),
+    path('qr-code-gen', views.qrGen , name='qr_gen'),
 
 
 

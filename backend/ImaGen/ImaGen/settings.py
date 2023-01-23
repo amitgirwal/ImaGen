@@ -152,7 +152,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 
 # Storage for media path
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/media/')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -172,7 +172,5 @@ from .env import getEmail, getPassword
 EMAIL_FROM = getEmail()
 EMAIL_HOST_USER = getEmail()
 EMAIL_HOST_PASSWORD = getPassword()
-
-
 
 PASSWORD_RESET_TIMEOUT = 14400

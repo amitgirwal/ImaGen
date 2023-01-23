@@ -25,4 +25,6 @@ class ImageQualityForm(forms.Form):
 class ImageToPDFForm(forms.Form):
     image = forms.ImageField()
 
-    
+
+class QRGenForm(forms.Form):
+    text = forms.CharField(max_length=500, initial="Hello World!")

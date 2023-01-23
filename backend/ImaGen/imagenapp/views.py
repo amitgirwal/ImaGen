@@ -230,4 +230,28 @@ def temp(request):
 #     return response      
          
          
-        
+
+from django.shortcuts import render
+from django.conf import settings
+from qrcode import *
+import time
+from .forms import QRGenForm
+
+# def qr_gen(request):
+#     if request.method == 'POST':
+#         data = request.POST['data']
+#         img = make(data)
+#         img_name = f'qr_{time.time()}.png'
+#         img.save(settings.MEDIA_ROOT/img_name)
+#         return render(request, 'qr-gen.html', {'text': text, 'img_name': img_name})
+#     return render(request, 'index.html')
+
+def qrGen(request):
+    if request.method == 'POST':
+        text = request.POST['text']
+        img = make(text)
+        img_name = f'qr_{time.time()}.png'
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        uploaded_file_url = settings.MEDIA_ROOT+'/'+img_name
+        return render(request, 'qr-gen.html', {'text': text, 'img_name': img_name, 'uploaded_file_url':uploaded_file_url, 'form': QRGenForm()}) 
+    return render(request, 'qr-gen.html', {'form': QRGenForm()})
