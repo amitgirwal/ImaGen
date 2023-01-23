@@ -82,19 +82,20 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#">Dashboard</a>
+                <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-user-astronaut"></i>&nbsp; Dashboard</a>
               </li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <a class="dropdown-item" href="{% url 'logout' %}">
-                  <i class="fa-solid fa-power-off"></i>Logout</a>
+                  <i class="fa-solid fa-power-off"></i>&nbsp;Logout</a>
               </li>
             </ul>
           </li> 
           {% else %}
           <li class="nav-item">
             <a class="btn btn-outline-light" aria-current="page" href="{% url 'login' %}">
-              <i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
+              <i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-light" aria-current="page" href="{% url 'signup' %}">Sign Up</a>
