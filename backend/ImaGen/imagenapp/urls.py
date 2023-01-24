@@ -18,10 +18,10 @@ urlpatterns = [
     path('image-filter', views.imageFilter , name='image_filter'),
     path('image-quality', views.imageQuality , name='image_quality'),
     path('qr-code-gen', views.qrGen , name='qr_gen'),
+    path('image-rotate', views.imageRotate , name='image_rotate'),
+    path('image-pdf', views.imageToPDF , name='image_pdf'),
 
+    path("temp/", views.temp, name="temp"),
 
-
-
-    path('temp', views.temp , name='temp'),
 
 ]

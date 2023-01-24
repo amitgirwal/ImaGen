@@ -1,6 +1,9 @@
 # ImaGen
 - Convert Any image format(png, jpg, jpeg, webp) to png/jpg/jpeg/webp
 - Apply filter
+- Rotate image
+- Image into pdf format
+
 
 #### Run Project
 Backend

@@ -4,7 +4,7 @@ from django.contrib import messages
 
 # custom import
 from .models import Upload, ImageConvert, ImageFilter
-from .forms import UploadForm, ImageConvertForm, ImageFilterForm, ImageQualityForm, ImageToPDFForm
+from .forms import UploadForm, ImageConvertForm, ImageFilterForm, ImageQualityForm, ImageToPDFForm, ImageRotateForm
 
 # image utils
 from .utils import getImagePathUrlByFilesRequest, convertAndSaveImage, getFileNameExt, printStar, reduceQualitySaveImage, filterSaveImage, imgToPDF
@@ -144,35 +144,35 @@ def getBasePathWithFileName(file_name):
     base_path = os.path.join(settings.BASE_DIR, 'static\media'+"\\"+str(file_name))
     return base_path
 
-import os
-def temp(request):
-    if request.method == 'POST':
-        uploaded_file = request.FILES['image']
-        file_name = uploaded_file.name
-        printStar()
+# import os
+# def temp(request):
+#     if request.method == 'POST':
+#         uploaded_file = request.FILES['image']
+#         file_name = uploaded_file.name
+#         printStar()
          
-        base_path = getBasePathWithFileName(file_name)
-        with open(base_path, 'wb') as f:
-            f.write(uploaded_file.read())
-            print(f.path())
+#         base_path = getBasePathWithFileName(file_name)
+#         with open(base_path, 'wb') as f:
+#             f.write(uploaded_file.read())
+#             print(f.path())
 
 
-        print(base_path, "👈👈👈👈👈👈")
-        printStar()
+#         print(base_path, "👈👈👈👈👈👈")
+#         printStar()
          
 
-        quit()
-        # pdf_path = f'/tmp/{filename.split(".")[0]}.pdf'
-        # image = Image.open(temp_path)
-        # im = image.convert('RGB')
-        # im.save(pdf_path)
+#         quit()
+#         # pdf_path = f'/tmp/{filename.split(".")[0]}.pdf'
+#         # image = Image.open(temp_path)
+#         # im = image.convert('RGB')
+#         # im.save(pdf_path)
 
-        # fs = FileSystemStorage(pdf_path)
-        # response = FileResponse(fs.open(pdf_path, 'rb'), content_type='application/pdf')
-        # response['Content-Disposition'] = f'attachment; filename="{uuid.uuid4().hex}.pdf"'
-        # return response
+#         # fs = FileSystemStorage(pdf_path)
+#         # response = FileResponse(fs.open(pdf_path, 'rb'), content_type='application/pdf')
+#         # response['Content-Disposition'] = f'attachment; filename="{uuid.uuid4().hex}.pdf"'
+#         # return response
 
-    return render(request, 'temp.html', {'form': ImageToPDFForm()})
+#     return render(request, 'temp.html', {'form': ImageToPDFForm()})
 # def temp(request):
 #     if request.method=='POST':
 #         printStar()
@@ -255,3 +255,94 @@ def qrGen(request):
         uploaded_file_url = settings.MEDIA_ROOT+'/'+img_name
         return render(request, 'qr-gen.html', {'text': text, 'img_name': img_name, 'uploaded_file_url':uploaded_file_url, 'form': QRGenForm()}) 
     return render(request, 'qr-gen.html', {'form': QRGenForm()})
+
+
+# Rotate Image
+def imageRotate(request):
+    template_name = 'image-rotate.html'
+    form = ImageRotateForm()
+    img_name = None  
+    uploaded_file_url = None
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+        angle = int(request.POST.get('angle'))
+        angle = angle if (angle>0 and angle<360) else 90
+        # image name   
+        img_name = f'imagerotate_{time.time()}.png'
+        # open image
+        img = Image.open(image)
+        # processing
+        img = img.rotate(angle)
+        image.seek(0)
+        # saving an image
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        image.seek(0)  
+        # creating url
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url
+    }
+    return render(request, template_name, context)
+
+def imageToPDF(request):
+    template_name = 'imagetopdf.html'
+    form = ImageToPDFForm()
+    img_name = None  
+    uploaded_file_url = None
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+         
+        # image name   
+        img_name = f'imagepdf{time.time()}.pdf'
+        # open image
+        img = Image.open(image)
+        # processing
+        img = img.convert('RGB')
+        img.seek(0)
+        # saving an image
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        img.seek(0)  
+        # creating url
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url
+    }
+    return render(request, template_name, context)
+
+def temp(request):
+    template_name = 'temp.html'
+    form = ImageRotateForm()
+    img_name = None  
+    uploaded_file_url = None
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+         
+        # image name   
+        img_name = f'imagepdf{time.time()}.pdf'
+        # open image
+        img = Image.open(image)
+        # processing
+        img = img.convert('RGB')
+        img.seek(0)
+        # saving an image
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        img.seek(0)  
+        # creating url
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url
+    }
+    return render(request, template_name, context)
+
