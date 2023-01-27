@@ -23,5 +23,6 @@ python manage.py migrate
 - [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 - [JQuery](https://cdnjs.com/libraries/jquery)
 - [Font Awesome](https://cdnjs.com/libraries/font-awesome)
-- [Font Awesome Icon](https://fontawesome.com/icons/user-astronaut?s=solid&f=classic)
+- [Font Awesome Icon](https://fontawesome.com/search?o=r&m=free&s=solid)
 - [Image Undraw](https://undraw.co/search)
+- [Gradient Color Bootstrap](https://mdbootstrap.com/docs/b4/jquery/css/gradients/)
