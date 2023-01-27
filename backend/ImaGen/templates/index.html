@@ -3,113 +3,781 @@
 {% load crispy_forms_tags %}
 {% block title %} ImaGen {% endblock %}
 {% block content %}
+<style> 
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;900&family=Nunito:wght@300;400;500;700;900&family=Roboto:wght@300;400;500;700;900&display=swap');
 
+   
  
+  .hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    color: #012970;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.2;
+    transition-property: opacity, transform;
+  }
+
+  .hero h2 {
+
+    color: #444444;
+    margin: 15px 0 0 0;
+    font-size: 26px;
+
+    font-family: "Nunito", sans-serif;
+
+    transition-property: opacity, transform;
+  }
+
+
+  .text-decoration-none,
+  .list-social-icon {
+    font-size: 20px;
+    display: inline-block;
+    color: rgba(1, 41, 112, 0.5);
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s ease;
+  }
+
+  .text-decoration-none :hover,
+  .list-social-icon :hover {
+    color: #012970 !important;
+  }
+
+  .list-inline-item a {
+    font-size: 20px;
+    display: inline-block;
+    color: rgba(1, 41, 112, 0.5);
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s ease;
+  }
+
+  .list-inline-item a:hover {
+    color: #012970 !important;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    color: rgba(1, 41, 112, 0.5);
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s ease;
+  }
+
+  a:hover {
+    color: #012970 !important;
+  }
+</style>
+
+<section id="hero" class="hero d-flex align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <h1 data-aos="fade-up" class="aos-init aos-animate">Welcome to <span style="color:rgba(1, 41, 112, 0.5)">ImaGen</span> Develop anything.</h1>
+        <!-- <h1 data-aos="fade-up" class="aos-init aos-animate">We offer modern solutions for growing your business</h1> -->
+        <h2 data-aos="fade-up" data-aos-delay="400" class="aos-init aos-animate">We are team of talented designers
+          making websites with Bootstrap</h2>
+        <div data-aos="fade-up" data-aos-delay="600" class="aos-init aos-animate mt-5">
+          <div class="text-center text-lg-start">
+            <a href="#about"
+              class="btn btn-primary btn-lg rounded-2 fw-bold d-inline-flex align-items-center justify-content-center align-self-center">
+              <span>Get Started</span>&nbsp;&nbsp;<i class="fa fa-arrow-right"></i> </a>
+              <a href="#about" style="background-color: rgba(51,94,234,.1);
+              color: #335eea; border-color: transparent!important;"
+              class="btn btn-primary btn-lg rounded-2  d-inline-flex align-items-center justify-content-center align-self-center">
+               Documentation </a>
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-lg-6 hero-img aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200"> <img
+          src="{% static 'images/hero-img.png' %}" class="img-fluid" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section class="container pt-4 pb-5 py-lg-5">
+  <h2 class="h1 text-center pt-1 pt-md-3 pt-lg-4 pb-3 pb-md-4 mb-0 mb-lg-3">More Silicon Features</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-lg-3 g-xl-4 pb-md-3 pb-lg-5">
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bxl-bootstrap fs-2 text-gradient-primary" style="padding: .375rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">Built with Bootstrap 5</h3>
+          <p class="fs-sm mb-0">Silicon is&nbsp;the powerful front-end solution based on&nbsp;Bootstrap 5&nbsp;— the
+            world' s&nbsp;most popular responsive, mobile-first front-end component library.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bx-file fs-2 text-gradient-primary" style="padding: .375rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">Detailed Documentation</h3>
+          <p class="fs-sm mb-0">Download package includes the documentation that covers all crucial information about
+            how to get started, customize template and components usage.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bx-mobile fs-2 text-gradient-primary" style="padding: .375rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">Mobile Freindly Interface</h3>
+          <p class="fs-sm mb-0">It's not a surprise that nowadays over 80% of users surf the inernet using their mobile
+            devices. Silicon is 100% responsive and optimized for small touch screens.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bxl-html5 text-gradient-primary m-1" style="font-size: 2.25rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">W3C Valid HTML Code</h3>
+          <p class="fs-sm mb-0">All HTML files are checked via W3C validator to ensure 100% valid code. As you probably
+            know invalid HTML limits innovation, but Silicon is innovative at its core.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bxl-html5 text-gradient-primary m-1" style="font-size: 2.25rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">W3C Valid HTML Code</h3>
+          <p class="fs-sm mb-0">All HTML files are checked via W3C validator to ensure 100% valid code. As you probably
+            know invalid HTML limits innovation, but Silicon is innovative at its core.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bxl-nodejs text-gradient-primary m-1" style="font-size: 2.25rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">Kick-Start Your Development</h3>
+          <p class="fs-sm mb-0">Start your development process fast and easy with Node.js&nbsp;and Gulp setup.
+            Configuration files are included in&nbsp;download package. Full tasks automation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bxl-sass text-gradient-primary m-1" style="font-size: 2.25rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">Easy to Customize with Sass</h3>
+          <p class="fs-sm mb-0">Silicon is built using Sass. Easily change colors, typography and much more. It is the
+            most mature, stable, and powerful CSS extension language in the world.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item -->
+    <div class="col">
+      <div class="card h-100 bg-transparent border-1">
+        <div class="bg-secondary rounded-3 w-auto lh-1 p-2 mt-4 ms-4 me-auto">
+          <i class="bx bxl-javascript text-gradient-primary m-1" style="font-size: 2.25rem;"></i>
+        </div>
+        <div class="card-body">
+          <h3 class="h6">Future Proof Java-Script</h3>
+          <p class="fs-sm mb-0">Silicon core scripts as&nbsp;well as&nbsp;all dependencies are written
+            in&nbsp;vanilla&nbsp;JS. And now with Bootstrap 5 we finally drop jQuery and use ES6 modules.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container px-4 py-5" id="featured-3">
+  <h2 class="pb-2 border-bottom">Columns with icons</h2>
+  <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <div class="feature col">
+      <div class="feature-icon bg-primary bg-gradient">
+        <svg class="bi" width="1em" height="1em">
+          <use xlink:href="#collection"></use>
+        </svg>
+      </div>
+      <h2>Featured title</h2>
+      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
+        probably just keep going until we run out of words.</p>
+      <a href="#" class="icon-link">
+        Call to action
+        <svg class="bi" width="1em" height="1em">
+          <use xlink:href="#chevron-right"></use>
+        </svg>
+      </a>
+    </div>
+    <div class="feature col">
+      <div class="feature-icon bg-primary bg-gradient">
+        <svg class="bi" width="1em" height="1em">
+          <use xlink:href="#people-circle"></use>
+        </svg>
+      </div>
+      <h2>Featured title</h2>
+      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
+        probably just keep going until we run out of words.</p>
+      <a href="#" class="icon-link">
+        Call to action
+        <svg class="bi" width="1em" height="1em">
+          <use xlink:href="#chevron-right"></use>
+        </svg>
+      </a>
+    </div>
+    <div class="feature col">
+      <div class="feature-icon bg-primary bg-gradient">
+        <svg class="bi" width="1em" height="1em">
+          <use xlink:href="#toggles2"></use>
+        </svg>
+      </div>
+      <h2>Featured title</h2>
+      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
+        probably just keep going until we run out of words.</p>
+      <a href="#" class="icon-link">
+        Call to action
+        <svg class="bi" width="1em" height="1em">
+          <use xlink:href="#chevron-right"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-6">
-    <div class="card shadow-sm " >
+    <div class="card rounded-3">
       <div class="row g-0">
         <div class="col-md-4">
-          <img class="" src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"  alt="image" style="object-fit: cover;
-          object-position: cev;
-          object-position: center;
-          height: 100%;
-          width: 100%;">
+          <img class=""
+            src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"
+            alt="image" style="object-fit: cover;
+              object-position: cev;
+              object-position: center;
+              height: 100%;
+              width: 100%;">
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">Image Converter</h5>
-            <p class="card-text">Here, you can find an image converter for your needs, for example, a PDF to image converter.</p>
-            <a href="#" class="btn btn-primary shadow-sm">Convert &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+            <p class="card-text">Here, you can find an image converter for your needs, for example, a PDF to image
+              converter.</p>
+            <a href="#" class="btn btn-primary shadow-sm" data-bs-toggle="tooltip" title="Convert an image">
+              Convert &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col-6">
-    <div class="card shadow-sm" >
+    <div class="card rounded-3">
       <div class="row g-0">
         <div class="col-md-4">
-          <img class=" " src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"  alt="image" style="object-fit: cover;
-          object-position: cev;
-          object-position: center;
-          height: 100%;
-          width: 100%;">
+          <img class=""
+            src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"
+            alt="image" style="object-fit: cover;
+              object-position: cev;
+              object-position: center;
+              height: 100%;
+              width: 100%;">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">PDF to JPG</h5>
-            <p class="card-text">This PDF to JPG converter allows you to convert PDF to JPG, thus turning your PDF text document into the popular raster image format.</p>
-            <a href="#" class="btn btn-primary shadow-sm">Convert &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+            <h5 class="card-title">Image Converter</h5>
+            <p class="card-text">Here, you can find an image converter for your needs, for example, a PDF to image
+              converter.</p>
+            <a href="#" class="btn btn-primary shadow-sm" data-bs-toggle="tooltip" title="Convert an image">
+              Convert &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
-   
-   
- 
-
-<div class="row mt-5">
-  <div class="col-6">
-    <div class="card rounded shadow-sm " >
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img class=" " src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"  alt="image" style="object-fit: cover;
-          object-position: cev;
-          object-position: center;
-          height: 100%;
-          width: 100%;">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Image Filter</h5>
-            <p class="card-text">Here, you can find an image filter for your needs, for example, a blur filter to an image.</p>
-            <a href="#" class="btn btn-primary shadow-sm">Convert &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-6">
-    <div class="card rounded shadow-sm" >
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img class=" " src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"  alt="image" style="object-fit: cover;
-          object-position: cev;
-          object-position: center;
-          height: 100%;
-          width: 100%;">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">PDF to JPG</h5>
-            <p class="card-text">This PDF to JPG converter allows you to convert PDF to JPG, thus turning your PDF text document into the popular raster image format.</p>
-            <a href="#" class="btn btn-primary shadow-sm">Convert &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-   
-   
 </div>
+
+
+
 
 <div class="container my-5">
   <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
     <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
       <h1 class="display-4 fw-bold lh-1">Information </h1>
-      <p class="lead">This free online file converter lets you convert media easy and fast from one format to another. We support a lot of different source formats, just try. If you can't find the conversion you need, please let us know and write us an e-mail. We probably can help you...</p>
+      <p class="lead">This free online file converter lets you convert media easy and fast from one format to another.
+        We support a lot of different source formats, just try. If you can't find the conversion you need, please let us
+        know and write us an e-mail. We probably can help you...</p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
-        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary 	&#8594;</button>
+        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary &#8594;</button>
         <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
       </div>
     </div>
     <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-        <img class="rounded-lg-3" src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ" alt="" width="720">
+      <img class="rounded-lg-3"
+        src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ" alt=""
+        width="720">
     </div>
   </div>
 </div>
+
+<section class="position-relative pb-lg-14 py-10 ">
+  <div class="container">
+
+    <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-12">
+        <div class="bg-light  rounded-3 py-9 px-6 px-lg-0">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-12 d-none d-lg-block">
+              <div class="position-relative text-center">
+                <div class="position-absolute bottom-0 start-0 end-0 " style="margin-bottom: -260px;">
+                  <img src="assets/images/rocket.svg" alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 col-12">
+              <div class="">
+                <h2 class="display-5 fw-bold pe-lg-12">Get started with
+
+                  Geeks UI Today</h2>
+                <p class="fs-4 mb-4">Start building your website and product in
+                  minutes. <span class="text-dark fw-semi-bold">Buy now and get lifetime access to
+                    updates
+                    and upgrades.</span></p>
+                <a href="https://bit.ly/geeksui" class="btn btn-primary">Purhcase Now</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="pt-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-9">
+        <h3 class="h2">Frequently Asked Questions</h3>
+        <div class="my-4">
+          <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+            <div data-target="#panel-1" class="accordion-panel-title collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-1">
+              <span class="h6 mb-0">Can I just use the static HTML files?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg icon" data-src="assets/img/icons/interface/plus.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529"></path>
+<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529"></path>
+</svg>
+            </div>
+            <div class="collapse" id="panel-1" style="">
+              <div class="pt-3">
+                <p>Yes. The gulp workflow can be bypassed all together if you prefer to simply edit the static HTML and CSS files.</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+            <div data-target="#panel-2" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-2">
+              <span class="h6 mb-0">Are the images included in the download package?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg icon" data-src="assets/img/icons/interface/plus.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529"></path>
+<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529"></path>
+</svg>
+            </div>
+            <div class="collapse" id="panel-2">
+              <div class="pt-3">
+                <p>Yes. All images you see in the demo files are included for your use in the download package.</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+            <div data-target="#panel-3" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-3">
+              <span class="h6 mb-0">Can Leap be used as a 'one page' template?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg icon" data-src="assets/img/icons/interface/plus.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529"></path>
+<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529"></path>
+</svg>
+            </div>
+            <div class="collapse" id="panel-3">
+              <div class="pt-3">
+                <p>Yes. Leap includes the smooth scroll plugin which is perfect for single page websites.</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">
+            <div data-target="#panel-4" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-4">
+              <span class="h6 mb-0">How can I request support?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg icon" data-src="assets/img/icons/interface/plus.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529"></path>
+<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529"></path>
+</svg>
+            </div>
+            <div class="collapse" id="panel-4">
+              <div class="pt-3">
+                <p>You can request personal support via our dedicated support system on <a href="http://mediumrare.ticksy.com">Ticksy</a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+          <div class="card mb-2 card-sm card-body hover-shadow-sm aos-init aos-animate" data-aos="fade-up" data-aos-delay="500">
+            <div data-target="#panel-5" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="panel-5">
+              <span class="h6 mb-0">Is this a WordPress theme?</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg icon" data-src="assets/img/icons/interface/plus.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529"></path>
+<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529"></path>
+</svg>
+            </div>
+            <div class="collapse" id="panel-5">
+              <div class="pt-3">
+                <p>No. This is a HTML template. A WordPress version is coming soon, <a href="">Subscribe Here</a> to recieve a notification when it is available.</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <span>Still have questions? <a href="#" class="hover-arrow" data-toggle="modal" data-target="#ask-modal">Get in
+        touch</a>
+        </span>
+        <div class="modal fade" id="ask-modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg icon bg-dark" data-src="assets/img/icons/interface/cross.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M16.2426 6.34311L6.34309 16.2426C5.95257 16.6331 5.95257 17.2663 6.34309 17.6568C6.73362 18.0473 7.36678 18.0473 7.75731 17.6568L17.6568 7.75732C18.0473 7.36679 18.0473 6.73363 17.6568 6.34311C17.2663 5.95258 16.6331 5.95258 16.2426 6.34311Z" fill="#212529"></path>
+<path d="M17.6568 16.2426L7.75734 6.34309C7.36681 5.95257 6.73365 5.95257 6.34313 6.34309C5.9526 6.73362 5.9526 7.36678 6.34313 7.75731L16.2426 17.6568C16.6331 18.0473 17.2663 18.0473 17.6568 17.6568C18.0474 17.2663 18.0474 16.6331 17.6568 16.2426Z" fill="#212529"></path>
+</svg>
+                </button>
+                <div class="m-3">
+                  <ul class="avatars justify-content-center">
+                    <li>
+                      <img src="assets/img/avatars/team-1.jpg" alt="Avatar" class="avatar avatar-lg">
+                    </li>
+                    <li>
+                      <img src="assets/img/avatars/team-2.jpg" alt="Avatar" class="avatar avatar-lg">
+                    </li>
+                    <li>
+                      <img src="assets/img/avatars/team-3.jpg" alt="Avatar" class="avatar avatar-lg">
+                    </li>
+                  </ul>
+                  <div class="text-center my-3">
+                    <h4 class="h3 mb-1">Pre-sales Questions</h4>
+                    <p>
+                      Please get in touch for any questions you may have. We typically reply within 24 hours.
+                    </p>
+                  </div>
+                  <form action="https://mailform.mediumra.re/leap/smtp.php" data-form-email="" novalidate="">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="contact-name" placeholder="Your Name" required="">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" name="contact-email" placeholder="Email Address" required="">
+                    </div>
+                    <div class="form-group">
+                      <textarea name="contact-box-message" rows="5" class="form-control" placeholder="Type your message here" required=""></textarea>
+                    </div>
+                    <div data-recaptcha="" data-sitekey="6Lfmz4gUAAAAAEau9IKfGA7leOKYAiRhv-3WA3gq"><div><iframe src="https://www.google.com/recaptcha/api/fallback?k=6Lfmz4gUAAAAAEau9IKfGA7leOKYAiRhv-3WA3gq&amp;hl=en&amp;v=RGRQD9tdxHtnt-Bxkx9pM75S&amp;t=41986" frameborder="0" scrolling="no" style="width: 302px; height: 422px;"></iframe><div style="margin: -4px 0px 0px; padding: 0px; background: rgb(249, 249, 249); border: 1px solid rgb(193, 193, 193); border-radius: 3px; height: 60px; width: 300px;"><textarea id="g-recaptcha-response-1" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: block;"></textarea></div></div></div>
+                    <div class="d-none alert alert-danger" role="alert" data-error-message="">
+                      Please fill all fields correctly.
+                    </div>
+                    <div class="d-none alert alert-success" role="alert" data-success-message="">
+                      Thanks, a member of our team will be in touch shortly.
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary btn-loading" data-loading-text="Sending">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="injected-svg icon" data-src="assets/img/icons/theme/code/loading.svg">
+<title>Icon For Loading</title>
+<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g>
+        <polygon points="0 0 24 0 24 24 0 24" opacity="0"></polygon>
+    </g>
+    <path d="M12,4 L12,6 C8.6862915,6 6,8.6862915 6,12 C6,15.3137085 8.6862915,18 12,18 C15.3137085,18 18,15.3137085 18,12 C18,10.9603196 17.7360885,9.96126435 17.2402578,9.07513926 L18.9856052,8.09853149 C19.6473536,9.28117708 20,10.6161442 20,12 C20,16.418278 16.418278,20 12,20 C7.581722,20 4,16.418278 4,12 C4,7.581722 7.581722,4 12,4 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) "></path>
+</g>
+</svg>
+                      <span>Send</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer border-top border-bottom pt-5 pb-4 pb-lg-5 my-5 "  >
+  <div class="container text-center pt-2 pt-md-4 pt-lg-5 pb-xl-3">
+    <div class="row justify-content-center pt-xxl-2">
+      <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11">
+        <h2 class="h1 pb-3 mb-3">Subscribe to Our Newsletter</h2>
+        <form class="subscription-form position-relative validate"
+          action="https://studio.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126"
+          method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
+          <div class="d-flex flex-column flex-sm-row">
+            <div class="position-relative w-100 mb-3 mb-sm-0 me-sm-3">
+              <input class="form-control form-control-lg ps-5 rounded-1" type="email" name="EMAIL" placeholder="Your email"
+                required="">
+                 
+              <i class="fa-solid fa-paper-plane fs-xl text-muted position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+            </div>
+            <button class="btn btn-primary rounded-1 shadow-primary btn-lg" type="submit" name="subscribe">Subscribe*</button>
+          </div>
+          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input class="subscription-form-antispam" type="text" name="b_c7103e2c981361a6639545bd5_29ca296126"
+              tabindex="-1">
+          </div>
+          <p class="mt-4 mb-0">*Enjoy using Silicon Template and stay tuned for the latest updates and news.</p>
+          <div class="subscription-status position-absolute top-100 start-50 translate-middle-x"></div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Footer section -->
+<footer class="py-8 py-md-11 bg-gray-200 mb-3" style=" font-family:  Nunito, sans-serif;" >
+<!-- <footer class="py-8 py-md-11 bg-gray-200 mb-3" style="background-color: #f1f4f8; font-family:  Nunito, sans-serif;" > -->
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 col-lg-3">
+
+        <!-- Brand -->
+        <img src="{% static 'logos/logo.png' %}" alt="..." class="footer-brand img-fluid mb-2">
+
+        <!-- Text -->
+        <p class="text-gray-700 mb-2">
+          A better way to build.
+        </p>
+
+        <!-- Social -->
+        <ul class="list-unstyled list-inline list-social mb-6 mb-md-0">
+          <li class="list-inline-item list-social-item me-3">
+            <a href="#!" class="text-decoration-none">
+              <img src="{% static 'logos/instagram.svg' %}" class="list-social-icon" alt="...">
+            </a>
+          </li>
+          <li class="list-inline-item list-social-item me-3">
+            <a href="#!" class="text-decoration-none">
+              <img src="{% static 'logos/facebook.svg' %}" class="list-social-icon" alt="...">
+            </a>
+          </li>
+          <li class="list-inline-item list-social-item me-3">
+            <a href="#!" class="text-decoration-none">
+              <img src="{% static 'logos/twitter.svg' %}" class="list-social-icon" alt="...">
+            </a>
+          </li>
+          <li class="list-inline-item list-social-item">
+            <a href="#!" class="text-decoration-none">
+              <img src="{% static 'logos/pinterest.svg' %}" class="list-social-icon" alt="...">
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 ">
+
+        <!-- Heading -->
+        <h6 class="fw-bold text-uppercase text-gray-700">
+          Products
+        </h6>
+
+        <!-- List -->
+        <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Page Builder
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              UI Kit
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Styleguide
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Documentation
+            </a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">
+              Changelog
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+
+        <!-- Heading -->
+        <h6 class="fw-bold text-uppercase text-gray-700">
+          Services
+        </h6>
+
+        <!-- List -->
+        <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Documentation
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Changelog
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Pagebuilder
+            </a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">
+              UI Kit
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-6 col-md-4 offset-md-4 col-lg-2 offset-lg-0">
+
+        <!-- Heading -->
+        <h6 class="fw-bold text-uppercase text-gray-700">
+          Connect
+        </h6>
+
+        <!-- List -->
+        <ul class="list-unstyled text-muted mb-0">
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Page Builder
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              UI Kit
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Styleguide
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Documentation
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Changelog
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Documentation
+            </a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">
+              Changelog
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+
+        <!-- Heading -->
+        <h6 class="fw-bold text-uppercase text-gray-700">
+          Legal
+        </h6>
+
+        <!-- List -->
+        <ul class="list-unstyled text-muted mb-0">
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Documentation
+            </a>
+          </li>
+          <li class="mb-3">
+            <a href="#!" class="text-reset">
+              Changelog
+            </a>
+          </li>
+          <li>
+            <a href="#!" class="text-reset">
+              Pagebuilder
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div> <!-- / .row -->
+    <div class="row">
+      <div class="pt-5 mt-lg-3 mt-xl-4 text-center">
+        <p class="text-muted mb-0">
+          ©2023 All rights reserved. Made with by
+          <i class="fa fa-heart bg-gradient-light text-dark mt-1 mx-1"></i>
+           
+          <a href="#" class="text-muted" target="_blank" rel="noopener">
+            ImaGen</a>
+        </p>
+      </div>
+    </div>
+  </div> <!-- / .container -->
+</footer>
+{% endblock %}
+{% block javascript %}
+<script>
+  $(document).ready(function () {
+    $(".card").hover(
+      function () {
+        $(this).addClass('shadow-lg mt-1').css('cursor', 'pointer');
+      }, function () {
+        $(this).removeClass('shadow-lg mt-1');
+      }
+    );
+
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  });
+
+</script>
 {% endblock %}
