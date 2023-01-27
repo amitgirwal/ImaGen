@@ -7,10 +7,14 @@
 <div class="row" data-bs-theme="dark">
     <div class="col-6">
         <div class="card border rounded p-3" data-bs-theme="dark">
-            <form action="{% url 'temp' %}" method="POST" enctype="multipart/form-data">
+          <form action="{% url 'tempa' %}" method="POST" enctype="multipart/form-data"  id="imageForm">
+              {% csrf_token %}
                 <h3 class="text mx-auto">Temp_name</h3>
-                {% csrf_token %}
-                {{form|crispy}}
+                <input type="file" name="image" class="form-control" accept="image/*" id="id_image" required="">
+                <br/>
+                <label for="exampleColorInput" class="form-label">Filter Color Picker</label>
+                <input type="color" class="form-control form-control-color" id="color"  value="#563d7c" title="Choose your color" name="color">
+                
                 <button class="btn btn-success w-100 btn-lg" type="submit">
                     <i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp;
                     Button_name</button>
@@ -18,17 +22,20 @@
         </div>
     </div>
     <div class="col-6">
-        <img style="height: 300px;" alt="Preview Image" id="imgPreview">
-        {% if uploaded_file_url %}
-        <div class="card border rounded ">
-            <img style="height: 300px;" src="{{ uploaded_file_url }}" alt="download image" id="imgPreview">
-            <div class="p-2 mt-2">
-                <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
-                      class="fa-solid fa-download"></i> &nbsp; Download </a>
-            </div>
-        </div>
-        {% endif %}
-    </div>
+      
+      {% if True %}
+      <div class="card border rounded ">
+          <img style="height: 300px;" src="{{ uploaded_file_url }}" alt="download image" id="imgPreview">
+          <div class="p-2 mt-2">
+             <button class="btn btn-info btn-lg w-100 my-3">
+              <i class="fa-solid fa-refresh"></i> &nbsp;Update Preview
+             </button>
+              <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
+                    class="fa-solid fa-download"></i> &nbsp; Download </a>
+          </div>
+      </div>
+      {% endif %}
+  </div>
 </div>
  
 
@@ -38,7 +45,7 @@
     $(document).ready(()=>{
       $('#id_image').change(function(){
         const file = this.files[0];
-        console.log(file);
+        //console.log(file);
         if (file){
           let reader = new FileReader();
           reader.onload = function(event){
@@ -48,6 +55,41 @@
           reader.readAsDataURL(file);
         }
       });
+
+      function updateImagePreview(uploaded_file_url){
+        $('#imgPreview').attr('src', uploaded_file_url);
+      }
+
+      $('#color').change(function(){
+        
+        // var serializedData = new FormData(document.querySelector("form"))
+        // var serializedData = new FormData('form')
+        // var serializedData = $('#imageForm').serialize();
+        // console.log(serializedData)
+        $.ajax({
+        type: 'POST',
+        url: "{% url 'temp_ajax' %}",
+        data: new FormData(document.querySelector("form")),
+        contentType: false,       
+        cache: false,             
+        processData:false, 
+        success: function (response) {
+           
+          alert('success!')
+          uploaded_file_url = response['uploaded_file_url'];
+          updateImagePreview(uploaded_file_url)
+          console.log(response)
+        },
+
+        error: function (response) {
+            alert(response["error"]);
+
+        }
+
+        })
+
+      });
+
     });
 </script>
 {% endblock %}

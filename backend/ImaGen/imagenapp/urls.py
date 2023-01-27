@@ -21,7 +21,8 @@ urlpatterns = [
     path('image-rotate', views.imageRotate , name='image_rotate'),
     path('image-pdf', views.imageToPDF , name='image_pdf'),
 
-    path("temp/", views.temp, name="temp"),
+    path("tempa", views.tempa, name="tempa"),
+    path("tempajax", views.tempAjax, name="temp_ajax"),
 
 
 ]

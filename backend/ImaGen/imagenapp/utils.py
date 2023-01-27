@@ -271,3 +271,75 @@ def imgToPDF(upload_path, image_file, file_name):
 # cv2.waitKey(0)
 
 # cv2.imwrite('blagaj_resized_text.jpg', img_text)
+
+def red(r,g,b):
+    newr = r
+    newg = 0
+    newb = 0
+    return (newr,newg,newb)
+
+def darkpink(r,g,b):
+    newr = g
+    newg = b
+    newb = r
+    return (newr,newg,newb)
+def skyblue(r,g,b):
+    newr = b
+    newg = g
+    newb = r
+    return (newr,newg,newb)
+def lemonyellow(r,g,b):
+    newr = g
+    newg = r
+    newb = b
+    return (newr,newg,newb)
+def grey(r,g,b):
+    newr = (r+g+b)//3
+    newg = (r+g+b)//3
+    newb = (r+g+b)//3
+    return (newr,newg,newb)
+def sepia(r,g,b):
+    newr = int((r * .393) + (g *.769) + (b * .189))
+    newg = int((r * .349) + (g *.686) + (b * .168))
+    newb = int((r * .272) + (g *.534) + (b * .131))
+    return (newr,newg,newb)
+# def imageFilter(upload_path, image_file, file_name):
+#     printStar()
+
+#     file_name, extension = getFileNameExt(upload_path)
+#     file_url_name = file_name.split("\\")[-1] +'.pdf'
+
+#     # Open image
+#     img = Image.open(upload_path).convert("RGB")
+#     # gather width, height
+#     width, height = img.size
+#     # load pixels
+#     pixels = img.load()
+#     # choice
+#     no = int(1)
+#     for py in range(height):
+#         for px in range(width):
+#         r,g,b = img.getpixel((px,py))
+#         if no == 1:
+#             pixels[px,py] = red(r,g,b)
+#         elif no == 2:
+#             pixels[px,py] = darkpink(r,g,b)
+#         elif no == 3:
+#             pixels[px,py] = skyblue(r,g,b)
+#         elif no == 4:
+#             pixels[px,py] = lemonyellow(r,g,b)
+#         elif no == 5:
+#             pixels[px,py] = grey(r,g,b)
+#         elif no == 6:
+#             pixels[px,py] = sepia(r,g,b)
+#         else:
+#             pixels[px,py] = (r,g,b)
+
+#     img.save(file_url_name, format="png")
+
+#     print("file_url_name: ", file_url_name)
+#     print("file_name: ", file_name)
+#     print("extension: ", extension)
+
+#     printStar()
+#     return file_url_name

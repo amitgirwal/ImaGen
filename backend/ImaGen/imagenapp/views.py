@@ -317,7 +317,69 @@ def imageToPDF(request):
     }
     return render(request, template_name, context)
 
-def temp(request):
+# def temp(request):
+#     template_name = 'temp.html'
+#     form = ImageRotateForm()
+#     img_name = None  
+#     uploaded_file_url = None
+
+#     if request.method == 'POST':
+#         image = request.FILES['image']
+         
+#         # image name   
+#         img_name = f'imagepdf{time.time()}.pdf'
+#         # open image
+#         img = Image.open(image)
+#         # processing
+#         img = img.convert('RGB')
+#         img.seek(0)
+#         # saving an image
+#         img.save(settings.MEDIA_ROOT+'/'+img_name)
+#         img.seek(0)  
+#         # creating url
+#         uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+#     context =  {
+#         'img_name': img_name,    
+#         'form': form,
+#         'uploaded_file_url':uploaded_file_url
+#     }
+#     return render(request, template_name, context)
+
+
+
+def red(r,g,b):
+    newr = r
+    newg = 0
+    newb = 0
+    return (newr,newg,newb)
+
+def darkpink(r,g,b):
+    newr = g
+    newg = b
+    newb = r
+    return (newr,newg,newb)
+def skyblue(r,g,b):
+    newr = b
+    newg = g
+    newb = r
+    return (newr,newg,newb)
+def lemonyellow(r,g,b):
+    newr = g
+    newg = r
+    newb = b
+    return (newr,newg,newb)
+def grey(r,g,b):
+    newr = (r+g+b)//3
+    newg = (r+g+b)//3
+    newb = (r+g+b)//3
+    return (newr,newg,newb)
+def sepia(r,g,b):
+    newr = int((r * .393) + (g *.769) + (b * .189))
+    newg = int((r * .349) + (g *.686) + (b * .168))
+    newb = int((r * .272) + (g *.534) + (b * .131))
+    return (newr,newg,newb)
+def tempa(request):
     template_name = 'temp.html'
     form = ImageRotateForm()
     img_name = None  
@@ -327,11 +389,33 @@ def temp(request):
         image = request.FILES['image']
          
         # image name   
-        img_name = f'imagepdf{time.time()}.pdf'
+        img_name = f'imagefilter{time.time()}.png'
         # open image
-        img = Image.open(image)
+        img = Image.open(image).convert('RGB')
         # processing
-        img = img.convert('RGB')
+        # gather width, height
+        width, height = img.size
+        # load pixels
+        pixels = img.load()
+        # choice
+        no = int(3)
+        for py in range(height):
+            for px in range(width):
+                r, g, b = img.getpixel((px,py))
+                if no == 1:
+                    pixels[px,py] = red(r,g,b)
+                elif no == 2:
+                    pixels[px,py] = darkpink(r,g,b)
+                elif no == 3:
+                    pixels[px,py] = skyblue(r,g,b)
+                elif no == 4:
+                    pixels[px,py] = lemonyellow(r,g,b)
+                elif no == 5:
+                    pixels[px,py] = grey(r,g,b)
+                elif no == 6:
+                    pixels[px,py] = sepia(r,g,b)
+                else:
+                    pixels[px,py] = (r,g,b) 
         img.seek(0)
         # saving an image
         img.save(settings.MEDIA_ROOT+'/'+img_name)
@@ -345,4 +429,56 @@ def temp(request):
         'uploaded_file_url':uploaded_file_url
     }
     return render(request, template_name, context)
+import json
 
+def hex_to_rgb(hex):
+  rgb = []
+  for i in (0, 2, 4):
+    decimal = int(hex[i:i+2], 16)
+    rgb.append(decimal)
+  
+  return tuple(rgb)
+
+def addColor(r,g,b):
+    newr = r
+    newg = g
+    newb = b
+    return (newr,newg,newb) 
+
+
+def tempAjax(request):
+    if request.method == 'POST':
+        image = request.FILES['image']
+        print("##########################=>>>>>>>>>>>>>>>>: ", image)
+        color = request.POST.get('color')
+        newr, newg, newb = hex_to_rgb(color[1:])
+        print(newr, newg, newb)
+        # image name   
+        img_name = f'imagefilter{time.time()}.png'
+        # open image
+        img = Image.open(image)
+        img = img.convert('RGB')
+        # processing
+        # gather width, height
+        width, height = img.size
+        # load pixels
+        pixels = img.load()
+        # choice
+        for py in range(height):
+            for px in range(width):
+                r, g, b = img.getpixel((px,py))
+                pixels[px,py] = grey(r, g, b)
+        
+        # saving an image
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        # creating url
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+        response_data = {}
+        response_data['error'] = 'success=>'+str(color)
+        response_data['uploaded_file_url'] = str(uploaded_file_url)
+        response_data['message'] = 'Email or Password is Wrong! 🙅'
+        printStar()
+        print(response_data)
+        print(r,g,b)
+        printStar()
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
