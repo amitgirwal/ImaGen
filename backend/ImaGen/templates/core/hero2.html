@@ -14,160 +14,18 @@
     color: #444444;
     margin: 15px 0 0 0;
     font-size: 26px;
-
     font-family: "Nunito", sans-serif;
-
     transition-property: opacity, transform;
   }
 </style>
 
 <!-- Hero2 Section -->
 <section id="hero2" class="hero2 d-flex align-items-center">
-  <div class="container px-4 py-5" id="featured-3">
-    <h2 class="pb-2 border-bottom">Columns with icons</h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-      <div class="feature col px-1 py-2">
-        <div
-          class="feature-icon bg-primary bg-gradient d-inline-flex rounded-3 p-2"
-        >
-          <span style="font-size: 30px"
-            ><i class="fa-solid fa-magnifying-glass"></i
-          ></span>
-        </div>
-        <h2>Featured title</h2>
-        <p>
-          Paragraph of text beneath the heading to explain the heading. We'll
-          add onto it with another sentence and probably just keep going until
-          we run out of words.
-        </p>
-        <a href="#" class="icon-link">
-          Call to action
-          <svg class="bi" width="1em" height="1em">
-            <use xlink:href="#chevron-right"></use>
-          </svg>
-        </a>
-      </div>
-      <div class="feature col">
-        <div class="feature-icon bg-primary bg-gradient">
-          <svg class="bi" width="1em" height="1em">
-            <use xlink:href="#people-circle"></use>
-          </svg>
-        </div>
-        <h2>Featured title</h2>
-        <p>
-          Paragraph of text beneath the heading to explain the heading. We'll
-          add onto it with another sentence and probably just keep going until
-          we run out of words.
-        </p>
-        <a href="#" class="icon-link">
-          Call to action
-          <svg class="bi" width="1em" height="1em">
-            <use xlink:href="#chevron-right"></use>
-          </svg>
-        </a>
-      </div>
-      <div class="feature col">
-        <div class="feature-icon bg-primary bg-gradient">
-          <svg class="bi" width="1em" height="1em">
-            <use xlink:href="#toggles2"></use>
-          </svg>
-        </div>
-        <h2>Featured title</h2>
-        <p>
-          Paragraph of text beneath the heading to explain the heading. We'll
-          add onto it with another sentence and probably just keep going until
-          we run out of words.
-        </p>
-        <a href="#" class="icon-link">
-          Call to action
-          <svg class="bi" width="1em" height="1em">
-            <use xlink:href="#chevron-right"></use>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <div class="card rounded-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              class=""
-              src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"
-              alt="image"
-              style="
-                object-fit: cover;
-                object-position: cev;
-                object-position: center;
-                height: 100%;
-                width: 100%;
-              "
-            />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Image Converter</h5>
-              <p class="card-text">
-                Here, you can find an image converter for your needs, for
-                example, a PDF to image converter.
-              </p>
-              <a
-                href="#"
-                class="btn btn-primary shadow-sm"
-                data-bs-toggle="tooltip"
-                title="Convert an image"
-              >
-                Convert &nbsp;<i class="fa-solid fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="card rounded-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              class=""
-              src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"
-              alt="image"
-              style="
-                object-fit: cover;
-                object-position: cev;
-                object-position: center;
-                height: 100%;
-                width: 100%;
-              "
-            />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Image Converter</h5>
-              <p class="card-text">
-                Here, you can find an image converter for your needs, for
-                example, a PDF to image converter.
-              </p>
-              <a
-                href="#"
-                class="btn btn-primary shadow-sm"
-                data-bs-toggle="tooltip"
-                title="Convert an image"
-              >
-                Convert &nbsp;<i class="fa-solid fa-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+   
 
   <div class="container my-5">
     <div
-      class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg"
+      class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-sm"
     >
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 class="display-4 fw-bold lh-1">Information</h1>
@@ -191,14 +49,16 @@
           </button>
         </div>
       </div>
-      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-sm">
         <img
           class="rounded-lg-3"
-          src="https://i.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ"
+          src="{% static 'images/hero5.jpg' %}"
           alt=""
           width="720"
         />
       </div>
     </div>
   </div>
+
 </section>
+ 
