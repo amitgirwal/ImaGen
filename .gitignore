@@ -9,6 +9,7 @@ env.py
 images/ 
 media/
 
+
 # C extensions
 *.so
 

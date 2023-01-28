@@ -1,37 +1,42 @@
 {% load static %}
 
+<style>
+  .hero3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .hero3 h1 {
+    color: rgb(71, 68, 68) !important;
+  }
+
+  .hero3 p {
+    color: rgb(71, 68, 68) !important;
+  }
+</style>
+
 <!-- Hero3 Section -->
-<section class="hero3 d-flex align-items-center">
+<section class="hero3 d-flex align-items-center my-5">
   <div class="container">
     <!-- Row 1  -->
-    <div class="row">
+    <div class="row my-5">
       <div class="col-lg-6 d-flex flex-column justify-content-center">
         <h1 data-aos="fade-up" class="aos-init aos-animate">
-          Welcome to
-          <span style="color: rgba(1, 41, 112, 0.5)">ImaGen</span> Develop
-          anything.
+          What is Lorem Ipsum?
         </h1>
-        <h2
+        <p
           data-aos="fade-up"
           data-aos-delay="400"
           class="aos-init aos-animate"
         >
-          We are team of talented designers making websites with Bootstrap
-        </h2>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essen
+        </p>
         <div
           data-aos="fade-up"
           data-aos-delay="600"
           class="aos-init aos-animate mt-5"
         >
           <div class="text-center text-lg-start">
-            <a
-              href="#about"
-              class="btn btn-primary btn-lg rounded-2 fw-bold d-inline-flex align-items-center justify-content-center align-self-center"
-            >
-              <span>Get Started</span>&nbsp;&nbsp;<i
-                class="fa fa-arrow-right"
-              ></i>
-            </a>
+            
             <a
               href="#about"
               style="
@@ -41,7 +46,9 @@
               "
               class="btn btn-primary btn-lg rounded-2 d-inline-flex align-items-center justify-content-center align-self-center"
             >
-              Documentation
+            <span>Learn more</span>&nbsp;&nbsp;<i
+            class="fa fa-arrow-right"
+          ></i>
             </a>
           </div>
         </div>
@@ -52,42 +59,82 @@
         data-aos-delay="200"
       >
         <img
-          src="{% static 'images/hero-img.png' %}"
+          src="{% static 'images/hero1.png' %}"
+          class="img-fluid"
+          alt=""
+        />
+      </div>
+    </div>
+    <!-- Row 2  -->
+    <div class="row my-5 flex-row-reverse">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
+        <h1 data-aos="fade-up" class="aos-init aos-animate">
+          What is Lorem Ipsum?
+        </h1>
+        <p
+          data-aos="fade-up"
+          data-aos-delay="400"
+          class="aos-init aos-animate"
+        >
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essen
+        </p>
+        <div
+          data-aos="fade-up"
+          data-aos-delay="600"
+          class="aos-init aos-animate mt-5"
+        >
+          <div class="text-center text-lg-start">
+            
+            <a
+              href="#about"
+              style="
+                background-color: rgba(51, 94, 234, 0.1);
+                color: #335eea;
+                border-color: transparent !important;
+              "
+              class="btn btn-primary btn-lg rounded-2 d-inline-flex align-items-center justify-content-center align-self-center"
+            >
+            <span>Learn more</span>&nbsp;&nbsp;<i
+            class="fa fa-arrow-right"
+          ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-lg-6 hero-img aos-init aos-animate"
+        data-aos="zoom-out"
+        data-aos-delay="200"
+      >
+        <img
+          src="{% static 'images/hero2.png' %}"
           class="img-fluid"
           alt=""
         />
       </div>
     </div>
 
-    <!-- Row 2  -->
-    <div class="row flex-row-reverse my-5">
-      <div class="col-lg-6 d-flex flex-column justify-content-center direct0r">
+
+     <!-- Row 3  -->
+     <div class="row my5">
+      <div class="col-lg-6 d-flex flex-column justify-content-center">
         <h1 data-aos="fade-up" class="aos-init aos-animate">
-          Welcome to
-          <span style="color: rgba(1, 41, 112, 0.5)">ImaGen</span> Develop
-          anything.
+          What is Lorem Ipsum?
         </h1>
-        <h2
+        <p
           data-aos="fade-up"
           data-aos-delay="400"
           class="aos-init aos-animate"
         >
-          We are team of talented designers making websites with Bootstrap
-        </h2>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essen
+        </p>
         <div
           data-aos="fade-up"
           data-aos-delay="600"
           class="aos-init aos-animate mt-5"
         >
           <div class="text-center text-lg-start">
-            <a
-              href="#about"
-              class="btn btn-primary btn-lg rounded-2 fw-bold d-inline-flex align-items-center justify-content-center align-self-center"
-            >
-              <span>Get Started</span>&nbsp;&nbsp;<i
-                class="fa fa-arrow-right"
-              ></i>
-            </a>
+            
             <a
               href="#about"
               style="
@@ -97,7 +144,9 @@
               "
               class="btn btn-primary btn-lg rounded-2 d-inline-flex align-items-center justify-content-center align-self-center"
             >
-              Documentation
+            <span>Learn more</span>&nbsp;&nbsp;<i
+            class="fa fa-arrow-right"
+          ></i>
             </a>
           </div>
         </div>
@@ -108,11 +157,12 @@
         data-aos-delay="200"
       >
         <img
-          src="{% static 'images/hero-img.png' %}"
+          src="{% static 'images/hero6.png' %}"
           class="img-fluid"
           alt=""
         />
       </div>
     </div>
+     
   </div>
 </section>
