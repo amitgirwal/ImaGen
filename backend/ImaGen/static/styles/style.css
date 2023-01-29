@@ -4,7 +4,8 @@
 
 body {
     font-family: 'Roboto', sans-serif !important;
-    background-color: rgb(241 248 254);
+    /* background-color: rgb(241 248 254); */
+    background-color: #FAFAFA;
     /* background-color: #ffffff; */
 }
 
