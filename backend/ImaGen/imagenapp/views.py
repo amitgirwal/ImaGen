@@ -288,6 +288,8 @@ def imageRotate(request):
     }
     return render(request, template_name, context)
 
+
+# Image To  PDF
 def imageToPDF(request):
     template_name = 'imagetopdf.html'
     form = ImageToPDFForm()
@@ -379,6 +381,7 @@ def sepia(r,g,b):
     newg = int((r * .349) + (g *.686) + (b * .168))
     newb = int((r * .272) + (g *.534) + (b * .131))
     return (newr,newg,newb)
+
 def tempa(request):
     template_name = 'temp.html'
     form = ImageRotateForm()
@@ -429,6 +432,7 @@ def tempa(request):
         'uploaded_file_url':uploaded_file_url
     }
     return render(request, template_name, context)
+
 import json
 
 def hex_to_rgb(hex):
@@ -482,3 +486,138 @@ def tempAjax(request):
         print(r,g,b)
         printStar()
     return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+
+from .forms import ColorizedFilterForm
+# Template use this 👈👈👈👈👈
+# def colorizedFilter(request):
+#     template_name = 'color-filter.html'
+#     form = ColorizedFilterForm()
+#     img_name = None  
+#     uploaded_file_url = None
+
+#     if request.method == 'POST':
+#         image = request.FILES['image']
+         
+#         # image name   
+#         img_name = f'image-filter{time.time()}.png'
+#         # open image
+#         img = Image.open(image)
+#         img = img.convert('RGB')
+
+#         # processing => Write image processing code here
+        
+
+
+
+#         img.seek(0)
+#         # saving an image
+#         img.save(settings.MEDIA_ROOT+'/'+img_name)
+#         img.seek(0)  
+#         # creating url
+#         uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+#     context =  {
+#         'img_name': img_name,    
+#         'form': form,
+#         'uploaded_file_url':uploaded_file_url
+#     }
+#     return render(request, template_name, context)
+
+# Red filter
+def red(r,g,b):
+    newr = r
+    newg = 0
+    newb = 0
+    return (newr,newg,newb)
+
+# Dark Pink Filter
+def darkpink(r,g,b):
+    newr = g
+    newg = b
+    newb = r
+    return (newr,newg,newb)
+
+# Sky Blue Filter => red color
+def skyblue(r,g,b):
+    newr = b
+    newg = g
+    newb = r
+    return (newr,newg,newb)
+
+# lemon green
+def lemonyellow(r,g,b):
+    newr = g
+    newg = r
+    newb = b
+    return (newr,newg,newb)
+
+# darkgrey
+def darkgrey(r,g,b):
+    newr = (r+g+b)//3
+    newg = (r+g+b)//3
+    newb = (r+g+b)//3
+    return (newr,newg,newb)
+
+def sepia(r,g,b):
+    newr = int((r * .393) + (g *.769) + (b * .189))
+    newg = int((r * .349) + (g *.686) + (b * .168))
+    newb = int((r * .272) + (g *.534) + (b * .131))
+    return (newr,newg,newb)
+
+def colorizedFilter(request):
+    template_name = 'color-filter.html'
+    form = ColorizedFilterForm()
+    img_name = None  
+    uploaded_file_url = None
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+        check = request.POST.get('filter_color')
+        printStar() 
+
+        # image name   
+        img_name = f'image-filter{time.time()}.png'
+         
+         
+        # open image
+        img = Image.open(image)
+        img = img.convert('RGB')
+
+        # processing => Write image processing code here
+        width, height = img.size
+        pixels = img.load()
+        for py in range(height):
+            for px in range(width):
+                r, g, b = img.getpixel((px,py))
+                if check == 'sepia':
+                    pixels[px,py] = sepia(r,g,b)
+                elif check == 'red':
+                    pixels[px,py] = red(r,g,b)        
+                elif check == 'skyblue':
+                    pixels[px,py] = skyblue(r,g,b)
+                elif check == 'darkpink':
+                    pixels[px,py] = darkpink(r,g,b)        
+                elif check == 'lemonyellow':
+                    pixels[px,py] = lemonyellow(r,g,b)
+                elif check == 'darkgrey':
+                    pixels[px,py] = darkgrey(r,g,b)
+
+        # saving an image
+        img.seek(0)
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        img.seek(0)
+
+        # creating url
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+
+        print('uploaded_file_url: ', uploaded_file_url)
+
+        printStar()
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url
+    }
+    return render(request, template_name, context)

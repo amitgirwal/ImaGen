@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Apply Filter {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+
+
+<div class="row" data-bs-theme="dark">
+    <div class="col-6">
+        <div class="card border rounded p-3" data-bs-theme="dark">
+            <form action="{% url 'colorized_filter' %}" method="POST" enctype="multipart/form-data">
+                <h3 class="text mx-auto">Colorized Filters</h3>
+                {% csrf_token %}
+                {{form|crispy}}
+                <button class="btn btn-success w-100 btn-lg" type="submit">
+                    <i class="fa-solid fa-refresh"></i>&nbsp;
+                    Apply Filter</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-6">
+        <img style="height: 300px;" alt="Preview Image" id="imgPreview">
+        {% if uploaded_file_url %}
+        <div class="card border rounded ">
+            
+            <img  src="{{ img_name }}"   width="500" alt="image">
+            <img  src="{{ uploaded_file_url }}"    width="500" alt="image">
+            <div class="p-2 mt-2">
+                <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
+                      class="fa-solid fa-download"></i> &nbsp; Download </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $(document).ready(()=>{
+      $('#id_image').change(function(){
+        const file = this.files[0];
+        console.log(file);
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            console.log(event.target.result);
+            $('#imgPreview').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+</script>
+{% endblock %}
+ 

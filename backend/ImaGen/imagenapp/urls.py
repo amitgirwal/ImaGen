@@ -23,6 +23,7 @@ urlpatterns = [
 
     path("tempa", views.tempa, name="tempa"),
     path("tempajax", views.tempAjax, name="temp_ajax"),
+    path("colorized-filter", views.colorizedFilter, name="colorized_filter")
 
 
 ]

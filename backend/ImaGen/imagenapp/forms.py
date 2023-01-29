@@ -33,3 +33,20 @@ class QRGenForm(forms.Form):
 class ImageRotateForm(forms.Form):
     image = forms.ImageField()
     angle = forms.CharField(max_length=500, initial="90")
+
+
+FILTER_COLOR = (
+    ('sepia', 'Sepia'),
+    ('red', 'Red'),
+    ('skyblue', 'Sky Blue'),
+    ('darkpink', 'Dark Pink'),
+    ('lemonyellow', 'Lemon Yellow'),
+    ('darkgrey', 'Dark Grey'),
+)
+
+class ColorizedFilterForm(forms.Form):
+    image = forms.ImageField()
+    filter_color = forms.ChoiceField(
+        required=True,
+        choices=FILTER_COLOR
+    )
