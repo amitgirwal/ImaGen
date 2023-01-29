@@ -23,7 +23,7 @@ this is the comment
 {% block javascript %}
 <script>
   $(document).ready(function () {
-    $(".card").hover(
+    $(".card-hover").hover(
       function () {
         $(this).addClass("shadow mt-1").css("cursor", "pointer");
       },
@@ -31,6 +31,16 @@ this is the comment
         $(this).removeClass("shadow mt-1");
       }
     );
+
+    // $(".use-hover").hover(
+    //   function () {
+    //     $(this).addClass("bg-dark text-light").css("cursor", "pointer");
+    //   },
+    //   function () {
+    //     $(this).removeClass("bg-dark text-light");
+    //   }
+    // );
+
 
     // Initialize tooltips
     var tooltipTriggerList = [].slice.call(

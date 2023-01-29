@@ -1,3 +1,5 @@
+
+{% load static %}
 <style>
   .services {
     /* background-color: #1f2d3d; */
@@ -23,17 +25,34 @@
       </p>
     </div>
 
+
+    <style>
+      .use-hover {
+        transition: background-color 0.5s ease, box-shadow 0.2s ease;
+         
+      }
+
+      .use-hover:hover {
+        /* background-color: #1b2a4e;
+        color: white !important; */
+        cursor: pointer;
+        box-shadow: 10px 10px;
+        box-shadow: rgba(46, 198, 240, 0.4) 5px 5px, 
+                    rgba(46, 201, 240, 0.3) 10px 10px, 
+                    rgba(46, 217, 240, 0.2) 15px 15px, 
+                    rgba(46, 227, 240, 0.1) 20px 20px, 
+                    rgba(46, 166, 240, 0.05) 25px 25px;
+
+      }
+    </style>
+
     <div class="row">
       <!-- Item 1 -->
-      <div
-        class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
-        <div class="card border rounded-1   px-3 py-2">
-          <img src="" alt="">
-          <h5 class="title text-success fw-bold">
-              01. Upload Your Photo
+      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 position-relative">
+        <div class="card border rounded-1 px-3 py-2 use-hover position-absolute">
+          <img src="{% static 'images/use1.svg' %}" alt="Step 1">
+          <h5 class="title text-success fw-bold mt-2">
+            01. Upload Your Photo
           </h5>
           <h5 class="description text-dark">
             Open your image in the Photo Editor.
@@ -43,14 +62,11 @@
 
 
       <!-- Item 2 -->
-      <div
-        class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
-        <div class="card border rounded-1 px-3 py-2">
-          <img src="" alt="">
-          <h5 class="title text-warning fw-bold">
+      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
+        data-aos="fade-up" data-aos-delay="100">
+        <div class="card border rounded-1 px-3 py-2 use-hover">
+          <img src="{% static 'images/use2.svg' %}" alt="Step 2">
+          <h5 class="title text-warning fw-bold mt-2">
             02. Select an Effect
           </h5>
           <h5 class="description text-dark">
@@ -61,13 +77,11 @@
 
 
       <!-- Item 3 -->
-      <div
-        class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
-        data-aos="fade-up"
-        data-aos-delay="100" >
-        <div class="card border rounded-1 px-3 py-2">
-          <img src="" alt="">
-          <h5 class="title text-primary fw-bold">
+      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
+        data-aos="fade-up" data-aos-delay="100">
+        <div class="card border rounded-1 px-3 py-2 use-hover">
+          <img src="{% static 'images/use3.svg' %}" alt="Step 3">
+          <h5 class="title text-primary fw-bold mt-2">
             03. Adjust the Effect
           </h5>
           <h5 class="description text-dark">
@@ -76,15 +90,13 @@
         </div>
       </div>
 
-    
+
       <!-- Item 4 -->
-      <div
-        class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
-        data-aos="fade-up"
-        data-aos-delay="100" >
-        <div class="card border rounded-1 px-3 py-2">
-          <img src="" alt="">
-          <h5 class="title text-danger fw-bold">
+      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
+        data-aos="fade-up" data-aos-delay="100">
+        <div class="card border rounded-1 px-3 py-2 use-hover">
+          <img src="{% static 'images/use4.svg' %}" alt="Step 4">
+          <h5 class="title text-danger fw-bold mt-2">
             04. Download Your Photo
           </h5>
           <h5 class="description text-dark">
@@ -93,7 +105,7 @@
         </div>
       </div>
 
-      
+
     </div>
   </div>
 </section>
