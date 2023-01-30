@@ -27,7 +27,7 @@ class ImageToPDFForm(forms.Form):
 
 
 class QRGenForm(forms.Form):
-    text = forms.CharField(max_length=500, initial="Hello World!")
+    text = forms.CharField(max_length=500, initial="Hola, 🤗")
 
 
 class ImageRotateForm(forms.Form):

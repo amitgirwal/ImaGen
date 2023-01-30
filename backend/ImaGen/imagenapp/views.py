@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse
 from django.contrib import messages
 
 # custom import
 from .models import Upload, ImageConvert, ImageFilter
-from .forms import UploadForm, ImageConvertForm, ImageFilterForm, ImageQualityForm, ImageToPDFForm, ImageRotateForm
+from .forms import UploadForm, ImageConvertForm, ImageFilterForm, ImageQualityForm, ImageToPDFForm, ImageRotateForm, QRGenForm, ColorizedFilterForm
 
 # image utils
 from .utils import getImagePathUrlByFilesRequest, convertAndSaveImage, getFileNameExt, printStar, reduceQualitySaveImage, filterSaveImage, imgToPDF
@@ -15,13 +15,94 @@ from django.core.files.storage import FileSystemStorage
 # settings
 from django.conf import settings
 
-
+# images
 from PIL import Image, ImageFilter, ImageEnhance, ImageOps
-from django.http import FileResponse
 
+# qr code
+from qrcode import *
+ 
+# default modules
+import time
+import json
+
+
+
+# Functions 
+# use this template for function creation 👈👈👈👈👈
+# def functName(request):
+#     template_name = 'template_name.html'
+#     form = ImageForm()
+#     img_name = None  
+#     uploaded_file_url = None
+
+#     if request.method == 'POST':
+#         image = request.FILES['image']
+         
+#         # image name   
+#         img_name = f'image-filter{time.time()}.png'
+#         # open image
+#         img = Image.open(image)
+#         img = img.convert('RGB')
+
+#         # processing => Write image processing code here
+#         img.seek(0)
+#         # saving an image
+#         img.save(settings.MEDIA_ROOT+'/'+img_name)
+#         img.seek(0)  
+#         # creating url
+#         uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+#     context =  {
+#         'img_name': img_name,    
+#         'form': form,
+#         'uploaded_file_url':uploaded_file_url
+#     }
+#     return render(request, template_name, context)
+
+
+# home page
 def index(request):
-    context = { 'form': UploadForm() }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
+
+
+
+# def qrGen(request):
+#     if request.method == 'POST':
+#         text = request.POST.get('text')
+#         img = make(text)
+#         img_name = f'qr_{time.time()}.png'
+#         img.save(settings.MEDIA_ROOT+'/'+img_name)
+#         uploaded_file_url = settings.MEDIA_ROOT+'/'+img_name
+#         return render(request, 'qr-gen.html', {'text': text, 'img_name': img_name, 'uploaded_file_url':uploaded_file_url, 'form': QRGenForm()}) 
+#     return render(request, 'qr-gen.html', {'form': QRGenForm()})
+
+
+# qr code 
+def qrGen(request):
+    template_name = 'qr-gen.html'
+    form = QRGenForm()
+    img_name = None  
+    uploaded_file_url = None
+    text = None
+
+    if request.method == 'POST':
+        text = request.POST.get('text')
+        img = make(text)
+        img_name = f'qr_{time.time()}.png'
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        uploaded_file_url = settings.MEDIA_ROOT+'/'+img_name
+
+    context =  {
+        'text': text, 
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url
+    }
+    return render(request, template_name, context)
+
+
+
+
 
 # def imageConvert(request):
 #     uploaded_file_url = None
@@ -231,11 +312,7 @@ def getBasePathWithFileName(file_name):
          
          
 
-from django.shortcuts import render
-from django.conf import settings
-from qrcode import *
-import time
-from .forms import QRGenForm
+
 
 # def qr_gen(request):
 #     if request.method == 'POST':
@@ -246,15 +323,6 @@ from .forms import QRGenForm
 #         return render(request, 'qr-gen.html', {'text': text, 'img_name': img_name})
 #     return render(request, 'index.html')
 
-def qrGen(request):
-    if request.method == 'POST':
-        text = request.POST['text']
-        img = make(text)
-        img_name = f'qr_{time.time()}.png'
-        img.save(settings.MEDIA_ROOT+'/'+img_name)
-        uploaded_file_url = settings.MEDIA_ROOT+'/'+img_name
-        return render(request, 'qr-gen.html', {'text': text, 'img_name': img_name, 'uploaded_file_url':uploaded_file_url, 'form': QRGenForm()}) 
-    return render(request, 'qr-gen.html', {'form': QRGenForm()})
 
 
 # Rotate Image
@@ -433,7 +501,7 @@ def tempa(request):
     }
     return render(request, template_name, context)
 
-import json
+
 
 def hex_to_rgb(hex):
   rgb = []
@@ -489,7 +557,7 @@ def tempAjax(request):
 
 
 
-from .forms import ColorizedFilterForm
+
 # Template use this 👈👈👈👈👈
 # def colorizedFilter(request):
 #     template_name = 'color-filter.html'
