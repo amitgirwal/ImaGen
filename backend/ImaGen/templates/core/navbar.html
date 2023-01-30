@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
   <div class="container">
     <!-- <a class="navbar-brand logo" href="#">ImaGen</a> -->
-    <a class="navbar-brand" href="{% url 'home' %}" >
-      <img width="100px" src="{% static 'logos/logo.png' %}" alt="ImaGen">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img width="100px" src="{% static 'logos/logo.png' %}" alt="ImaGen" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,38 +11,61 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Item1 -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
+
+        <!-- Item2 -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-            <i class="fa-solid fa-images"></i> &nbsp; Filter
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-images"></i> &nbsp; Colorized Filters
           </a>
           <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="{% url 'image_filter' %}?action=colorized">Colorized</a>
+            <li >
+              <a class="dropdown-item d-flex justify-content-between align-items-center" href="{% url 'colorized_filter' %}">
+                Sepia 
+                <span class="badge rounded-pill bg-danger me-2">Popular</span>
+              </a>
+             
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'image_filter' %}?action=grayscale">Grayscale</a>
+              <a class="dropdown-item" href="#">Red</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'image_filter' %}?action=blurred">Blurred</a>
+              <a class="dropdown-item" href="#">Sky Blue</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'image_filter' %}?action=binary">Binary</a>
+              <a class="dropdown-item" href="#">Dark Pink</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'image_filter' %}?action=invert">Invert</a>
+              <a class="dropdown-item" href="#">Lemon Yellow</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Dark Grey</a>
             </li>
           </ul>
         </li>
+
+        <!-- Item3 -->
         <li class="nav-item dropdown ml-2">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-refresh"></i> &nbsp; Convert
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="{% url 'image_convert' %}?action=png">Image to PNG</a>
+              <a class="dropdown-item d-flex justify-content-between align-items-center" 
+              href="{% url 'image_convert' %}?action=webp"
+              data-bs-toggle="tooltip" data-bs-placement="right" title="Image Optimize For Websites"
+              >Image to WEBP
+              <span class="badge rounded-pill bg-danger mx-2">Popular</span>
+            </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex justify-content-between align-items-center" href="{% url 'image_convert' %}?action=png">
+                Image to PNG
+                <span class="badge rounded-pill bg-warning mx-2">Most Used</span>
+              </a>
             </li>
             <li>
               <a class="dropdown-item" href="{% url 'image_convert' %}?action=jpg">Image to JPG</a>
@@ -51,47 +74,42 @@
               <a class="dropdown-item" href="{% url 'image_convert' %}?action=jpeg">Image to JPEG</a>
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'image_convert' %}?action=webp">Image to WEBP</a>
-            </li>
-            <li>
               <a class="dropdown-item" href="{% url 'image_convert' %}?action=svg">Image to SVG</a>
             </li>
           </ul>
         </li>
+
+        <!-- Item4 -->
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'image_quality' %}">
-            <i class="fa-solid fa-arrow-down-wide-short"></i>
-                    &nbsp; Quality</a>
+            <i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp; Reduce
+            Quality
+          </a>
         </li>
+
+        <!-- Item5 -->
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'qr_gen' %}">
             <i class="fa-solid fa-qrcode"></i>
-                    &nbsp; QR Generator</a>
+            &nbsp; QR Generator
+          </a>
         </li>
+
+        <!-- Item6 -->
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'image_rotate' %}">
             <i class="fa-solid fa-camera-rotate"></i>
-                    &nbsp; Rotate</a>
+            &nbsp; Rotate</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'tempa' %}">
-            <i class="fa-solid fa-trash"></i>
-                    &nbsp; Temp</a>
-        </li>
+
+         <!-- Item7 -->
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'image_pdf' %}">
             <i class="fa-solid fa-file-pdf"></i>
-                    &nbsp; PDF</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'colorized_filter' %}">
-            <i class="fa-solid fa-file-pdf"></i>
-                    &nbsp; colorized_filter</a>
+            &nbsp; Image 2 PDF</a>
         </li>
       </ul>
 
-
-      
       <div class="d-flex">
         <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0"
           style="justify-content: center; align-items: center; gap: 10px">
@@ -99,23 +117,25 @@
           <li class="nav-item">
             <a class="nav-link disabled" aria-current="page" href="#">{{request.user.name}}</a>
           </li>
-
           <li class="nav-item dropdown ml-2">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="22" alt="Portrait of a Woman" loading="lazy">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="22"
+                alt="Portrait of a Woman" loading="lazy" />
             </a>
             <ul class="dropdown-menu">
               <li>
                 <a class="dropdown-item" href="#">
                   <i class="fa-solid fa-user-astronaut"></i>&nbsp; Dashboard</a>
               </li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
               <li>
                 <a class="dropdown-item" href="{% url 'logout' %}">
                   <i class="fa-solid fa-power-off"></i>&nbsp;Logout</a>
               </li>
             </ul>
-          </li> 
+          </li>
           {% else %}
           <li class="nav-item">
             <a class="btn btn-outline-light" aria-current="page" href="{% url 'login' %}">
@@ -130,3 +150,17 @@
     </div>
   </div>
 </nav>
+
+ 
+<script>
+  $(document).ready(function () {
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  });
+</script>
+ 
