@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Image To PDF {% endblock %}
+{% block content %}
+
+<!-- Image To PDF -->
+<div class="container mt-5">
+    <div class="row g-3">
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="card border-1 border rounded p-3">
+                <form action="{% url 'image_pdf' %}" method="POST" enctype="multipart/form-data">
+                    <h3 class="text-center mx-auto">Image To PDF</h3>
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button class="btn btn-success w-100 btn-lg" type="submit">
+                        <i class="fa-solid fa-file-pdf"></i>&nbsp;
+                        Convert to PDF</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            <img style="height: 300px;" alt="Preview Image" id="imgPreview">
+            {% if uploaded_file_url %}
+            <div class="card border rounded ">
+                <!-- <object width="400px" height="400px" data="{{ uploaded_file_url }}"></object>
+                <embed src="{{ uploaded_file_url }}" type="application/pdf" height="700px" width="500">
+                <iframe src="{{ uploaded_file_url }}" frameBorder="0" scrolling="auto" height="100%"
+                  width="100%"></iframe> -->
+                <div class="p-2 mt-2">
+                    <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
+                          class="fa-solid fa-download"></i> &nbsp; Download </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block javascript %}
+<script>
+    $(document).ready(() => {
+        $('#id_image').change(function () {
+            const file = this.files[0];
+            console.log(file);
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (event) {
+                    console.log(event.target.result);
+                    $('#imgPreview').attr('src', event.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+{% endblock %}

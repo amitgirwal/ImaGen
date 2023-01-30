@@ -15,6 +15,9 @@ urlpatterns = [
     
     path('', views.index, name='home'),
     path('qr-code-gen', views.qrGen, name='qr_gen'),
+    path('image-pdf', views.imageToPDF, name='image_pdf'),
+
+
 
 
     path('image-convert', views.imageConvert, name='image_convert'),
@@ -22,7 +25,7 @@ urlpatterns = [
     path('image-quality', views.imageQuality, name='image_quality'),
     
     path('image-rotate', views.imageRotate, name='image_rotate'),
-    path('image-pdf', views.imageToPDF, name='image_pdf'),
+    
 
     path("tempa", views.tempa, name="tempa"),
     path("tempajax", views.tempAjax, name="temp_ajax"),

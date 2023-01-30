@@ -64,19 +64,6 @@ import json
 def index(request):
     return render(request, 'index.html')
 
-
-
-# def qrGen(request):
-#     if request.method == 'POST':
-#         text = request.POST.get('text')
-#         img = make(text)
-#         img_name = f'qr_{time.time()}.png'
-#         img.save(settings.MEDIA_ROOT+'/'+img_name)
-#         uploaded_file_url = settings.MEDIA_ROOT+'/'+img_name
-#         return render(request, 'qr-gen.html', {'text': text, 'img_name': img_name, 'uploaded_file_url':uploaded_file_url, 'form': QRGenForm()}) 
-#     return render(request, 'qr-gen.html', {'form': QRGenForm()})
-
-
 # qr code 
 def qrGen(request):
     template_name = 'qr-gen.html'
@@ -100,6 +87,32 @@ def qrGen(request):
     }
     return render(request, template_name, context)
 
+
+# Image To PDF
+def imageToPDF(request):
+    template_name = 'image-to-pdf.html'
+    form = ImageToPDFForm()
+    img_name = None  
+    uploaded_file_url = None
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+        img_name = f'imagepdf{time.time()}.pdf'
+        
+        img = Image.open(image)
+        img = img.convert('RGB')
+        img.seek(0)
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
+        img.seek(0)  
+        
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url
+    }
+    return render(request, template_name, context)
 
 
 
@@ -357,35 +370,6 @@ def imageRotate(request):
     return render(request, template_name, context)
 
 
-# Image To  PDF
-def imageToPDF(request):
-    template_name = 'imagetopdf.html'
-    form = ImageToPDFForm()
-    img_name = None  
-    uploaded_file_url = None
-
-    if request.method == 'POST':
-        image = request.FILES['image']
-         
-        # image name   
-        img_name = f'imagepdf{time.time()}.pdf'
-        # open image
-        img = Image.open(image)
-        # processing
-        img = img.convert('RGB')
-        img.seek(0)
-        # saving an image
-        img.save(settings.MEDIA_ROOT+'/'+img_name)
-        img.seek(0)  
-        # creating url
-        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
-    
-    context =  {
-        'img_name': img_name,    
-        'form': form,
-        'uploaded_file_url':uploaded_file_url
-    }
-    return render(request, template_name, context)
 
 # def temp(request):
 #     template_name = 'temp.html'

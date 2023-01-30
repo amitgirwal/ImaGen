@@ -7,7 +7,7 @@
 <!-- QR Code Generator -->
 <div class="container mt-5">
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-12 col-md-6">
             <div class="card border-1 border rounded p-3">
                 <form action="{% url 'qr_gen' %}" method="POST">
                     <h3 class="text-center mx-auto">
@@ -21,7 +21,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-12 col-md-6">
             {% if uploaded_file_url %}
             <div class="card border-1 border rounded text-center d-block">
                 <img 
