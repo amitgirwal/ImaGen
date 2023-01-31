@@ -76,26 +76,56 @@
         </li>
 
         <!-- Item4 -->
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'image_quality' %}">
-            <i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp; Reduce
-            Quality
+        <li class="nav-item dropdown ml-2">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-snowboarding"></i>&nbsp; Image Flip</a>
           </a>
+    
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item d-flex justify-content-between align-items-center" 
+              href="{% url 'image_flip' %}?action=FLIP_TOP_BOTTOM"
+              >Flip Top To Bottom
+              <span class="badge rounded-pill bg-danger mx-2">Popular</span>
+            </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex justify-content-between align-items-center" href="{% url 'image_flip' %}?action=FLIP_LEFT_RIGHT"
+              data-bs-toggle="tooltip" data-bs-placement="right" title="Mirror An Image"
+              >
+                Flip Left To Right
+                <span class="badge rounded-pill bg-warning mx-2">Most Used</span>
+              </a>
+            </li>
+            <li>  
+              <a class="dropdown-item" href="{% url 'image_flip' %}?action=ROTATE_90">Rotate 90 degree</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'image_flip' %}?action=ROTATE_180">Rotate 180 degree</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'image_flip' %}?action=ROTATE_270">Rotate 270 degree</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'image_flip' %}?action=TRANSVERSE">Transverse</a>
+            </li>
+          </ul>
         </li>
 
         <!-- Item5 -->
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'qr_gen' %}">
-            <i class="fa-solid fa-qrcode"></i>
-            &nbsp; QR Generator
+          <a class="nav-link" aria-current="page" href="{% url 'image_quality' %}">
+            <i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp; 
+            Reduce Quality
           </a>
         </li>
 
         <!-- Item6 -->
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'image_rotate' %}">
-            <i class="fa-solid fa-camera-rotate"></i>
-            &nbsp; Rotate</a>
+          <a class="nav-link" aria-current="page" href="{% url 'qr_gen' %}">
+            <i class="fa-solid fa-qrcode"></i>
+            &nbsp; QR Generator
+          </a>
         </li>
 
          <!-- Item7 -->
@@ -104,6 +134,15 @@
             <i class="fa-solid fa-file-pdf"></i>
             &nbsp; Image 2 PDF</a>
         </li>
+
+        <!-- Item8 -->
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'image_rotate' %}">
+            <i class="fa-solid fa-camera-rotate"></i>
+            &nbsp; Rotate</a>
+        </li>
+
+         
       </ul>
 
       <div class="d-flex">

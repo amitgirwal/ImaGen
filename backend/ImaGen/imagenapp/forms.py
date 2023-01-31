@@ -1,40 +1,18 @@
 from django import forms
 from .models import Upload, ImageConvert, ImageFilter
 
-class UploadForm(forms.ModelForm):
-    class Meta:
-        model = Upload
-        fields = '__all__'
 
-# class ImageConvertForm(forms.ModelForm):
-#     class Meta:
-#         model = ImageConvert
-#         fields =  '__all__'
-
-class ImageFilterForm(forms.ModelForm):
-    class Meta:
-        model = ImageFilter
-        fields =  '__all__'
-
-class ImageQualityForm(forms.Form):
-    image = forms.ImageField()
-    quality = forms.CharField(max_length=200, initial=95)
-
-
-
-class ImageToPDFForm(forms.Form):
-    image = forms.ImageField()
-
-
+# QR Gen Form
 class QRGenForm(forms.Form):
     text = forms.CharField(max_length=500, initial="Hola, 🤗")
 
 
-class ImageRotateForm(forms.Form):
+# Image 2 PDF Form
+class ImageToPDFForm(forms.Form):
     image = forms.ImageField()
-    angle = forms.CharField(max_length=500, initial="90")
 
 
+# Colorize Image Filter Form
 FILTER_COLOR = (
     ('sepia', 'Sepia'),
     ('red', 'Red'),
@@ -52,7 +30,7 @@ class ColorizeFilterForm(forms.Form):
     )
 
 
-
+# Image Convert Form
 CONVERT = (
     ('WEBP', 'WEBP'),
     ('PNG', 'PNG'),
@@ -66,3 +44,53 @@ class ImageConvertForm(forms.Form):
         required=True,
         choices=CONVERT
     )
+
+
+# Reduce Image Quality Form
+class ImageQualityForm(forms.Form):
+    image = forms.ImageField()
+    quality = forms.CharField(max_length=200, initial=95)
+
+
+# Rotate Image Form
+class ImageRotateForm(forms.Form):
+    image = forms.ImageField()
+    angle = forms.CharField(max_length=10, initial="90")
+    expand = forms.BooleanField(required=False, initial=False)
+
+
+# Flip Image Form
+FLIP_OPTIONS = (
+    ('FLIP_TOP_BOTTOM', 'Flip Top To Bottom'),
+    ('FLIP_LEFT_RIGHT', 'Flip Left To Right'),
+    ('ROTATE_90', 'Rotate 90 degree'),
+    ('ROTATE_180', 'Rotate 180 degree'),
+    ('ROTATE_270', 'Rotate 270 degree'),
+    ('TRANSVERSE', 'Transverse'),
+)
+
+class ImageFlipForm(forms.Form):
+    image = forms.ImageField()
+    flip_options = forms.ChoiceField(
+        required=True,
+        choices=FLIP_OPTIONS
+    )
+
+
+########################################
+class UploadForm(forms.ModelForm):
+    class Meta:
+        model = Upload
+        fields = '__all__'
+
+# class ImageConvertForm(forms.ModelForm):
+#     class Meta:
+#         model = ImageConvert
+#         fields =  '__all__'
+
+class ImageFilterForm(forms.ModelForm):
+    class Meta:
+        model = ImageFilter
+        fields =  '__all__'
+
+

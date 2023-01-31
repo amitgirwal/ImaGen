@@ -4,10 +4,10 @@ from django.contrib import messages
 
 # custom import
 from .models import Upload, ImageConvert, ImageFilter
-from .forms import UploadForm, ImageConvertForm, ImageFilterForm, ImageQualityForm, ImageToPDFForm, ImageRotateForm, QRGenForm, ColorizeFilterForm
+from .forms import *
 
 # image utils
-from .utils import getImagePathUrlByFilesRequest, convertAndSaveImage, getFileNameExt, printStar, reduceQualitySaveImage, filterSaveImage, imgToPDF
+from .utils import *
 
 # storage
 from django.core.files.storage import FileSystemStorage
@@ -288,6 +288,80 @@ def imageQuality(request):
     return render(request, template_name, context)
 
 
+# Rotate Image
+def imageRotate(request):
+    template_name = 'image-rotate.html'
+    form = ImageRotateForm()
+    img_name = None  
+    uploaded_file_url = None
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+        angle = int(request.POST.get('angle'))
+        expand = True if request.POST.get('expand')=='on' else False
+        angle = angle if (angle>0 and angle<360) else 90
+        img = Image.open(image)
+        img = img.convert('RGB')
+        # Processing
+        img = img.rotate(angle, expand=expand)
+        img.seek(0)
+        img_name = f'image-rotate{time.time()}.png'
+        img.save(settings.MEDIA_ROOT+'/'+img_name, "PNG")
+        img.seek(0)  
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url 
+    }
+    return render(request, template_name, context)
+
+
+# Flip Image
+def imageFlip(request):
+    template_name = 'image-flip.html'
+    form = ImageFlipForm()
+    img_name = None  
+    uploaded_file_url = None
+    action = request.GET.get('action') or None
+    if action is None:
+        action = 'FLIP_TOP_BOTTOM'
+    if request.method == 'POST':
+        image = request.FILES['image']
+        flip_options = request.POST.get('flip_options')
+        
+        img = Image.open(image)
+        img = img.convert('RGB')
+        # Processing
+        if flip_options == 'FLIP_TOP_BOTTOM':
+            img = img.transpose(Image.FLIP_TOP_BOTTOM)
+        elif flip_options == 'FLIP_LEFT_RIGHT':
+            img = img.transpose(Image.FLIP_LEFT_RIGHT)
+        elif flip_options == 'ROTATE_90':
+            img = img.transpose(Image.ROTATE_90)   
+        elif flip_options == 'ROTATE_180':
+            img = img.transpose(Image.ROTATE_180)   
+        elif flip_options == 'ROTATE_270':
+            img = img.transpose(Image.ROTATE_270)   
+        elif flip_options == 'TRANSVERSE':
+            img = img.transpose(Image.TRANSVERSE)   
+        else: 
+            pass
+
+        img.seek(0)
+        img_name = f'image-flip{time.time()}.png'
+        img.save(settings.MEDIA_ROOT+'/'+img_name, "PNG")
+        img.seek(0)  
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url,
+        'action': action
+    }
+    return render(request, template_name, context)
 
 
 
@@ -475,36 +549,6 @@ def getBasePathWithFileName(file_name):
 
 
 
-# Rotate Image
-def imageRotate(request):
-    template_name = 'image-rotate.html'
-    form = ImageRotateForm()
-    img_name = None  
-    uploaded_file_url = None
-
-    if request.method == 'POST':
-        image = request.FILES['image']
-        angle = int(request.POST.get('angle'))
-        angle = angle if (angle>0 and angle<360) else 90
-        # image name   
-        img_name = f'imagerotate_{time.time()}.png'
-        # open image
-        img = Image.open(image)
-        # processing
-        img = img.rotate(angle)
-        image.seek(0)
-        # saving an image
-        img.save(settings.MEDIA_ROOT+'/'+img_name)
-        image.seek(0)  
-        # creating url
-        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
-    
-    context =  {
-        'img_name': img_name,    
-        'form': form,
-        'uploaded_file_url':uploaded_file_url
-    }
-    return render(request, template_name, context)
 
 
 
