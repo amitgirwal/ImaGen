@@ -1,44 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %} Image Convert {% endblock %}
+{% block title %}  Convert Image {{action|upper}} {% endblock %}
 {% block content %}
 
-<div class="row">
-    <div class="col-6">
-        <div class="card border rounded p-3">
-            <form action="{% url 'image_convert' %}" method="POST" enctype="multipart/form-data">
-                <h3 class="text mx-auto">Image To {{action|upper}}</h3>
-                {% csrf_token %}
-                {{form|crispy}}
-                <button class="btn btn-success w-100 btn-lg" type="submit"><i class="fa-sharp fa-solid fa-refresh"></i>
-                    Convert Image</button>
-            </form>
-        </div>
-    </div>
-    <div class="col-6">
-        {% if uploaded_file_url %}
-        <div class="card border rounded ">
-            <img style="object-fit: cover;
-            object-position: center;
-            height: 500px;" src="{{ uploaded_file_url }}" alt="download image">
-            <div class="p-2 mt-2">
-                <a class="btn btn-info w-100 btn-lg my-2" href="{{ uploaded_file_url }}" target="_blank"><i
-                      class="fa-solid fa-eye"></i> &nbsp; View </a>
-                <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
-                      class="fa-solid fa-download"></i> &nbsp; Download </a>
+<!-- Image To PDF -->
+<div class="container mt-5">
+    <div class="row g-3">
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="card border-1 rounded p-3">
+                <form action="{% url 'image_convert' %}" method="POST" enctype="multipart/form-data">
+                    <h3 class="text-center mx-auto">Convert Image To {{action|upper}}</h3>
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button class="btn btn-success w-100 btn-lg" type="submit">
+                        <i class="fa-solid fa-refresh"></i>&nbsp;
+                        Convert Image</button>
+                </form>
             </div>
         </div>
-        {% endif %}
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="card border-0">
+                <img id="imgPreview" alt="Preview Image" style="display: none;">
+            </div>
+            {% if uploaded_file_url %}
+            <div class="card border rounded" id="downloadImage">
+                <img 
+                  class="card-img-top"
+                  src="/media/{{ img_name }}" 
+                  alt="download image">
+                <div class="p-2 mt-2">
+                  <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download>
+                    <i class="fa-solid fa-download"></i> &nbsp; 
+                    Download 
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+        </div>
     </div>
 </div>
-{% endblock %}
 
-{% block jsscript %}
+{% endblock %}
+{% block javascript %}
 <script>
-    let action = "{{action}}".toUpperCase();
-    $( document ).ready(function() {
-         $("#id_convert").val(action);
+
+    $(document).ready(() => {
+      // set the select input
+      let action = "{{action|upper}}";
+      $("#id_convert").val(action);
+  
+      // image preview
+      $('#id_image').change(function () {
+        const file = this.files[0];
+        if (file) {
+          let reader = new FileReader();
+          reader.onload = function (event) {
+            $('#imgPreview').attr('src', event.target.result);
+            $("#imgPreview").css("display", "block");
+            $("#downloadImage").css("display", "none");
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+  
     });
-</script>
+  </script>
 {% endblock %}

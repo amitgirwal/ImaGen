@@ -6,10 +6,10 @@ class UploadForm(forms.ModelForm):
         model = Upload
         fields = '__all__'
 
-class ImageConvertForm(forms.ModelForm):
-    class Meta:
-        model = ImageConvert
-        fields =  '__all__'
+# class ImageConvertForm(forms.ModelForm):
+#     class Meta:
+#         model = ImageConvert
+#         fields =  '__all__'
 
 class ImageFilterForm(forms.ModelForm):
     class Meta:
@@ -49,4 +49,20 @@ class ColorizeFilterForm(forms.Form):
     filter_color = forms.ChoiceField(
         required=True,
         choices=FILTER_COLOR
+    )
+
+
+
+CONVERT = (
+    ('WEBP', 'WEBP'),
+    ('PNG', 'PNG'),
+    ('JPG', 'JPG'),
+    ('JPEG', 'JPEG')
+)
+
+class ImageConvertForm(forms.Form):
+    image = forms.ImageField()
+    convert = forms.ChoiceField(
+        required=True,
+        choices=CONVERT
     )

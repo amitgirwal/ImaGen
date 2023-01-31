@@ -16,11 +16,12 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('qr-code-gen', views.qrGen, name='qr_gen'),
     path('image-pdf', views.imageToPDF, name='image_pdf'),
-    path("colorize-filter", views.colorizeFilter, name="colorize_filter"),
-
-
-
+    path('colorize-filter', views.colorizeFilter, name='colorize_filter'),
     path('image-convert', views.imageConvert, name='image_convert'),
+
+
+
+    
     path('image-filter', views.imageFilter, name='image_filter'),
     path('image-quality', views.imageQuality, name='image_quality'),
     

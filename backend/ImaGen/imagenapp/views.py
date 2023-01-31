@@ -206,6 +206,56 @@ def colorizeFilter(request):
     return render(request, template_name, context)
 
 
+# Image Convert
+def imageConvert(request):
+    template_name = 'image-convert.html'
+    form = ImageConvertForm()
+    img_name = None  
+    uploaded_file_url = None
+    action = request.GET.get('action')
+    if action == '':
+        action = 'NO FILTER'
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+        action = request.POST.get('convert').lower()
+        img = Image.open(image)
+        img = img.convert('RGB')
+        img.seek(0)
+        
+        if action == 'png':
+            img_name = f'image-convert{time.time()}.png'
+            img.save(settings.MEDIA_ROOT+'/'+img_name, "png", lossless=True)
+        elif action == 'jpg':
+            img_name = f'image-convert{time.time()}.jpg'
+            img.save(settings.MEDIA_ROOT+'/'+img_name, "jpg", lossless=True)
+        elif action == 'jpeg':
+            img_name = f'image-convert{time.time()}.jpeg'
+            img.save(settings.MEDIA_ROOT+'/'+img_name, "jpeg", lossless=True)
+        elif action == 'webp':
+            img_name = f'image-convert{time.time()}.webp'
+            img.save(settings.MEDIA_ROOT+'/'+img_name, "webp", quality=85)
+        elif action == 'svg':
+            img_name = f'image-convert{time.time()}.svg'
+            img.save(settings.MEDIA_ROOT+'/'+img_name)
+        else:
+            img_name = f'image-convert{time.time()}.png'
+            img.save(settings.MEDIA_ROOT+'/'+img_name, lossless=True)
+        img.seek(0)  
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url,
+        'action': action
+    }
+    return render(request, template_name, context)
+
+
+
+
+################################################################################
 # def imageConvert(request):
 #     uploaded_file_url = None
 #     if request.method == 'POST':
@@ -223,24 +273,6 @@ def colorizeFilter(request):
 #     return render(request, 'image-convert.html', context)
 
 
-def imageConvert(request):
-    uploaded_file_url = None
-    action = request.GET.get('action')
-    if request.method == 'POST':
-        printStar()    
-        image = request.FILES['image']
-        action = request.POST.get('convert')
-        upload_url, upload_path, upload_name, image_file = getImagePathUrlByFilesRequest(image)
-        file_name, extension = getFileNameExt(upload_name)
-        file_name = convertAndSaveImage(upload_path, image_file, file_name, action)
-        uploaded_file_url = settings.MEDIA_URL+file_name
-        printStar()
-    context = {
-        'form': ImageConvertForm(),
-        'uploaded_file_url': uploaded_file_url,
-        'action': action
-    }
-    return render(request, 'image-convert.html', context)
 
 # Image Filter
 def imageFilter(request):
