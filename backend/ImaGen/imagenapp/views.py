@@ -253,6 +253,42 @@ def imageConvert(request):
     return render(request, template_name, context)
 
 
+# Reduce image quality
+def imageQuality(request):
+    template_name = 'image-quality.html'
+    form = ImageQualityForm()
+    img_name = None  
+    uploaded_file_url = None
+
+    if request.method == 'POST':
+        image = request.FILES['image']
+        action = int(request.POST.get('quality'))
+        if (type(action) is int) and (action>0 and action<100):
+            action = action
+        else:
+            action = 95
+            
+        img = Image.open(image)
+        img = img.convert('RGB')
+        img.seek(0)
+
+        img_name = f'image-quality{time.time()}.JPEG'
+        img.save(settings.MEDIA_ROOT+'/'+img_name, 
+                 "JPEG", 
+                 optimize = True, 
+                 quality = action)
+        img.seek(0)  
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url 
+    }
+    return render(request, template_name, context)
+
+
+
 
 
 ################################################################################
@@ -295,26 +331,6 @@ def imageFilter(request):
     }
     return render(request, 'image-filter.html', context)
 
-
-# Image Compress
-def imageQuality(request):
-    uploaded_file_url = None
-    action = request.GET.get('action')
-    if request.method == 'POST':
-        printStar()    
-        image = request.FILES['image']
-        action = request.POST.get('quality')
-        upload_url, upload_path, upload_name, image_file = getImagePathUrlByFilesRequest(image)
-        file_name, extension = getFileNameExt(upload_name)
-        reduceQualitySaveImage(upload_path, image_file, file_name, action)
-        uploaded_file_url = upload_url
-        printStar()
-    context = {
-        'form': ImageQualityForm(),
-        'uploaded_file_url': uploaded_file_url,
-        'action': action
-    }
-    return render(request, 'image-quality.html', context)
 
 
 
