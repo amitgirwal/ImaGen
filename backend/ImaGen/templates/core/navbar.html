@@ -19,30 +19,28 @@
         <!-- Item2 -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-images"></i> &nbsp; Colorized Filters
+            <i class="fa-solid fa-images"></i> &nbsp; Colorize Filters
           </a>
           <ul class="dropdown-menu">
-            <li >
-              <a class="dropdown-item d-flex justify-content-between align-items-center" href="{% url 'colorized_filter' %}">
-                Sepia 
-                <span class="badge rounded-pill bg-danger me-2">Popular</span>
+            <li>
+              <a class="dropdown-item d-flex justify-content-between align-items-center" href="{% url 'colorize_filter' %}?action=sepia">
+                Sepia <span class="badge rounded-pill bg-danger me-2">Popular</span>
               </a>
-             
             </li>
             <li>
-              <a class="dropdown-item" href="#">Red</a>
+              <a class="dropdown-item" href="{% url 'colorize_filter' %}?action=red">Red</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Sky Blue</a>
+              <a class="dropdown-item" href="{% url 'colorize_filter' %}?action=skyblue">Sky Blue</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Dark Pink</a>
+              <a class="dropdown-item" href="{% url 'colorize_filter' %}?action=darkpink">Dark Pink</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Lemon Yellow</a>
+              <a class="dropdown-item" href="{% url 'colorize_filter' %}?action=lemonyellow">Lemon Yellow</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Dark Grey</a>
+              <a class="dropdown-item" href="{% url 'colorize_filter' %}?action=darkgrey">Dark Grey</a>
             </li>
           </ul>
         </li>

@@ -5,6 +5,12 @@
 - Image into pdf format
 - Color filter apply to image
 
+#### Features Implemented
+- QR Code Generator 
+- Image 2 PDF Converter
+- Colorize Filter
+
+
 #### Run Project
 Backend
 ```bash

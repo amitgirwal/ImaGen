@@ -8,7 +8,7 @@
 <div class="container mt-5">
     <div class="row g-3">
         <div class="col-12 col-sm-12 col-md-6">
-            <div class="card border-1 border rounded p-3">
+            <div class="card border-1 rounded p-3">
                 <form action="{% url 'image_pdf' %}" method="POST" enctype="multipart/form-data">
                     <h3 class="text-center mx-auto">Image To PDF</h3>
                     {% csrf_token %}
@@ -20,16 +20,17 @@
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
-            <img style="height: 300px;" alt="Preview Image" id="imgPreview">
+            <div class="card border-0">
+                <img id="imgPreview" alt="Preview Image" style="display: none;">
+            </div>
             {% if uploaded_file_url %}
-            <div class="card border rounded ">
-                <!-- <object width="400px" height="400px" data="{{ uploaded_file_url }}"></object>
-                <embed src="{{ uploaded_file_url }}" type="application/pdf" height="700px" width="500">
-                <iframe src="{{ uploaded_file_url }}" frameBorder="0" scrolling="auto" height="100%"
-                  width="100%"></iframe> -->
+            <div class="card border-1 rounded p-3" id="downloadImage">
+                <h3 class="card-title text-center mx-auto">Ready to Download !</h3>
                 <div class="p-2 mt-2">
-                    <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download><i
-                          class="fa-solid fa-download"></i> &nbsp; Download </a>
+                    <a class="btn btn-info w-100 btn-lg my-2" href="{{ uploaded_file_url }}" target="_blank">
+                        <i class="fa-solid fa-eye"></i> &nbsp; View </a>
+                    <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download>
+                        <i class="fa-solid fa-download"></i> &nbsp; Download </a>
                 </div>
             </div>
             {% endif %}
@@ -41,18 +42,21 @@
 {% block javascript %}
 <script>
     $(document).ready(() => {
+
+        // image preview
         $('#id_image').change(function () {
             const file = this.files[0];
-            console.log(file);
             if (file) {
                 let reader = new FileReader();
                 reader.onload = function (event) {
-                    console.log(event.target.result);
                     $('#imgPreview').attr('src', event.target.result);
+                    $("#imgPreview").css("display", "block");
+                    $("#downloadImage").css("display", "none");
                 }
                 reader.readAsDataURL(file);
             }
         });
+
     });
 </script>
 {% endblock %}

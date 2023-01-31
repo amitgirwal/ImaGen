@@ -16,7 +16,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('qr-code-gen', views.qrGen, name='qr_gen'),
     path('image-pdf', views.imageToPDF, name='image_pdf'),
-
+    path("colorize-filter", views.colorizeFilter, name="colorize_filter"),
 
 
 
@@ -29,7 +29,7 @@ urlpatterns = [
 
     path("tempa", views.tempa, name="tempa"),
     path("tempajax", views.tempAjax, name="temp_ajax"),
-    path("colorized-filter", views.colorizedFilter, name="colorized_filter")
+    
 
 
 ]

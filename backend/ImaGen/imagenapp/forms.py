@@ -44,7 +44,7 @@ FILTER_COLOR = (
     ('darkgrey', 'Dark Grey'),
 )
 
-class ColorizedFilterForm(forms.Form):
+class ColorizeFilterForm(forms.Form):
     image = forms.ImageField()
     filter_color = forms.ChoiceField(
         required=True,
