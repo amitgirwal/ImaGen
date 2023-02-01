@@ -9,6 +9,8 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Most Left Item set -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Item1 -->
@@ -141,16 +143,19 @@
             <i class="fa-solid fa-camera-rotate"></i>
             &nbsp; Rotate</a>
         </li>
-
-         
       </ul>
 
+
+
+      <!-- Right Most -->
       <div class="d-flex">
         <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0"
           style="justify-content: center; align-items: center; gap: 10px">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link disabled" aria-current="page" href="#">{{request.user.name}}</a>
+            <a class="nav-link disabled" aria-current="page" href="#">
+              <span class="badge badge-pill badge-danger-pill text-info">{{request.user.name | title }}</span>
+            </a>
           </li>
           <li class="nav-item dropdown ml-2">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -159,7 +164,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{% url 'dashboard' %}">
                   <i class="fa-solid fa-user-astronaut"></i>&nbsp; Dashboard</a>
               </li>
               <li>

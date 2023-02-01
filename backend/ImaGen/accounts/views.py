@@ -100,41 +100,20 @@ def viewUser(request, pk):
     }
     return render(request, 'user-profile.html', context)
 
-
-
+ 
+ 
 def dashboard(request):
-    post_count = Post.objects.filter(auther=request.user).count() 
-    posts = Post.objects.filter(auther=request.user)
-    post_likes = 0
-    for post in posts:
-       post_likes += post.likes.count() 
+    template_name = 'dashboard.html'
+    form = None
+    user = request.user
 
-    msg = ''
-    user = User.objects.get(id=request.user.id)
-    if request.method == 'POST':
-        form = UserEditForm(request.POST, request.FILES, instance=user )
-        if form.is_valid():
-            form.save()
-            msg = 'Successfully profile updated!!'
-        else:
-            msg = form.errors
-            
-    form = UserEditForm(instance=user)
-    followers = 0
-    following = 0 
+
     context = {
-        'user':request.user,
-        'post_count':post_count,
-        'post_likes':post_likes,
-        'followers': followers,
-        'following': following,
-        'msg': msg,
-        'form': form
+        'form': form,
+        'user': user
     }
-    return render(request, 'dashboard.html', context)
 
-
-
+    return render(request, template_name, context)
 
 # loginajax
 def loginajax(request):
