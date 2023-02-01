@@ -19,6 +19,7 @@
 <footer
   class="py-8 py-md-11 bg-gray-200 mb-3 mt-5"
   style="font-family: Nunito, sans-serif"
+  id="footer"
 >
   <!-- <footer class="py-8 py-md-11 bg-gray-200 mb-3" style="background-color: #f1f4f8; font-family:  Nunito, sans-serif;" > -->
   <div class="container">
@@ -81,19 +82,22 @@
         <!-- List -->
         <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
           <li class="mb-3">
-            <a href="#" class="text-reset"> Page Builder </a>
+            <a href="{% url 'colorize_filter' %}" class="text-reset"> Colorize Filter </a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> UI Kit </a>
+            <a href="{% url 'image_convert' %}" class="text-reset"> Convert Image</a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> Styleguide </a>
+            <a href="{% url 'image_flip' %}" class="text-reset"> Flip Image </a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> Documentation </a>
+            <a href="{% url 'image_quality' %}" class="text-reset"> Reduce Image Quality </a>
           </li>
-          <li>
-            <a href="#" class="text-reset"> Changelog </a>
+          <li class="mb-3"> 
+            <a href="{% url 'image_rotate' %}" class="text-reset"> Rotate Image </a>
+          </li>
+          <li class="mb-3"> 
+            <a href="{% url 'image_pdf' %}" class="text-reset"> Image 2 PDF </a>
           </li>
         </ul>
       </div>
@@ -104,17 +108,21 @@
         <!-- List -->
         <ul class="list-unstyled text-muted mb-6 mb-md-8 mb-lg-0">
           <li class="mb-3">
-            <a href="#" class="text-reset"> Documentation </a>
+            <a href="#welcome" class="text-reset"> Welcome </a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> Changelog </a>
+            <a href="#features" class="text-reset"> Features </a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> Pagebuilder </a>
+            <a href="#information" class="text-reset"> Information </a>
           </li>
-          <li>
-            <a href="#" class="text-reset"> UI Kit </a>
+          <li class="mb-3">
+            <a href="#photo" class="text-reset"> Photo Examples </a>
           </li>
+          <li class="mb-3">
+            <a href="#next" class="text-reset"> How to Use? </a>
+          </li>
+          
         </ul>
       </div>
       <div class="col-6 col-md-4 offset-md-4 col-lg-2 offset-lg-0">
@@ -124,43 +132,31 @@
         <!-- List -->
         <ul class="list-unstyled text-muted mb-0">
           <li class="mb-3">
-            <a href="#" class="text-reset"> Page Builder </a>
+            <a href="#subscribe" class="text-reset"> Subscribe Newsletter</a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> UI Kit </a>
+            <a href="#" class="text-reset"> Feedback </a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> Styleguide </a>
+            <a href="{% url 'login' %}" class="text-reset"> Login </a>
           </li>
           <li class="mb-3">
-            <a href="#" class="text-reset"> Documentation </a>
+            <a href="{% url 'signup' %}" class="text-reset"> Signup </a>
           </li>
-          <li class="mb-3">
-            <a href="#" class="text-reset"> Changelog </a>
-          </li>
-          <li class="mb-3">
-            <a href="#" class="text-reset"> Documentation </a>
-          </li>
-          <li>
-            <a href="#" class="text-reset"> Changelog </a>
-          </li>
+           
+         
         </ul>
       </div>
       <div class="col-6 col-md-4 col-lg-2">
         <!-- Heading -->
-        <h6 class="fw-bold text-uppercase text-gray-700">Legal</h6>
+        <h6 class="fw-bold text-uppercase text-gray-700">Text Tools</h6>
 
         <!-- List -->
         <ul class="list-unstyled text-muted mb-0">
           <li class="mb-3">
-            <a href="#" class="text-reset"> Documentation </a>
+            <a href="{% url 'qr_gen' %}" class="text-reset"> QR Code Generator </a>
           </li>
-          <li class="mb-3">
-            <a href="#" class="text-reset"> Changelog </a>
-          </li>
-          <li>
-            <a href="#" class="text-reset"> Pagebuilder </a>
-          </li>
+          
         </ul>
       </div>
     </div>
