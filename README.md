@@ -21,6 +21,9 @@ python manage.py runserver
 
 python manage.py makemigrations
 python manage.py migrate
+
+- Hit url
+http://127.0.0.1:8000/
 ```
 
 #### Resources

@@ -1,8 +1,6 @@
-
 {% load static %}
 <style>
   .services {
-    /* background-color: #1f2d3d; */
     background-color: #1b2a4e;
     color: #e5e9f2 !important;
     padding-bottom: 80px;
@@ -11,100 +9,95 @@
 
   .section-title p {
     color: #839ab8 !important;
-    /* color: #abaeb5 !important; */
+  }
+
+  .use-hover {
+    transition: background-color 0.5s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    filter: brightness(99%);
+  }
+
+  .use-hover:hover {
+    box-shadow: 5px 5px;
+    box-shadow: rgba(46, 198, 240, 0.4) 5px 5px,
+      rgba(46, 201, 240, 0.3) 10px 10px,
+      rgba(46, 217, 240, 0.2) 15px 15px,
+      rgba(46, 227, 240, 0.1) 20px 20px,
+      rgba(46, 166, 240, 0.05) 25px 25px;
+
+    filter: brightness(101%);
   }
 </style>
 
+
+
+
 <section id="services" class="services">
-  <div class="container py-3" data-aos="fade-up">
-    <div class="section-title mt-5">
-      <h2 class="text-center">How to Use ?</h2>
-      <p class="text-center">
-        Stop wasting time trying to do it the "right way" and build a site from
-        scratch. <b>ImaGen</b> is faster, easier, and you still have complete control.
+  <div class="container my-3 py-2">
+    <!-- heading -->
+    <div class="row my-5">
+      <h2 class="text-center fw-bold">
+        How to Use ?
+      </h2>
+      <p class="text-center text-light">
+        Stop wasting time trying to do it the "right way" and build a site from scratch.
+        <b>ImaGen</b> is faster, easier, and you still have complete control.
       </p>
     </div>
 
-
-    <style>
-      .use-hover {
-        transition: background-color 0.5s ease, box-shadow 0.2s ease;
-         
-      }
-
-      .use-hover:hover {
-        /* background-color: #1b2a4e;
-        color: white !important; */
-        cursor: pointer;
-        box-shadow: 10px 10px;
-        box-shadow: rgba(46, 198, 240, 0.4) 5px 5px, 
-                    rgba(46, 201, 240, 0.3) 10px 10px, 
-                    rgba(46, 217, 240, 0.2) 15px 15px, 
-                    rgba(46, 227, 240, 0.1) 20px 20px, 
-                    rgba(46, 166, 240, 0.05) 25px 25px;
-
-      }
-    </style>
-
-    <div class="row">
-      <!-- Item 1 -->
-      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 position-relative">
-        <div class="card border rounded-1 px-3 py-2 use-hover position-absolute">
-          <img src="{% static 'images/use1.svg' %}" alt="Step 1">
-          <h5 class="title text-success fw-bold mt-2">
+    <!-- Help card -->
+    <div class="row g-5 text-center">
+      <!-- item 1 -->
+      <div class="col-lg-3 col-md-6  col-sm-12">
+        <div class="card border-1 rounded-1 use-hover">
+          <img src="{% static 'images/use1.svg' %}" alt="Step 1" class="card-top-img">
+          <h5 class="card-title text-success fw-bold mt-2">
             01. Upload Your Photo
           </h5>
-          <h5 class="description text-dark">
+          <p class="text-dark px-3">
             Open your image in the Photo Editor.
-          </h5>
+          </p>
         </div>
       </div>
 
-
-      <!-- Item 2 -->
-      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
-        data-aos="fade-up" data-aos-delay="100">
-        <div class="card border rounded-1 px-3 py-2 use-hover">
-          <img src="{% static 'images/use2.svg' %}" alt="Step 2">
-          <h5 class="title text-warning fw-bold mt-2">
+      <!-- item 2 -->
+      <div class="col-lg-3 col-md-6  col-sm-12">
+        <div class="card border-1 rounded-1  use-hover">
+          <img src="{% static 'images/use2.svg' %}" alt="Step 1" class="card-top-img">
+          <h5 class="card-title text-warning fw-bold mt-2">
             02. Select an Effect
           </h5>
-          <h5 class="description text-dark">
-            Choose an effect that fits your desired aesthetic. Try layering multiple filters for a unique effect!
-          </h5>
+          <p class="text-dark px-3">
+            Choose an effect that fits your desired aesthetic. Try layering multiple filters for a unique effect!*
+          </p>
         </div>
       </div>
 
-
-      <!-- Item 3 -->
-      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
-        data-aos="fade-up" data-aos-delay="100">
-        <div class="card border rounded-1 px-3 py-2 use-hover">
-          <img src="{% static 'images/use3.svg' %}" alt="Step 3">
-          <h5 class="title text-primary fw-bold mt-2">
+      <!-- item 3 -->
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card border-1 rounded-1  use-hover">
+          <img src="{% static 'images/use3.svg' %}" alt="Step 1" class="card-top-img">
+          <h5 class="card-title text-primary fw-bold mt-2">
             03. Adjust the Effect
           </h5>
-          <h5 class="description text-dark">
+          <p class="text-dark px-3">
             Use the corresponding sliders to adjust the filter.
-          </h5>
+          </p>
         </div>
       </div>
 
-
-      <!-- Item 4 -->
-      <div class="col-md-6 col-lg-3 d-flex text-center align-items-stretch mb-5 mb-lg-0 aos-init aos-animate"
-        data-aos="fade-up" data-aos-delay="100">
-        <div class="card border rounded-1 px-3 py-2 use-hover">
-          <img src="{% static 'images/use4.svg' %}" alt="Step 4">
-          <h5 class="title text-danger fw-bold mt-2">
+      <!-- item 4 -->
+      <div class="col-lg-3 col-md-6  col-sm-12">
+        <div class="card border-1 rounded-1  use-hover">
+          <img src="{% static 'images/use4.svg' %}" alt="Step 1" class="card-top-img">
+          <h5 class="card-title text-success fw-bold mt-2">
             04. Download Your Photo
           </h5>
-          <h5 class="description text-dark">
-            Save your photo and, right from BeFunky, share it on Facebook, Instagram, and more!
-          </h5>
+          <p class="text-dark px-3">
+            Save your photo and, right from Be Funky, share it on Facebook, Instagram, and more!
+          </p>
         </div>
       </div>
-
 
     </div>
   </div>
