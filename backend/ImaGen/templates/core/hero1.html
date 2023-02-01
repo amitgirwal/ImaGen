@@ -10,6 +10,16 @@
     transition-property: opacity, transform;
   }
 
+  .hero h3 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: 700;
+    color: #0c3c90;
+    
+    line-height: 1.2;
+    transition-property: opacity, transform;
+  }
+
   .hero h2 {
     color: #444444;
     margin: 15px 0 0 0;
@@ -35,22 +45,25 @@
 </style>
 
 <!-- Hero1 Section -->
-<section id="hero" class="hero d-flex align-items-center">
+<section id="hero" class="hero d-flex align-items-center" >
   <div class="container">
     <div class="row">
       <div class="col-lg-6 d-flex flex-column justify-content-center">
         <h1 data-aos="fade-up" class="aos-init aos-animate">
           Welcome to
-          <span style="color: rgba(1, 41, 112, 0.5)">ImaGen</span> Develop
-          anything.
+          <span style="color: rgba(1, 41, 112, 0.5)" class="fw-bold">ImaGen</span> 
         </h1>
+        <h3 data-aos="fade-up" class="aos-init aos-animate">
+          Create
+          anything freely.
+        </h3>
         <!-- <h1 data-aos="fade-up" class="aos-init aos-animate">We offer modern solutions for growing your business</h1> -->
         <h2
           data-aos="fade-up"
           data-aos-delay="400"
           class="aos-init aos-animate"
         >
-          We are team of talented designers making websites with Bootstrap
+        We are a team of talented designers and developers making websites with passion and enthusiasm.
         </h2>
         <div
           data-aos="fade-up"
@@ -59,7 +72,7 @@
         >
           <div class="text-center text-lg-start">
             <a
-              href="#about"
+              href="#features"
               class="btn btn-primary btn-lg rounded-2 fw-bold d-inline-flex align-items-center justify-content-center align-self-center"
             >
               <span>Get Started</span>&nbsp;&nbsp;<i
@@ -67,7 +80,7 @@
               ></i>
             </a>
             <a
-              href="#""
+              href="#hero2"
               class="btn btn-hero btn-lg rounded-2 d-inline-flex align-items-center justify-content-center align-self-center mx-2"
             >
               Documentation
