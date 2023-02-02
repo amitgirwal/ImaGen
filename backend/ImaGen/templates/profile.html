@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+ 
+<div class="container position-absolute">
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light " style="width: 280px;">
+    <div class="d-flex align-items-center">
+       <div class="col-3">
+        <img src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png" alt="" width="50px" class="shadow-sm rounded-5">
+       </div>
+      <div class="col-10">
+        <h5 class="fs-24 text-dark">{{ user.name | title }}</h5>
+        <p class="text-light-dark">Your personal account</p>
+      </div>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page" style="background-color: aliceblue; color: black;">
+            <i class="fa-solid fa-user-astronaut"></i> &nbsp;Public Profile
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link text-dark" aria-current="page" >
+            <i class="fa-solid fa-gear"></i> &nbsp;Account
+        </a>
+      </li>
+    </ul>
+    <hr>
+
+</div>
+{% endblock %}
+ 

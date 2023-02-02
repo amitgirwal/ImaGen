@@ -1,39 +1,149 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
  
-<div class="container">
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-light " style="width: 280px;">
-    <div class="d-flex align-items-center">
-       <div class="col-3">
-        <img src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png" alt="" width="50px" class="shadow-sm rounded-5">
-       </div>
-      <div class="col-10">
-        <h5 class="fs-24 text-dark">{{ user.name | title }}</h5>
-        <p class="text-light-dark">Your personal account</p>
+<div class="container mt-3 mb-5">
+  <!-- Left section -->
+  <div class="row d-flex align-center">
+    <div class="col-lg-3">
+      <div class="row">
+        <div class="d-flex flex-column flex-shrink-0 p-3 "  >
+          <div class="d-flex align-items-center">
+            <div class="col-3">
+              <img src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png" alt="" width="50px"
+              class="shadow-sm rounded-5" />
+            </div>
+            <div class="col-10">
+              <h5 class="fs-24 text-dark">{{ user.name | title }}</h5>
+              <p class="text-light-dark">Your personal account</p>
+            </div>
+          </div>
+          <hr />
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark" aria-current="page" style="background-color:lightgrey"
+              id="profileBtn">
+              <i class="fa-solid fa-user-astronaut"></i> &nbsp;Public Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark" aria-current="page" id="accountBtn">
+              <i class="fa-solid fa-gear"></i> &nbsp;Account
+            </a>
+          </li>
+        </ul>
+        <hr />
       </div>
     </div>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page" style="background-color: aliceblue; color: black;">
-            <i class="fa-solid fa-user-astronaut"></i> &nbsp;Public Profile
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link text-dark" aria-current="page" >
-            <i class="fa-solid fa-gear"></i> &nbsp;Account
-        </a>
-      </li>
- 
+  </div>
+  <!-- end Left section -->
   
-    </ul>
-    <hr>
-   
-      
+  <!-- Right section -->
+  <div class="col-lg-9"> 
+    <div class="row p-3">
+
+      <!-- Public Profile Section -->
+      <div class="row fade show" style="display: block" id="profile">
+        <h4>Public Profile</h4>
+        <hr />
+        <form>
+          <!-- Name -->
+          <div class="mb-3">
+            <label for="nameInput" class="form-label"> Name </label>
+            <input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp" value="{{ user.name }}" />
+            <div id="nameHelp" class="form-text">
+              Your name may appear around ImaGen where you show or are mentioned.
+              You can remove it at any time.
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="emailInput" class="form-label"> Email </label>
+            <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+            value="{{ user.email }}" readonly disabled />
+            <div id="emailHelp" class="form-text">
+              You have set your email address to private. To toggle email privacy,
+              go to email settings and uncheck "Keep my email address private."
+            </div>
+          </div>
+
+          <!-- Bio -->
+          <div class="mb-3">
+            <label for="bioInput" class="form-label"> Bio </label>
+            <input type="text" class="form-control" id="bioInput" aria-describedby="bioHelp" value="{{user.bio}}" />
+            <div id="bioHelp" class="form-text">
+              You can @mention other users and organizations to link to them.
+            </div>
+          </div>
+
+          <!-- Portfolio -->
+          <div class="mb-3">
+            <label for="portfolioInput" class="form-label"> Portfolio URL </label>
+            <input type="text" class="form-control" id="bioInput" aria-describedby="portfolioHelp" value="{{user.url}}" />
+            <div id="portfolioHelp" class="form-text"></div>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">
+            <label for="locationInput" class="form-label"> Location </label>
+            <input type="text" class="form-control" id="locationInput" aria-describedby="locationHelp"
+            value="{{user.location}}" />
+            <div id="locationHelp" class="form-text"></div>
+          </div>
+
+          <button type="submit" class="btn btn-success  fw-bold rounded-1">
+            Update Profile
+          </button>
+          <a  href="{% url 'home' %}" class="btn btn-light">
+            Cancel
+          </a>
+        </form>
+      </div>
+
+      <!-- Account Section -->
+      <div class="row fade show" style="display: none" id="account">
+        <form action="">
+          <h4 class="text-danger fw-bold">Delete Account</h4>
+          <hr />
+          <p class="text-dark">
+            Once you delete your account, there is <b>no going back</b>. Please be
+            certain.
+          </p>
+          <button class="btn  btn-danger mt-3 rounded-1">
+            I'm Sure, Delete My Account!
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <!-- end Right section -->
 
 </div>
-{% endblock %}
  
+{% endblock %} 
+
+
+{% block javascript %}
+  <script>
+    $(document).ready(() => {
+      // profile
+      $("#profileBtn").click(function () {
+        $("#profile").css("display", "block");
+        $("#account").css("display", "none");
+        $("#profileBtn").css("background-color", "lightgrey");
+        $("#accountBtn").css("background-color", "unset");
+      });
+
+      // account
+      $("#accountBtn").click(function () {
+        $("#profile").css("display", "none");
+        $("#account").css("display", "block");
+        $("#accountBtn").css("background-color", "lightgrey");
+        $("#profileBtn").css("background-color", "unset");
+      });
+    });
+  </script>
+{% endblock %}

@@ -46,8 +46,10 @@ class User(AbstractBaseUser):
     )
     
     name = models.CharField(max_length=255)
-    
     photo = models.ImageField(default='user1.jpg', upload_to='images/')
+    bio = models.CharField(max_length=255, default='In Space 🚀', blank=True)
+    url = models.CharField(max_length=255, blank=True)
+    location = models.CharField(max_length=255, blank=True)
 
 
     is_active = models.BooleanField(default=True)
