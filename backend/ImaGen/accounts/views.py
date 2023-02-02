@@ -70,6 +70,7 @@ def userSignup(request):
     return render(request, 'signup.html', {'form': UserCreationForm()})
 
 # User Login
+
 def userLogin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -101,13 +102,11 @@ def viewUser(request, pk):
     return render(request, 'user-profile.html', context)
 
  
- 
+@login_required
 def dashboard(request):
     template_name = 'dashboard.html'
     form = None
     user = request.user
-
-
     context = {
         'form': form,
         'user': user
