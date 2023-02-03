@@ -153,14 +153,14 @@
           style="justify-content: center; align-items: center; gap: 10px">
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link disabled" aria-current="page" href="#">
-              <span class="badge badge-pill badge-danger-pill text-info">{{request.user.name | title }}</span>
+            <a class="nav-link disabled fw-bold" aria-current="page" href="#">
+                {{request.user.name | title }}
             </a>
           </li>
           <li class="nav-item dropdown ml-2">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="22"
-                alt="Portrait of a Woman" loading="lazy" />
+              <img src="{{request.user.photo.url}}" class="rounded-circle" height="35"
+                alt="User Logo" loading="lazy" />
             </a>
             <ul class="dropdown-menu">
               <li>

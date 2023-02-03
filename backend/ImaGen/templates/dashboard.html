@@ -29,7 +29,7 @@
               class="rounded-circle shadow-sm" style="object-fit: cover; object-position: center;" id="userImage"/>
             </div>
             <div class="col-lg-8 ms-3">
-              <a href="{{  user.url }}" class="fs-3 fw-bold text-dark">{{ user.name | title }}</a>
+              <a href="{% url 'profile' user.username %}" class="fs-3 fw-bold text-dark">{{ user.name | title }}</a>
               <p class="text-light-dark">
                 {{user.email}}
               </p>
@@ -195,7 +195,7 @@
           processData: false,
 
           success: function (response) {
-            
+
             $("#toast").removeClass('hide');
             $("#toast").addClass('show');
             $("#toastMsg").html(response['messages']);
