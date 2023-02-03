@@ -186,3 +186,26 @@ def deleteAccount(request):
         user.save()
         messages.success(request, "Your Account Deleted Successfully!")
         return redirect('home')
+
+# Check username
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
+def checkUsername(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        user_obj = User.objects.filter(username=username).exists()
+        if user_obj:
+            return HttpResponse(True)
+        else:
+            return HttpResponse(False)
+
+# Check Email
+@csrf_exempt
+def checkEmail(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user_obj = User.objects.filter(email=email).exists()
+        if user_obj:
+            return HttpResponse(True)
+        else:
+            return HttpResponse(False)

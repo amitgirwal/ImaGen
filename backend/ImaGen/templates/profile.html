@@ -8,23 +8,26 @@
   <div class="row">
     <div class="col-lg-4">
       <div class="card border-1 rounded-1   py-2 px-3 shadow-sm " style="background-color: #1c1c28; color: #474E68">
-        <img src="{{user.photo.url }}" alt="" width="200px" height="200px" class="m-auto shadow-sm rounded-circle" style="object-fit: cover; object-position: center;">
+        <img src="{{user.photo.url }}" alt="" width="200px" height="200px" class="m-auto shadow-sm rounded-circle"
+          style="object-fit: cover; object-position: center;">
         <div class="card-body">
           <h4 class="text-light"> {{ user.name | title }}</h4>
           <h5>{{ user.username }}</h5>
           <p class="card-text " style="color: #00C7E6 !important;">
-            <i class="fa-solid fa-at"></i>
+            <i class="fa-solid fa-at"></i>&nbsp;
             {{ user.email }}
           </p>
           <p class="card-text" style="color: #ABF5D1;">
-            <i class="fa-solid fa-circle-info"></i>
+            <i class="fa-solid fa-circle-info"></i>&nbsp;
             {{ user.bio }}
           </p>
           <p class="card-text" style="color: #ABF5D1;">
-            <i class="fa-solid fa-link"></i>
-            <a href="{{ user.url }}" class=" text-decoration-none text-decoration-hover"style="color: #ABF5D1;"> Portfolio</a>
+            <i class="fa-solid fa-link"></i>&nbsp;
+            <a href="{{ user.url }}" class=" text-decoration-none text-decoration-hover" style="color: #ABF5D1;">
+              Portfolio</a>
           </p>
-          <p class="card-text"style="color: #ABF5D1;"><i class="fa-solid fa-location-dot"></i>
+          <p class="card-text" style="color: #ABF5D1;">
+            <i class="fa-solid fa-location-dot"></i>&nbsp;
             {{ user.location }}</p>
         </div>
       </div>

@@ -8,9 +8,11 @@ urlpatterns = [
    path('logout/', views.userLogout , name='logout'),
    path('signup/', views.userSignup , name='signup'),
    path('dashboard', views.dashboard , name='dashboard'),
-   path('updateProfile', views.updateProfile , name='update_profile'),
-   path('profile/<str:username>', views.profile , name='profile'),
-   path('delete-account ', views.deleteAccount , name='delete_account'),
+   path('updateProfile', views.updateProfile, name='update_profile'),
+   path('profile/<str:username>', views.profile, name='profile'),
+   path('delete-account', views.deleteAccount, name='delete_account'),
+   path('check-username', views.checkUsername, name='check_username'),
+   path('check-email', views.checkEmail, name='check_email'),
    
    
    
