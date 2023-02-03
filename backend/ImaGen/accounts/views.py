@@ -1,31 +1,35 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import User
-from .forms import UserCreationForm, UserEditForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from imagenapp.utils import printStar
+from django.contrib.sites.shortcuts import get_current_site
 
 from django.template.loader import render_to_string
-from django.contrib.sites.shortcuts import get_current_site
+
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
+
 from django.core.mail import EmailMessage
 
-import json
 from django.http import HttpResponse
 
+
+from .models import User
+from .forms import *
 from .tokens import account_activation_token
+from imagenapp.utils import printStar
+
+import json
 
 
+# Activate link
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
@@ -37,6 +41,7 @@ def activate(request, uidb64, token):
 
 
 
+# User active email
 def activateEmail(request, user, to_email):
     mail_subject = 'Activate your user account.'
     message = render_to_string('template_activate_account.html', {
@@ -69,8 +74,8 @@ def userSignup(request):
             messages.error(request, form.errors)
     return render(request, 'signup.html', {'form': UserCreationForm()})
 
-# User Login
 
+# User Login
 def userLogin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -84,12 +89,11 @@ def userLogin(request):
     return render(request, 'login.html')
 
 
-# User Login
+# Login user
 @login_required
 def userLogout(request):
     logout(request)
     return redirect('/')
-
 
 
 # User account view
@@ -101,12 +105,13 @@ def viewUser(request, pk):
     }
     return render(request, 'user-profile.html', context)
 
- 
+
+# User dashboard
 @login_required
 def dashboard(request):
     template_name = 'dashboard.html'
-    form = None
     user = request.user
+    form = UserProfileForm(instance=user)
     context = {
         'form': form,
         'user': user
@@ -133,3 +138,51 @@ def loginajax(request):
             response_data['message'] = 'Email or Password is Wrong! 🙅'
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
+
+# Update Profile
+from imagenapp.utils import printStar
+def updateProfile(request):
+    response_data = {'messages':'Hello world!'}
+    if request.method == 'POST':
+        printStar()
+        print(request.POST)
+        printStar()
+        name = request.POST.get('name')
+        bio = request.POST.get('bio')
+        url = request.POST.get('url')
+        location = request.POST.get('location')
+        image = request.FILES['image']
+        user = User.objects.get(email=request.user.email)
+        user.name = name
+        user.photo = image
+        user.bio = bio
+        user.url = url
+        user.location = location
+        user.save()
+        response_data['messages'] = "Profile Updated Successfully."
+        response_data['image_url'] = user.photo.url
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+# Profile
+def profile(request, username):
+    template_name = 'profile.html'
+    user = None
+    try:
+        user = User.objects.get(username=username)
+    except Exception as e:
+        pass
+    context = {
+        'user': user
+    }
+    return render(request, template_name, context)
+
+
+# Delete Account
+def deleteAccount(request):
+    if request.method == 'POST':
+        user = request.user 
+        user.is_active = False
+        user.save()
+        messages.success(request, "Your Account Deleted Successfully!")
+        return redirect('home')

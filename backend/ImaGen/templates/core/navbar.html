@@ -151,7 +151,7 @@
       <div class="d-flex">
         <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0"
           style="justify-content: center; align-items: center; gap: 10px">
-          {% if user.is_authenticated %}
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link disabled" aria-current="page" href="#">
               <span class="badge badge-pill badge-danger-pill text-info">{{request.user.name | title }}</span>

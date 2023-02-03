@@ -10,7 +10,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'name')
+        fields = ('email', 'username', 'name')
 
     def clean(self):
         # Check that the two password entries match
@@ -36,4 +36,17 @@ class UserCreationForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['name', 'photo']
+        fields = ['name', 'photo', 'bio', 'url', 'location']
+
+class UserProfileForm(forms.ModelForm):
+    name = forms.CharField(max_length = 255, 
+        help_text="Your name may appear around ImaGen where you show or are mentioned. You can remove it at any time.", 
+        required=False
+    )
+    photo = forms.ImageField()
+    url = forms.CharField(max_length=255 , help_text="", required=False)
+    bio = forms.CharField(max_length=255, help_text="You can @mention other users and organizations to link to them. ",required=False)
+    location = forms.CharField(max_length=255, help_text="Your location such country or localization", required=False)
+    class Meta:
+        model = User
+        fields = ['name', 'photo', 'url', 'bio', 'location']
