@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import *
 
 
 class UserCreationForm(forms.ModelForm):
@@ -51,3 +51,13 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['name', 'photo', 'url', 'bio', 'location']
+
+
+# Feedback form
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = '__all__'
+        widgets = {
+            'message': forms.Textarea(attrs={'rows': 3}),
+        }

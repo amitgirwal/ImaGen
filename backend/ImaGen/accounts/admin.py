@@ -1,12 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User 
+from .models import * 
 
-# Register your models here.
+# User Admin
 class UserAdmin(BaseUserAdmin):
-    # The fields to be used in displaying the User model.
-    # These override the definitions on the base UserAdmin
-    # that reference specific fields on auth.User.
     list_display = ('email', 'name', 'is_admin', 'is_active')
     list_filter = ('is_admin', 'name', 'email', 'is_active')
     fieldsets = (
@@ -14,8 +11,6 @@ class UserAdmin(BaseUserAdmin):
         ('Personal Info', {'fields': ('username', 'name', 'photo','bio', 'url','location')}),
         ('Permissions', {'fields': ('is_admin', 'is_active')}),
     )
-    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
-    # overrides get_fieldsets to use this attribute when creating a user.
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -27,5 +22,29 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 
+
+
+# Feedback Admin
+class FeedbackAdmin(BaseUserAdmin):
+    list_display = ('name', 'email', 'subject', 'created_at')
+    list_filter = ('name', 'email', 'subject', 'created_at')
+    fieldsets = (
+        ('Personal Info', {'fields': ('name', 'email')}),
+        ('Feedback Info', {'fields': ('subject', 'message')})
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('name', 'email', 'subject', 'created_at')
+        }),
+    )
+    search_fields = ('name', 'email', 'subject', 'created_at')
+    ordering = ('created_at',)
+    filter_horizontal = ()
+     
+# set user admin
 admin.site.register(User, UserAdmin)
+
+# set feedback admin
+admin.site.register(Feedback, FeedbackAdmin)
 

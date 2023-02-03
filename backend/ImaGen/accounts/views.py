@@ -209,3 +209,22 @@ def checkEmail(request):
             return HttpResponse(True)
         else:
             return HttpResponse(False)
+
+
+# Feedback
+def feedback(request):
+    template_name = 'feedback.html'
+    form = FeedbackForm()
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Thank you for your valuable feedback. 🤗")
+            return redirect('home')
+        else:
+            messages.error(request, form.errors)
+    context = {
+        'form': form
+    }
+    
+    return render(request, template_name, context)

@@ -13,6 +13,7 @@ urlpatterns = [
    path('delete-account', views.deleteAccount, name='delete_account'),
    path('check-username', views.checkUsername, name='check_username'),
    path('check-email', views.checkEmail, name='check_email'),
+   path('feedback', views.feedback, name='feedback'),
    
    
    
