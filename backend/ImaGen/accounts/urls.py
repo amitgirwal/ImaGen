@@ -14,6 +14,7 @@ urlpatterns = [
    path('check-username', views.checkUsername, name='check_username'),
    path('check-email', views.checkEmail, name='check_email'),
    path('feedback', views.feedback, name='feedback'),
+   path('subscribe', views.subscribe, name='subscribe'),
    
    
    

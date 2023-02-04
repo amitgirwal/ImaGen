@@ -228,3 +228,15 @@ def feedback(request):
     }
     
     return render(request, template_name, context)
+
+# Subscribe
+def subscribe(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        subs = Subscribe(email=email)
+        subs.save()
+        printStar()
+        print(email)
+        printStar()
+        messages.success(request, "Enjoy using ImaGen and stay tuned for the latest updates and news. 🤗")
+    return redirect('home')

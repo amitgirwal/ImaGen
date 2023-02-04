@@ -92,10 +92,17 @@ class User(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-
+# Feedback
 class Feedback(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     subject = models.CharField(max_length=255)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+# Subscribe
+class Subscribe(models.Model):
+    email = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.email} | {self.created_at}"

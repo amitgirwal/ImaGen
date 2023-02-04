@@ -48,3 +48,5 @@ admin.site.register(User, UserAdmin)
 # set feedback admin
 admin.site.register(Feedback, FeedbackAdmin)
 
+# set subscribe admin
+admin.site.register(Subscribe)
