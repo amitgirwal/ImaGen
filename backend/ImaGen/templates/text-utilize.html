@@ -10,16 +10,19 @@
             <h3 class="text-left">Text Utilize</h3>
             <div class="form-floating">
                 <textarea class="form-control" id="textUtilize" style="height: 300px"
-                  placeholder="Enter text here...">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</textarea>
+                  placeholder="Enter text here...">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea>
                 <div class="mt-3">
                     <button class="btn btn-primary rounded-1" id="upper">UPPER CASE</button>
                     <button class="btn btn-success rounded-1" id="lower">lower case</button>
-                    <!-- <bu    tton class="btn btn-warning rounded-1" id="proper">Proper case</bu> -->
-                    <button class="btn btn-danger rounded-1" id="capitalize">Capitalize Case</button>
-                    <button class="btn btn-dark rounded-1" id="inverse">inVErSe case</button>
-                    <button class="btn btn-primary rounded-1" id="alter">AlTeRnAtE cAsE</button>
-                    <button class="btn btn-primary rounded-1" id="copy">Copy Text</button>
+                    <button class="btn btn-warning rounded-1" id="capitalize">Capitalize Case</button>
+                    <button class="btn btn-info rounded-1" id="inverse">iNVERSE cASE</button>
+                    <button class="btn btn-danger rounded-1" id="alter">AlTeRnAtE cAsE</button>
+                    <button class="btn btn-secondary rounded-1" id="copy">Copy Text</button>
                     <button class="btn btn-light rounded-1" id="clear">Clear</button>
+                    <button class="btn btn-light rounded-1" id="sample">Sample</button>
                 </div>
             </div>
         </div>
@@ -33,44 +36,44 @@
     $(document).ready(function () {
         // upper case
         $("#upper").click(function () {
-            $('#textUtilize').css('textTransform', ''); 
+            $('#textUtilize').css('textTransform', '');
             $('#textUtilize').val($('#textUtilize').val().toUpperCase());
-            
+
         });
 
         // lower case
         $("#lower").click(function () {
-            $('#textUtilize').css('textTransform', ''); 
+            $('#textUtilize').css('textTransform', '');
             $('#textUtilize').val($('#textUtilize').val().toLowerCase());
         });
 
-         // copy
-         $("#copy").click(function(){
+        // copy
+        $("#copy").click(function () {
             $("#textUtilize").select();
-            document.execCommand("copy"); 
+            document.execCommand("copy");
             alert("Copied On clipboard");
         });
 
         // clear
-        $("#clear").click(function(){
+        $("#clear").click(function () {
             $('#textUtilize').val("");
         });
 
         // capitalize
-        $("#capitalize").click(function(){
+        $("#capitalize").click(function () {
             var text = $('#textUtilize').val();
-            text = text.toLowerCase().replace(/\b[a-z]/g, function(block){
+            text = text.toLowerCase().replace(/\b[a-z]/g, function (block) {
                 return block.toUpperCase();
-            });  
+            });
             $('#textUtilize').val(text);
         });
-        
+
         // inverse
         $("#inverse").click(function () {
             var text = $("#textUtilize").val();
-             text = text.replace(
-                    /[a-z]/gi,
-                    char => /[a-z]/.test(char)
+            text = text.replace(
+                /[a-z]/gi,
+                char => /[a-z]/.test(char)
                     ? char.toUpperCase()
                     : char.toLowerCase()
             );
@@ -80,11 +83,26 @@
         // alter
         $("#alter").click(function () {
             var text = $("#textUtilize").val();
-            console.log(text)
-            $('#textUtilize').val(text);
+            var final = ''; var count=0;
+            for (let i = 0; i < text.length; i++) {
+                if(text[i].toLowerCase()>='a' && text[i].toLowerCase()<='z'){
+                    final += ((count % 2 == 0) ? (text[i].toUpperCase()) : (text[i].toLowerCase()));
+                    count++;
+                }
+                else{
+                    final += text[i];
+                }
+            }
+            $('#textUtilize').val(final);
         });
 
-       
+        // sample
+        $("#sample").click(function () {
+            $("#textUtilize").val("Lorem Ipsum is simply dummy text of the printing and typesetting industry.");
+             
+        });
+
+
 
 
 
