@@ -364,6 +364,22 @@ def imageFlip(request):
     return render(request, template_name, context)
 
 
+# Text Utilize
+def textUtilize(request):
+    template_name = 'text-utilize.html'
+    form = None
+    img_name = None  
+    
+    if request.method == 'POST':
+        pass
+    
+    context =  {
+        'form': form
+    }
+    return render(request, template_name, context)
+
+
+
 
 ################################################################################
 # def imageConvert(request):

@@ -12,6 +12,7 @@ urlpatterns = [
     path('image-quality', views.imageQuality, name='image_quality'),
     path('image-rotate', views.imageRotate, name='image_rotate'),
     path('image-flip', views.imageFlip, name='image_flip'),
+    path('text-utilize', views.textUtilize, name='text_utilize'),
 
 
     # path('', views.index , name='home'),
