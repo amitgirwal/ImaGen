@@ -2,6 +2,7 @@
 {% block title %} Login {% endblock %}
 {% block content %}
 {% load static %}
+{% load socialaccount %}
 <style>
   .divider:after,
   .divider:before {
@@ -35,17 +36,13 @@
             {% csrf_token %}
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Login in with</p>
-              <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-google"></i>
-              </button>
+              <a href="{% provider_login_url 'google' %}" >
+                <img src="{% static 'logos/glogo.png' %}" alt="Google Logo" width="36px">
+              </a>
 
-              <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
-
-              <button type="button" class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-linkedin-in"></i>
-              </button>
+               
+              
+              
             </div>
 
             <div class="divider d-flex align-items-center my-2">
