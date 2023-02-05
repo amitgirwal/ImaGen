@@ -142,19 +142,22 @@ def loginajax(request):
 # Update Profile
 from imagenapp.utils import printStar
 def updateProfile(request):
-    response_data = {'messages':'Hello world!'}
+    response_data = {}
     if request.method == 'POST':
-        printStar()
-        print(request.POST)
-        printStar()
+        try:
+            image = request.FILES['image'] or None
+        except:
+            image = None
+        
         name = request.POST.get('name')
         bio = request.POST.get('bio')
         url = request.POST.get('url')
         location = request.POST.get('location')
-        image = request.FILES['image']
+        
         user = User.objects.get(email=request.user.email)
         user.name = name
-        user.photo = image
+        if image is not None:
+            user.photo = image
         user.bio = bio
         user.url = url
         user.location = location
@@ -226,7 +229,6 @@ def feedback(request):
     context = {
         'form': form
     }
-    
     return render(request, template_name, context)
 
 # Subscribe
@@ -235,8 +237,5 @@ def subscribe(request):
         email = request.POST.get('email')
         subs = Subscribe(email=email)
         subs.save()
-        printStar()
-        print(email)
-        printStar()
         messages.success(request, "Enjoy using ImaGen and stay tuned for the latest updates and news. 🤗")
     return redirect('home')
