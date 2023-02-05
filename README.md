@@ -1,7 +1,7 @@
 # ImaGen
 ImaGen web application for photo effect and tools.
 
-<br>
+ 
 #### Quick Run Project
 ```bash
 cd backend
@@ -18,7 +18,7 @@ cd backend
 pip install -r requirements.txt
 ```
 
-<br>
+ 
 
 #### Built with
 - Python 
@@ -27,9 +27,8 @@ pip install -r requirements.txt
 - Html
 - CSS
 - JavaScript
-<br>
-![home page]()
-<br>
+ 
+
 
 #### Installation & Setup
 - Install virtual env
@@ -70,23 +69,56 @@ python manage.py runserver
 ```bash
 http://127.0.0.1:8000/
 ```
-<br>
+ 
 
 #### Features
-- Coloize Image with Effact ex. Sepia, Red, Sky Blue, Dark Pink Lemon Yellow, Dark Grey.
-- Convert Image Format to WEBP, PNG, JPG, JPEG
--  Flip the Image
-    Flip Top To Bottom Popular*
-    Flip Left To Right Most Used*
-    Rotate 90 degree
-    Rotate 180 degree
-    Rotate 270 degree
-    Transverse(Short to apply above effect)
-- Reduce Quality reduce the image quality by custom value 1-99%
-- QR Generator Generate any QR Code for any text or url
-- Image 2 PDF Convert any image formate to pdf document
-- Rotate an Image By Custom angle with expand options*
-<br>
+Login and Signup page `design + logic`  
+Home Page design completed `navbar + hero sections + subscribe section + footer`  
+After `signup active account link` send to the email for verification (Done)
+Coloize Image Filter (Done)
+        - Sepia
+        - Red
+        - Sky Blue
+        - Dark Pink
+        - Lemon Yellow
+ 
+
+Convert Image Formats (Done)
+	- Image to WEBP
+	- Image to PNG
+	- Image to JPG
+	- Image to JPEG
+
+Image Flip (Done)
+	- Flip Top To Bottom Popular
+	- Flip Left To Right Most Used
+	- Rotate 90 degree
+	- Rotate 180 degree
+	- Rotate 270 degree
+	- Transverse
+
+Reduce Image Quality (Done)
+	- Reduce image quality to a custom value range from 99 to 1 download it
+
+QR Code Generator (Done)
+	- Generator QR Code from any custom text and download it
+
+Image To PDF (Done)
+	- Convert Any image format to a PDF document and view, download it
+
+Rotate Image (Done)
+	- Rotate Any Image to a custom angle and download it
+	
+Text utils (Done)
+	- UPPER CASE
+	- lower case
+	- Capitalize Case
+	- iNVERSE cASE
+	- AlTeRnAtE cAsE
+	- Copy Text
+	- Clear
+	- Sample
+ 
 
 #### Coming Soon
 Articles, Pages, Categories, Tags(Add, Delete, Edit), etc.
@@ -101,7 +133,11 @@ Simple picture bed feature integrated.
 django-compressor integrated, auto-compressed css, js.
 Website exception email notification. When there is an unhandle exception, system will send an email notification.
 Wechat official account feature integrated. Now, you can use wechat official account to manage your VPS.
-<br>
+
+
+ 
+
+
 
 #### Resources
 - [Django](https://www.djangoproject.com/)
