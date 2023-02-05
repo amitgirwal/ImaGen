@@ -74,65 +74,83 @@ http://127.0.0.1:8000/
 #### Features
 Login and Signup page `design + logic`  
 Home Page design completed `navbar + hero sections + subscribe section + footer`  
-After `signup active account link` send to the email for verification (Done)
-Coloize Image Filter (Done)
-        - Sepia
-        - Red
-        - Sky Blue
-        - Dark Pink
-        - Lemon Yellow
- 
+After `signup active account link` send to the email for verification 
+Coloize Image Filter 
+```text
+- Sepia
+- Red
+- Sky Blue
+- Dark Pink
+- Lemon Yellow
+```
 
-Convert Image Formats (Done)
-	- Image to WEBP
-	- Image to PNG
-	- Image to JPG
-	- Image to JPEG
+Convert Image Formats 
+```text
+- Image to WEBP
+- Image to PNG
+- Image to JPG
+- Image to JPEG
+```
 
-Image Flip (Done)
-	- Flip Top To Bottom Popular
-	- Flip Left To Right Most Used
-	- Rotate 90 degree
-	- Rotate 180 degree
-	- Rotate 270 degree
-	- Transverse
+Image Flip 
+```text
+- Flip Top To Bottom Popular
+- Flip Left To Right Most Used
+- Rotate 90 degree
+- Rotate 180 degree
+- Rotate 270 degree
+- Transverse
+```
 
-Reduce Image Quality (Done)
-	- Reduce image quality to a custom value range from 99 to 1 download it
+Reduce Image Quality  
+```text
+- Reduce image quality to a custom value range from 99 to 1 download it
+```
 
-QR Code Generator (Done)
-	- Generator QR Code from any custom text and download it
+QR Code Generator  
+```text
+- Generator QR Code from any custom text and download it
+```
 
-Image To PDF (Done)
-	- Convert Any image format to a PDF document and view, download it
+Image To PDF  
+```text
+- Convert Image to PDF formate
+```
+Rotate Image   
+```text
+- Convert Any image format to a PDF document and view, download it
+```
 
-Rotate Image (Done)
-	- Rotate Any Image to a custom angle and download it
-	
-Text utils (Done)
-	- UPPER CASE
-	- lower case
-	- Capitalize Case
-	- iNVERSE cASE
-	- AlTeRnAtE cAsE
-	- Copy Text
-	- Clear
-	- Sample
- 
+Rotate Image 
+```text
+- Rotate Any Image to a custom angle and download it
+```
+
+Text utils 
+```text
+- UPPER CASE
+- lower case
+- Capitalize Case
+- iNVERSE cASE
+- AlTeRnAtE cAsE
+- Copy Text
+- Clear
+- Sample
+```
 
 #### Coming Soon
-Articles, Pages, Categories, Tags(Add, Delete, Edit), etc.
-Articles and pages support Markdown and highlighting.
-Articles support full-text search.
-Complete comment feature, include posting reply comment and email notification. Markdown supporting.
-Sidebar feature: new articles, most readings, tags, etc.
+Articles, Pages, Categories, Tags(Add, Delete, Edit), etc. <br />
+Articles and pages support Markdown and highlighting. <br />
+Articles support full-text search.<br />
+Complete comment feature, include posting reply comment and email notification. Markdown supporting.<br />
+Sidebar feature: new articles, most readings, tags, etc.<br />
 OAuth Login supported, including Google, GitHub, Facebook, Weibo, QQ.
-Memcache supported, with cache auto refresh.
-Simple SEO Features, notify Google  when there was a new article or other things.
-Simple picture bed feature integrated.
-django-compressor integrated, auto-compressed css, js.
-Website exception email notification. When there is an unhandle exception, system will send an email notification.
-Wechat official account feature integrated. Now, you can use wechat official account to manage your VPS.
+Memcache supported, with cache auto refresh.<br />
+Simple SEO Features, notify Google  when there was a new article or other things.<br />
+Simple picture bed feature integrated.<br />
+django-compressor integrated, auto-compressed css, js.<br />
+Website exception email notification. When there is an unhandle exception, system will send an email notification.<br />
+Wechat official account feature integrated. Now, you can use wechat official account to manage your VPS.<br />
 
 
  
