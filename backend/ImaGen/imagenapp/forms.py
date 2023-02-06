@@ -2,6 +2,10 @@ from django import forms
 from .models import Upload, ImageConvert, ImageFilter
 
 
+# Img Gen Form
+class ImgGenForm(forms.Form):
+    text = forms.CharField(max_length=500, initial="Dog on rocket on space")
+
 # QR Gen Form
 class QRGenForm(forms.Form):
     text = forms.CharField(max_length=500, initial="Hola, 🤗")
@@ -94,3 +98,9 @@ class ImageFilterForm(forms.ModelForm):
         fields =  '__all__'
 
 
+# Extract Img From
+class ExtractImgFrom(forms.Form):
+    docfile = forms.FileField(
+        label='Select a file',
+        help_text='max. 42 megabytes'
+    )

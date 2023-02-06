@@ -7,13 +7,13 @@
 <div class="row" data-bs-theme="dark">
     <div class="col-6">
         <div class="card border rounded p-3" data-bs-theme="dark">
-          <form action="{% url 'tempa' %}" method="POST" enctype="multipart/form-data"  id="imageForm">
+          <form action="{% url 'temp' %}" method="POST" enctype="multipart/form-data"  id="imageForm">
               {% csrf_token %}
                 <h3 class="text mx-auto">Temp_name</h3>
                 <input type="file" name="image" class="form-control" accept="image/*" id="id_image" required="">
                 <br/>
                 <label for="exampleColorInput" class="form-label">Filter Color Picker</label>
-                <input type="color" class="form-control form-control-color" id="color"  value="#563d7c" title="Choose your color" name="color">
+                
                 
                 <button class="btn btn-success w-100 btn-lg" type="submit">
                     <i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp;

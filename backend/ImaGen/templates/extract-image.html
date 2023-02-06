@@ -1,0 +1,13 @@
+Extract Image
+{% load crispy_forms_tags %}
+<body style="background-color: rgb(73, 72, 72); color: rgb(143, 156, 167);">
+
+
+<form action="{% url 'extract' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br />
+    <button type="submit">Extract</button>
+</form>
+
+</body>

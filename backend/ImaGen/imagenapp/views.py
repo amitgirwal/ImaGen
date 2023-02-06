@@ -380,6 +380,119 @@ def textUtilize(request):
 
 
 
+# imageGen
+def imageGen(request):
+    template_name = 'image-gen.html'
+    form = ImgGenForm()
+    
+    if request.method == 'POST':
+        pass
+    
+    context =  {
+        'form': form
+    }
+    return render(request, template_name, context)
+
+
+
+# extract
+import fitz
+import io
+from PIL import Image
+from .models import ExtractImg
+
+def extract(request):
+    template_name = 'extract-image.html'
+    form = ExtractImgFrom()
+
+    if request.method == 'POST':
+        pdf = request.FILES['docfile']
+        extractImg = ExtractImg(docfile=pdf)
+        extractImg.save()
+        pdf = extractImg.docfile
+        printStar()  
+        upload_url, upload_path, upload_name, image_file = getImagePathUrlByFilesRequest(pdf)
+        print('upload_url : ', upload_url)
+        print('upload_path : ', upload_path)
+        print('upload_name : ', upload_name)
+        print('image_file : ', image_file)
+        printStar()  
+        print(pdf.url)
+        print(pdf.url)
+        print(settings.MEDIA_ROOT)
+
+        pdf_file = fitz.open(upload_path)
+        for page_index in range(len(pdf_file)):
+            page = pdf_file[page_index]
+            image_list = page.getImageList()
+            if image_list:
+                print(f"[+] Found a total of {len(image_list)} images in page {page_index}")
+            else:
+                print("[!] No images found on page", page_index)
+            for image_index, img in enumerate(page.getImageList(), start=1):
+                xref = img[0]
+                base_image = pdf_file.extractImage(xref)
+                image_bytes = base_image["image"]
+                image_ext = base_image["ext"]
+
+       
+        print(pdf)
+        printStar()
+    context = {
+        'form': form
+    }
+    return render(request, template_name, context)
+
+
+# Extract text from image
+from pytesseract import pytesseract
+
+# Flip Image
+def temp(request):
+    template_name = 'temp.html'
+    form = ImageFlipForm()
+    img_name = None  
+    uploaded_file_url = None
+    action = request.GET.get('action') or None
+    if action is None:
+        action = 'FLIP_TOP_BOTTOM'
+    if request.method == 'POST':
+        image = request.FILES['image']
+        flip_options = request.POST.get('flip_options')
+        
+        img = Image.open(image)
+        img = img.convert('RGB')
+        # Processing
+        if flip_options == 'FLIP_TOP_BOTTOM':
+            img = img.transpose(Image.FLIP_TOP_BOTTOM)
+        elif flip_options == 'FLIP_LEFT_RIGHT':
+            img = img.transpose(Image.FLIP_LEFT_RIGHT)
+        elif flip_options == 'ROTATE_90':
+            img = img.transpose(Image.ROTATE_90)   
+        elif flip_options == 'ROTATE_180':
+            img = img.transpose(Image.ROTATE_180)   
+        elif flip_options == 'ROTATE_270':
+            img = img.transpose(Image.ROTATE_270)   
+        elif flip_options == 'TRANSVERSE':
+            img = img.transpose(Image.TRANSVERSE)   
+        else: 
+            pass
+
+        img.seek(0)
+        img_name = f'image-flip{time.time()}.png'
+        img.save(settings.MEDIA_ROOT+'/'+img_name, "PNG")
+        img.seek(0)  
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url,
+        'action': action
+    }
+    return render(request, template_name, context)
+
+
 
 ################################################################################
 # def imageConvert(request):

@@ -13,7 +13,11 @@ urlpatterns = [
     path('image-rotate', views.imageRotate, name='image_rotate'),
     path('image-flip', views.imageFlip, name='image_flip'),
     path('text-utilize', views.textUtilize, name='text_utilize'),
+    path('extract', views.extract, name='extract'),
+    path("image-gen", views.imageGen, name="image_gen"),
 
+    path("temp", views.temp, name="temp"),
+    
 
     # path('', views.index , name='home'),
     # path('images/', views.resizeImage, name='images'),

@@ -1,0 +1,60 @@
+{% load static %}
+<style>
+  .hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    color: #012970;
+    
+    line-height: 1.2;
+    transition-property: opacity, transform;
+  }
+
+  .hero h2 {
+    color: #444444;
+    margin: 15px 0 0 0;
+    font-size: 26px;
+    font-family: "Nunito", sans-serif;
+    transition-property: opacity, transform;
+  }
+</style>
+
+<!-- AI Hero Section -->
+<section id="aihero" class="hero2 d-flex align-items-center bg-dark"  >
+  <div class="container my-5 ">
+    <div
+      class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3  shadow-lg bg-dark text-light"
+    >
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-5 fw-bold lh-1">Reimagine your imagination with the AI Image Generator</h1>
+        <p class="lead">
+            Looking for creative ways to amplify your designs? Flex your artistic muscles with the Picsart AI image generator! 
+            A guy with a hat standing on a planet in the universe
+        </p>
+        <div
+          class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3"
+        >
+          <a
+            href="{% url 'image_gen' %}"
+            type="button"
+            class="btn btn-outline-info btn-lg px-4 me-md-2 fw-bold"
+          >
+          Turn your words into images &nbsp; <li class="fa fa-arrow-right"></li>
+          </a>
+           
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-sm">
+        <img
+          class="rounded-lg-3"
+          src="{% static 'images/ai.jpg' %}"
+          
+          alt=""
+          width="720"
+        />
+      </div>
+    </div>
+  </div>
+
+</section>
+ 
