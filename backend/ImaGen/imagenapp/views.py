@@ -379,21 +379,43 @@ def textUtilize(request):
     return render(request, template_name, context)
 
 
-
+import requests
 # imageGen
 def imageGen(request):
     template_name = 'image-gen.html'
     form = ImgGenForm()
-    
+    text = None
+    uploaded_file_url = None
+    img_name = None
+    images = []
+
     if request.method == 'POST':
-        pass
-    
+        text = request.POST.get('text')
+        img_name = f'AIGenImg_{time.time()}.jpg'
+        # Generate image
+        r = requests.post(
+                    "https://api.deepai.org/api/text2img",
+                    data = { 'text': text, },
+                    headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+                )
+        output_url = r.json()['output_url']
+
+        # store image and gen file url
+        img = Image.open(requests.get(output_url, stream = True).raw)
+        uploaded_file_url = settings.MEDIA_URL+img_name
+        file_path = settings.MEDIA_ROOT+'/'+img_name
+        img.save(file_path)
+        img.seek(0)  
+
+
     context =  {
-        'form': form
+        'form': form,
+        'images': images,
+        'uploaded_file_url': uploaded_file_url,
+        'img_name': img_name
     }
     return render(request, template_name, context)
-
-
+ 
 
 # extract
 import fitz
@@ -442,6 +464,8 @@ def extract(request):
         'form': form
     }
     return render(request, template_name, context)
+
+
 
 
 # Extract text from image
