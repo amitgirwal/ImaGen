@@ -9,9 +9,10 @@
 {% comment %}
 this is the comment
 {% endcomment %}
+
 {% include 'core/welcome.html' %} 
-{% include 'core/features.html' %} 
 {% if request.user.is_authenticated %} {% include 'core/ai-hero.html' %} {% endif %}
+{% include 'core/features.html' %} 
 {% include 'core/information.html' %} 
 {% include 'core/photo.html' %} 
 {% include 'core/next.html' %} 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, FileResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # custom import
 from .models import Upload, ImageConvert, ImageFilter
@@ -24,7 +25,7 @@ from qrcode import *
 # default modules
 import time
 import json
-
+import requests
 
 
 # Functions 
@@ -379,8 +380,8 @@ def textUtilize(request):
     return render(request, template_name, context)
 
 
-import requests
-# imageGen
+# imageGen using AI
+@login_required
 def imageGen(request):
     template_name = 'image-gen.html'
     form = ImgGenForm()
@@ -392,30 +393,43 @@ def imageGen(request):
     if request.method == 'POST':
         text = request.POST.get('text')
         img_name = f'AIGenImg_{time.time()}.jpg'
-        # Generate image
-        r = requests.post(
-                    "https://api.deepai.org/api/text2img",
-                    data = { 'text': text, },
-                    headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
-                )
-        output_url = r.json()['output_url']
+        try:
+            # Generate image
+            r = requests.post(
+                        "https://api.deepai.org/api/text2img",
+                        data = { 'text': text, },
+                        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+                    )
+            printStar()
+            print(r.json())
+            printStar()
+            output_url = r.json()['output_url']
+            
+            # store image and gen file url
+            img = Image.open(requests.get(output_url, stream = True).raw)
+            uploaded_file_url = settings.MEDIA_URL+img_name
+            file_path = settings.MEDIA_ROOT+'/'+img_name
+            img.save(file_path)
+            img.seek(0) 
 
-        # store image and gen file url
-        img = Image.open(requests.get(output_url, stream = True).raw)
-        uploaded_file_url = settings.MEDIA_URL+img_name
-        file_path = settings.MEDIA_ROOT+'/'+img_name
-        img.save(file_path)
-        img.seek(0)  
+        except:
+            uploaded_file_url = None
+            messages.error(request, "Server is busy, please try again later. 🙇‍♂️")
 
 
     context =  {
         'form': form,
         'images': images,
         'uploaded_file_url': uploaded_file_url,
-        'img_name': img_name
+        'img_name': img_name,
+        'text': text
     }
     return render(request, template_name, context)
  
+
+
+
+
 
 # extract
 import fitz

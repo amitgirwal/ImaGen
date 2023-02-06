@@ -116,7 +116,8 @@ Image To PDF
 ```text
 - Convert Image to PDF formate
 ```
-Rotate Image   
+
+Convert Image 
 ```text
 - Convert Any image format to a PDF document and view, download it
 ```
@@ -137,6 +138,12 @@ Text utils
 - Clear
 - Sample
 ```
+
+AI Image Generator
+```text
+- Generate AI image using Text this features used Open AI API to generate image from text and download it.
+```
+
 
 #### Coming Soon
 Articles, Pages, Categories, Tags(Add, Delete, Edit), etc. <br />
@@ -169,5 +176,7 @@ Wechat official account feature integrated. Now, you can use wechat official acc
 - [Virutal Env Doc](https://virtualenv.pypa.io/en/latest/installation.html)
 - [Django Docs](https://docs.djangoproject.com/en/4.1/intro/tutorial01/)
 - [TinyMCE](https://pypi.org/project/django-tinymce/)
+- [OpenAI](https://openai.com/api/)
+- [OpenAI Docs](https://platform.openai.com/docs/introduction/overview)
 
  
