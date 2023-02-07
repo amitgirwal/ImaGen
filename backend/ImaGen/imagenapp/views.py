@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 # custom import
-from .models import Upload, ImageConvert, ImageFilter
+from .models import *
 from .forms import *
 
 # image utils
@@ -26,6 +26,9 @@ from qrcode import *
 import time
 import json
 import requests
+import fitz
+import os
+import io
 
 
 # Functions 
@@ -427,57 +430,95 @@ def imageGen(request):
     return render(request, template_name, context)
  
 
-
-
-
-
-# extract
-import fitz
-import io
-from PIL import Image
-from .models import ExtractImg
-
+# Extract image from pdf
 def extract(request):
     template_name = 'extract-image.html'
     form = ExtractImgFrom()
-
+    images = {}
     if request.method == 'POST':
         pdf = request.FILES['docfile']
-        extractImg = ExtractImg(docfile=pdf)
-        extractImg.save()
-        pdf = extractImg.docfile
-        printStar()  
+
+        images_path = settings.MEDIA_ROOT+'/' 
         upload_url, upload_path, upload_name, image_file = getImagePathUrlByFilesRequest(pdf)
-        print('upload_url : ', upload_url)
-        print('upload_path : ', upload_path)
-        print('upload_name : ', upload_name)
-        print('image_file : ', image_file)
-        printStar()  
-        print(pdf.url)
-        print(pdf.url)
-        print(settings.MEDIA_ROOT)
-
         pdf_file = fitz.open(upload_path)
-        for page_index in range(len(pdf_file)):
-            page = pdf_file[page_index]
-            image_list = page.getImageList()
-            if image_list:
-                print(f"[+] Found a total of {len(image_list)} images in page {page_index}")
-            else:
-                print("[!] No images found on page", page_index)
-            for image_index, img in enumerate(page.getImageList(), start=1):
-                xref = img[0]
-                base_image = pdf_file.extractImage(xref)
-                image_bytes = base_image["image"]
-                image_ext = base_image["ext"]
+        page_nums = len(pdf_file)
+        images_list = []
 
-       
-        print(pdf)
-        printStar()
+        for page_num in range(page_nums):
+            page_content = pdf_file[page_num]
+            images_list.extend(page_content.get_images())
+
+        if len(images_list)==0:
+            raise ValueError(f'No images found in {file_path}')
+
+        for i, img in enumerate(images_list, start=1):
+            xref = img[0]
+            base_image = pdf_file.extract_image(xref)
+            image_bytes = base_image['image']
+            image_ext = base_image['ext']
+            img_name = f'pdf-images{time.time()}'+ '.' + image_ext
+            img = Image.open(io.BytesIO(image_bytes))
+            file_path = settings.MEDIA_ROOT+'/'+img_name
+            uploaded_file_url = settings.MEDIA_URL+img_name
+            img.save(file_path)
+            img.seek(0)
+            images[str(i)] = {"uploaded_file_url": uploaded_file_url, "img_name":img_name}
+
     context = {
-        'form': form
+        'form': form,
+        'images': images
     }
     return render(request, template_name, context)
+
+
+
+
+
+
+
+
+
+# def extract(request):
+#     template_name = 'extract-image.html'
+#     form = ExtractImgFrom()
+
+#     if request.method == 'POST':
+#         pdf = request.FILES['docfile']
+#         extractImg = ExtractImg(docfile=pdf)
+#         extractImg.save()
+#         pdf = extractImg.docfile
+#         printStar()  
+#         upload_url, upload_path, upload_name, image_file = getImagePathUrlByFilesRequest(pdf)
+#         print('upload_url : ', upload_url)
+#         print('upload_path : ', upload_path)
+#         print('upload_name : ', upload_name)
+#         print('image_file : ', image_file)
+#         printStar()  
+#         print(pdf.url)
+#         print(pdf.url)
+#         print(settings.MEDIA_ROOT)
+
+#         pdf_file = fitz.open(upload_path)
+#         for page_index in range(len(pdf_file)):
+#             page = pdf_file[page_index]
+#             image_list = page.getImageList()
+#             if image_list:
+#                 print(f"[+] Found a total of {len(image_list)} images in page {page_index}")
+#             else:
+#                 print("[!] No images found on page", page_index)
+#             for image_index, img in enumerate(page.getImageList(), start=1):
+#                 xref = img[0]
+#                 base_image = pdf_file.extractImage(xref)
+#                 image_bytes = base_image["image"]
+#                 image_ext = base_image["ext"]
+
+       
+#         print(pdf)
+#         printStar()
+#     context = {
+#         'form': form
+#     }
+#     return render(request, template_name, context)
 
 
 

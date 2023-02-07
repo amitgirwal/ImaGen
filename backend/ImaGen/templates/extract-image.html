@@ -1,13 +1,62 @@
-Extract Image
+{% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
-<body style="background-color: rgb(73, 72, 72); color: rgb(143, 156, 167);">
+{% block title %} Extract Image From PDF {% endblock %}
+{% block content %}
 
+<!-- Reduce Image Quality -->
+<div class="container mt-5">
+    <div class="row g-3">
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="card border-1 rounded p-3">
+                <form action="{% url 'extract' %}" method="POST" enctype="multipart/form-data">
+                    <h3 class="text-center mx-auto">Extract Images From PDF</h3>
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button class="btn btn-success w-100 btn-lg" type="submit">
+                        <i class="fa-solid fa-refresh"></i>&nbsp;
+                        Extract</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="row">
+                {% for key, image in images.items %}
+                <div class="card border-1 rounded-1" >
+                    <img  class="card-img-top" src="{{ image.uploaded_file_url }}" alt="download image">
+                    <div class="card-body">
+                        <a class="btn btn-dark w-100 btn-lg" href="/media/{{ image.img_name }}" download>
+                            <i class="fa-solid fa-download"></i> &nbsp;
+                            Download
+                        </a>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
-<form action="{% url 'extract' %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form|crispy}}
-    <br />
-    <button type="submit">Extract</button>
-</form>
+{% endblock %}
+{% block javascript %}
+<script>
 
-</body>
+    $(document).ready(() => {
+
+        // image preview
+        $('#id_image').change(function () {
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (event) {
+                    $('#imgPreview').attr('src', event.target.result);
+                    $("#imgPreview").css("display", "block");
+                    $("#downloadImage").css("display", "none");
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+    });
+</script>
+{% endblock %}
