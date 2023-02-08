@@ -1,7 +1,7 @@
 # ImaGen
-ImaGen web application for photo effect and tools.
-Image Processing website to interact with mostly image related work on web application using django and opencv lib.
- 
+ImaGen web application for photo effect and tools. 
+Image Processing website to interact with primarily image-related work on web applications using Python, Django Framework and other libraries such as OpenCV etc.
+
 #### Quick Run Project
 ```bash
 cd backend
@@ -15,7 +15,14 @@ python manage.py migrate
 http://127.0.0.1:8000/
 
 cd backend
+.\venv\Scripts\activate
 pip install -r requirements.txt
+
+cd backend
+.\venv\Scripts\activate
+pip freeze > requirements.txt
+
+python manage.py createsuperuser
 ```
 
  

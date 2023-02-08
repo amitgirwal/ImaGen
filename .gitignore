@@ -3,10 +3,19 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+# Custom files
+env.py
+temp.py
+
+
+
 # virtual env backend
 backend/venv/
-env.py
 media/
+
+
+
 
 
 # C extensions
