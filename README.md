@@ -138,6 +138,7 @@ Text utils
 - Copy Text
 - Clear
 - Sample
+- Remove Or Replace
 ```
 
 AI Image Generator
