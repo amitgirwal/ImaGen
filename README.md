@@ -1,6 +1,6 @@
 # ImaGen
 ImaGen web application for photo effect and tools.
-
+Image Processing website to interact with mostly image related work on web application using django and opencv lib.
  
 #### Quick Run Project
 ```bash
@@ -21,12 +21,12 @@ pip install -r requirements.txt
  
 
 #### Built with
-- Python 
-- Django 
-- Bootstrap
-- Html
+- HTML
 - CSS
 - JavaScript
+- Bootstrap 5
+- Python
+- Django
  
 
 
@@ -181,7 +181,7 @@ Wechat official account feature integrated. Now, you can use wechat official acc
 - [TinyMCE](https://pypi.org/project/django-tinymce/)
 - [OpenAI](https://openai.com/api/)
 - [OpenAI Docs](https://platform.openai.com/docs/introduction/overview)
-- [Open CV](https://pypi.org/project/opencv-python/)
+- [OpenCV](https://pypi.org/project/opencv-python/)
 - [Pillow](https://pypi.org/project/Pillow/)
 - [NumPy Docs](https://numpy.org/doc/stable/)
  
