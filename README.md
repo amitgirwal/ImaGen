@@ -1,5 +1,5 @@
 # ImaGen
-ImaGen web application for photo effect and tools. 
+ImaGen web application for photo effect and tools. <br />
 Image Processing website to interact with primarily image-related work on web applications using Python, Django Framework and other libraries such as OpenCV etc.
 
 #### Quick Run Project
@@ -83,6 +83,7 @@ Login and Signup page `design + logic`
 Login and Signup using Google Account
 Home Page design completed `navbar + hero sections + subscribe section + footer`  
 After `signup active account link` send to the email for verification 
+<br />
 Coloize Image Filter 
 ```text
 - Sepia
@@ -153,6 +154,10 @@ AI Image Generator
 - Generate AI image using Text this features used Open AI API to generate image from text and download it.
 ```
 
+Remove Background Image
+```text
+- Remove background from image and download it.
+```
 
 #### Coming Soon
 Articles, Pages, Categories, Tags(Add, Delete, Edit), etc. <br />
@@ -160,11 +165,12 @@ Articles and pages support Markdown and highlighting. <br />
 Articles support full-text search.<br />
 Complete comment feature, include posting reply comment and email notification. Markdown supporting.<br />
 Sidebar feature: new articles, most readings, tags, etc.<br />
-OAuth Login supported, including Google, GitHub, Facebook, Weibo, QQ.
+OAuth Login supported, including GitHub, Facebook, Weibo, QQ.<br />
 Memcache supported, with cache auto refresh.<br />
 Simple SEO Features, notify Google  when there was a new article or other things.<br />
 Simple picture bed feature integrated.<br />
 django-compressor integrated, auto-compressed css, js.<br />
+Cron jobs to remove unused data images and other resources.<br />
 Website exception email notification. When there is an unhandle exception, system will send an email notification.<br />
 Wechat official account feature integrated. Now, you can use wechat official account to manage your VPS.<br />
 
