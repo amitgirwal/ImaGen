@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 
 #### Installation & Setup
-- Install virtual env
+- Install virtual env & create virtual env `venv`
 ```bash
 python -m pip install --user virtualenv
 python -m venv venv
@@ -113,9 +113,9 @@ QR Code Generator
 - Generator QR Code from any custom text and download it
 ```
 
-Image To PDF  
+Image 2 PDF  
 ```text
-- Convert Image to PDF formate
+- Convert Image to PDF format
 ```
 
 Convert Image 
@@ -167,7 +167,9 @@ Wechat official account feature integrated. Now, you can use wechat official acc
 
 
 #### Resources
+- [Python](https://www.python.org/)
 - [Django](https://www.djangoproject.com/)
+- [Django Docs](https://docs.djangoproject.com/en/4.1/intro/tutorial01/)
 - [Django Crispy Forms](https://pypi.org/project/crispy-bootstrap5/)
 - [Bootstrap 5](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 - [JQuery](https://cdnjs.com/libraries/jquery)
@@ -176,9 +178,10 @@ Wechat official account feature integrated. Now, you can use wechat official acc
 - [Image Undraw](https://undraw.co/search)
 - [Gradient Color Bootstrap](https://mdbootstrap.com/docs/b4/jquery/css/gradients/)
 - [Virutal Env Doc](https://virtualenv.pypa.io/en/latest/installation.html)
-- [Django Docs](https://docs.djangoproject.com/en/4.1/intro/tutorial01/)
 - [TinyMCE](https://pypi.org/project/django-tinymce/)
 - [OpenAI](https://openai.com/api/)
 - [OpenAI Docs](https://platform.openai.com/docs/introduction/overview)
-
+- [Open CV](https://pypi.org/project/opencv-python/)
+- [Pillow](https://pypi.org/project/Pillow/)
+- [NumPy Docs](https://numpy.org/doc/stable/)
  
