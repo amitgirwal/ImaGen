@@ -15,6 +15,7 @@ urlpatterns = [
     path('text-utilize', views.textUtilize, name='text_utilize'),
     path('extract', views.extract, name='extract'),
     path("image-gen", views.imageGen, name="image_gen"),
+    path("image-removebg", views.removeBackground, name="image_removebg"),
 
     path("temp", views.temp, name="temp"),
     

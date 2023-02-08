@@ -6,6 +6,7 @@ from .models import Upload, ImageConvert, ImageFilter
 class ImgGenForm(forms.Form):
     text = forms.CharField(max_length=500, initial="a raccoon astronaut with the cosmos reflecting on the glass of his helmet dreaming of the stars")
 
+
 # QR Gen Form
 class QRGenForm(forms.Form):
     text = forms.CharField(max_length=500, initial="Hola, 🤗")
@@ -13,6 +14,11 @@ class QRGenForm(forms.Form):
 
 # Image 2 PDF Form
 class ImageToPDFForm(forms.Form):
+    image = forms.ImageField()
+
+
+# Remove Background
+class RemoveBackgroundForm(forms.Form):
     image = forms.ImageField()
 
 

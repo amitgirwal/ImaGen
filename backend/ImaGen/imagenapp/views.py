@@ -471,9 +471,36 @@ def extract(request):
     return render(request, template_name, context)
 
 
+# Remove Background From Image
+def removeBackground(request):
+    template_name = 'image-remove-background.html'
+    form = RemoveBackgroundForm()
+    img_name = None  
+    uploaded_file_url = None
+    
+    if request.method == 'POST':
+        image = request.FILES['image']
+        img = Image.open(image)
+        img = img.convert('RGB')
+        img.seek(0)
+        img_name = f'image-convert{time.time()}.png'
+        img.save(settings.MEDIA_ROOT+'/'+img_name, "png", lossless=True)
+        img.seek(0)  
+        uploaded_file_url = settings.MEDIA_URL+'/'+img_name
+    
+    context =  {
+        'img_name': img_name,    
+        'form': form,
+        'uploaded_file_url':uploaded_file_url
+    }
+    return render(request, template_name, context)
 
 
 
+
+'''
+🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚 👈👈👈👈👈👈👈
+'''
 
 
 

@@ -1,39 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %} Image To PDF {% endblock %}
+{% block title %} Remove Background From Image {% endblock %}
 {% block content %}
 
-<!-- Image To PDF -->
+<!-- Remove Background From Image -->
 <div class="container my-5">
     <div class="row g-3">
         <div class="col-12 col-sm-12 col-md-6">
             <div class="card border-1 rounded p-3">
-                <form action="{% url 'image_pdf' %}" method="POST" enctype="multipart/form-data">
-                    <h3 class="text-center mx-auto">Image To PDF</h3>
+                <form action="{% url 'image_removebg' %}" method="POST" enctype="multipart/form-data">
+                    <h3 class="text-center mx-auto">Remove Background From Image</h3>
                     {% csrf_token %}
                     {{form|crispy}}
                     <button class="btn btn-success w-100 btn-lg" type="submit">
-                        <i class="fa-solid fa-file-pdf"></i>&nbsp;
-                        Convert to PDF</button>
+                        <i class="fa-solid fa-magic"></i>&nbsp;
+                        Remove Background</button>
                 </form>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6">
-            <div class="card border-0">
-                <img id="imgPreview" alt="Preview Image" style="display: none;">
-            </div>
-            {% if uploaded_file_url %}
-            <div class="card border-1 rounded p-3" id="downloadImage">
-                <h3 class="card-title text-center mx-auto">Ready to Download !</h3>
-                <div class="p-2 mt-2">
-                    <a class="btn btn-info w-100 btn-lg my-2" href="{{ uploaded_file_url }}" target="_blank">
-                        <i class="fa-solid fa-eye"></i> &nbsp; View </a>
-                    <a class="btn btn-dark w-100 btn-lg" href="{{ uploaded_file_url }}" download>
-                        <i class="fa-solid fa-download"></i> &nbsp; Download </a>
+            <div class="row">
+                <div class="card border-0">
+                    <img id="imgPreview" alt="Preview Image" style="display: none;">
                 </div>
+                {% if uploaded_file_url %}
+                <div class="card border-1 rounded-1">
+                    <img class="card-img-top" src="{{ uploaded_file_url }}" alt="download image">
+                    <div class="card-body">
+                        <a class="btn btn-dark w-100 btn-lg" href="/media/{{ img_name }}" download>
+                            <i class="fa-solid fa-download"></i> &nbsp;
+                            Download
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </div>
 </div>
@@ -41,6 +43,7 @@
 {% endblock %}
 {% block javascript %}
 <script>
+
     $(document).ready(() => {
 
         // image preview
