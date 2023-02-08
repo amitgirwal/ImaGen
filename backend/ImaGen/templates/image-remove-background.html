@@ -10,7 +10,7 @@
         <div class="col-12 col-sm-12 col-md-6">
             <div class="card border-1 rounded p-3">
                 <form action="{% url 'image_removebg' %}" method="POST" enctype="multipart/form-data">
-                    <h3 class="text-center mx-auto">Remove Background From Image</h3>
+                    <h3 class="text-center mx-auto">Remove Background Image</h3>
                     {% csrf_token %}
                     {{form|crispy}}
                     <button class="btn btn-success w-100 btn-lg" type="submit">
@@ -19,14 +19,22 @@
                 </form>
             </div>
         </div>
+        <style>
+        .transparency-grid {
+                background-color: #fff;
+                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3LjkzNyA3LjkzOCIgaGVpZ2h0PSIzMCIgd2lkdGg9IjMwIj48cGF0aCBwYWludC1vcmRlcj0ic3Ryb2tlIGZpbGwgbWFya2VycyIgZD0iTS4wMTQuMDE0SDMuOTdWMy45N0guMDE0ek0zLjk3IDMuOTY4aDMuOTU0djMuOTU1SDMuOTd6IiBmaWxsPSIjZWVlZmYwIi8+PC9zdmc+");
+                background-size: 25px;
+        }
+        </style>
+             
         <div class="col-12 col-sm-12 col-md-6">
-            <div class="row">
-                <div class="card border-0">
-                    <img id="imgPreview" alt="Preview Image" style="display: none;">
+            <div class="row ms-2">
+                <div class="card border-0 p-0 shadow-sm" style="width: 500px; height:300px; overflow:hidden;" id="imgPreviewBlock">
+                    <img id="imgPreview" alt="Preview Image" style="width:100%;">
                 </div>
                 {% if uploaded_file_url %}
-                <div class="card border-1 rounded-1">
-                    <img class="card-img-top" src="{{ uploaded_file_url }}" alt="download image">
+                <div class="card border-1 p-0 shadow-sm" id="downloadImage">
+                    <img src="{{ uploaded_file_url }}" style="max-height: 50vh;" class="img-fluid transparency-grid card-img-top" ondragstart="return false;" data-hj-suppress="true" data-v-1ab68894="" alt="download image">
                     <div class="card-body">
                         <a class="btn btn-dark w-100 btn-lg" href="/media/{{ img_name }}" download>
                             <i class="fa-solid fa-download"></i> &nbsp;
@@ -45,6 +53,7 @@
 <script>
 
     $(document).ready(() => {
+        $("#imgPreviewBlock").css("display", "none");
 
         // image preview
         $('#id_image').change(function () {
@@ -53,7 +62,7 @@
                 let reader = new FileReader();
                 reader.onload = function (event) {
                     $('#imgPreview').attr('src', event.target.result);
-                    $("#imgPreview").css("display", "block");
+                    $("#imgPreviewBlock").css("display", "block");
                     $("#downloadImage").css("display", "none");
                 }
                 reader.readAsDataURL(file);

@@ -21,6 +21,7 @@ from PIL import Image, ImageFilter, ImageEnhance, ImageOps
 
 # qr code
 from qrcode import *
+from rembg import remove
  
 # default modules
 import time
@@ -481,10 +482,11 @@ def removeBackground(request):
     if request.method == 'POST':
         image = request.FILES['image']
         img = Image.open(image)
-        img = img.convert('RGB')
+        # img = img.convert('RGB')
+        img = remove(img)
         img.seek(0)
-        img_name = f'image-convert{time.time()}.png'
-        img.save(settings.MEDIA_ROOT+'/'+img_name, "png", lossless=True)
+        img_name = f'image-bgremove-{time.time()}.png'
+        img.save(settings.MEDIA_ROOT+'/'+img_name)
         img.seek(0)  
         uploaded_file_url = settings.MEDIA_URL+'/'+img_name
     
