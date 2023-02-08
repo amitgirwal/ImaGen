@@ -73,6 +73,7 @@ http://127.0.0.1:8000/
 
 #### Features
 Login and Signup page `design + logic`  
+Login and Signup using Google Account
 Home Page design completed `navbar + hero sections + subscribe section + footer`  
 After `signup active account link` send to the email for verification 
 Coloize Image Filter 
