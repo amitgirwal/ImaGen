@@ -204,7 +204,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True 
 EMAIL_PORT = 587
 
-from .env import getEmail, getPassword
+from .env import getEmail, getPassword, getOpenAIKey
 
 EMAIL_FROM = getEmail()
 EMAIL_HOST_USER = getEmail()
@@ -212,4 +212,6 @@ EMAIL_HOST_PASSWORD = getPassword()
 
 PASSWORD_RESET_TIMEOUT = 14400
 
- 
+
+# Open AI Account Key
+OPEN_AI_KEY = getOpenAIKey()

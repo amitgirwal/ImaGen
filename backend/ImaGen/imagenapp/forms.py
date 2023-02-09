@@ -4,7 +4,11 @@ from .models import Upload, ImageConvert, ImageFilter
 
 # Img Gen Form
 class ImgGenForm(forms.Form):
-    text = forms.CharField(max_length=500, initial="a raccoon astronaut with the cosmos reflecting on the glass of his helmet dreaming of the stars")
+    text = forms.CharField(max_length=500, initial="A raccoon astronaut with the cosmos reflecting on the glass of his helmet dreaming of the stars.")
+
+# Img Gen Dalle2 Form
+class ImgGenDalleForm(forms.Form):
+    text = forms.CharField(max_length=500, initial="A Pig In Sunglasses Wearing An Aloha Shirt Blowing In The Wind While Driving A Motorcycle Through The Desert.")
 
 
 # QR Gen Form

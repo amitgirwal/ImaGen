@@ -23,6 +23,10 @@ from PIL import Image, ImageFilter, ImageEnhance, ImageOps
 from qrcode import *
 from rembg import remove
  
+# open ai 
+from base64 import b64decode
+from openai.error import InvalidRequestError
+
 # default modules
 import time
 import json
@@ -30,6 +34,9 @@ import requests
 import fitz
 import os
 import io
+import webbrowser
+import openai
+import datetime
 
 
 # Functions 
@@ -430,49 +437,78 @@ def imageGen(request):
     }
     return render(request, template_name, context)
  
+
 # Image Gen using OpenAI Dall E 2
 @login_required
 def imageGenDalle(request):
     template_name = 'image-gen-dalle2.html'
-    form = ImgGenForm()
+    form = ImgGenDalleForm()
     text = None
     uploaded_file_url = None
     img_name = None
+    downloadImage = {}
     images = []
-
     if request.method == 'POST':
         text = request.POST.get('text')
-        img_name = f'AIGenImg_DALLE2_{time.time()}.jpg'
+        
         try:
-            # Generate image
-            r = requests.post(
-                        "https://api.deepai.org/api/text2img",
-                        data = { 'text': text, },
-                        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
-                    )
-            printStar()
-            print(r.json())
-            printStar()
-            output_url = r.json()['output_url']
-            
-            # store image and gen file url
-            img = Image.open(requests.get(output_url, stream = True).raw)
-            uploaded_file_url = settings.MEDIA_URL+img_name
-            file_path = settings.MEDIA_ROOT+'/'+img_name
-            img.save(file_path)
-            img.seek(0) 
+            # ready the params
+            openai.api_key = settings.OPEN_AI_KEY
+            SIZES = ('256x256', '512x512', '1024x1024')
+            prompt = text
+            num_images = 2
+            size = SIZES[0]
+            # output_format = 'b64_json'
+            output_format = 'url'
 
-        except:
-            uploaded_file_url = None
+
+            # request to open ai dalle
+            response = openai.Image.create(
+                prompt=prompt,
+                n=num_images,
+                size=size,
+                response_format=output_format
+            )
+
+            if output_format=='url':
+                for image in response['data']:
+                    images.append(image.url)
+            elif output_format == 'b64_json':
+                for image in response['data']:
+                    images.append(image.b64_json)
+            response = {
+                'created': datetime.datetime.fromtimestamp(response['created']), 
+                'images': images
+                }
+
+            downloadImage = {}
+            # extract image from response
+            for index, image in enumerate(images):
+                img = Image.open(requests.get(image, stream = True).raw)
+                img_name = f'AIGenImg_DALLE2_{time.time()}.jpg'
+                uploaded_file_url = settings.MEDIA_URL+img_name
+                file_path = settings.MEDIA_ROOT+'/'+img_name
+                downloadImage[index] = {
+                    'uploaded_file_url': uploaded_file_url,
+                    'img_name': img_name
+                }
+                img.save(file_path)
+                img.seek(0) 
+            messages.success(request, "Successfully, DALL-E 2 Generated Images 🚀")
+
+        except InvalidRequestError as e:
+            printStar()
+            print(e)
+            printStar()
             messages.error(request, "Server is busy, please try again later. 🙇‍♂️")
-
 
     context =  {
         'form': form,
         'images': images,
         'uploaded_file_url': uploaded_file_url,
         'img_name': img_name,
-        'text': text
+        'text': text,
+        'images': downloadImage
     }
     return render(request, template_name, context)
  
