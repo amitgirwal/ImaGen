@@ -159,6 +159,11 @@ Remove Background Image
 - Remove background from image and download it.
 ```
 
+AI Image Generator DALL·E 2
+```text
+- Generate AI image using Text this features used DALL·E 2 API to generate image from text and download it.
+```
+
 #### Coming Soon
 Articles, Pages, Categories, Tags(Add, Delete, Edit), etc. <br />
 Articles and pages support Markdown and highlighting. <br />
@@ -194,6 +199,7 @@ Wechat official account feature integrated. Now, you can use wechat official acc
 - [TinyMCE](https://pypi.org/project/django-tinymce/)
 - [OpenAI](https://openai.com/api/)
 - [OpenAI Docs](https://platform.openai.com/docs/introduction/overview)
+- [DALL·E 2 Docs](https://platform.openai.com/docs/guides/images/introduction)
 - [OpenCV](https://pypi.org/project/opencv-python/)
 - [Pillow](https://pypi.org/project/Pillow/)
 - [NumPy Docs](https://numpy.org/doc/stable/)
