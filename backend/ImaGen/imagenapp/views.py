@@ -430,6 +430,52 @@ def imageGen(request):
     }
     return render(request, template_name, context)
  
+# Image Gen using OpenAI Dall E 2
+@login_required
+def imageGenDalle(request):
+    template_name = 'image-gen-dalle2.html'
+    form = ImgGenForm()
+    text = None
+    uploaded_file_url = None
+    img_name = None
+    images = []
+
+    if request.method == 'POST':
+        text = request.POST.get('text')
+        img_name = f'AIGenImg_DALLE2_{time.time()}.jpg'
+        try:
+            # Generate image
+            r = requests.post(
+                        "https://api.deepai.org/api/text2img",
+                        data = { 'text': text, },
+                        headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+                    )
+            printStar()
+            print(r.json())
+            printStar()
+            output_url = r.json()['output_url']
+            
+            # store image and gen file url
+            img = Image.open(requests.get(output_url, stream = True).raw)
+            uploaded_file_url = settings.MEDIA_URL+img_name
+            file_path = settings.MEDIA_ROOT+'/'+img_name
+            img.save(file_path)
+            img.seek(0) 
+
+        except:
+            uploaded_file_url = None
+            messages.error(request, "Server is busy, please try again later. 🙇‍♂️")
+
+
+    context =  {
+        'form': form,
+        'images': images,
+        'uploaded_file_url': uploaded_file_url,
+        'img_name': img_name,
+        'text': text
+    }
+    return render(request, template_name, context)
+ 
 
 # Extract image from pdf
 def extract(request):

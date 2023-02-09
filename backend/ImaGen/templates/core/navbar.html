@@ -153,7 +153,7 @@
         <!-- Item10 -->
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'image_removebg' %}">
-            <i class="fa-solid fa-magic"></i>
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
             &nbsp; Remove Background </a>
         </li> 
 
@@ -171,15 +171,19 @@
                 {{request.user.name | title }}
             </a>
           </li>
-          <li class="nav-item dropdown ml-2">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item dropdown dropstart">
+            <a class="nav-link dropdown-toggle dropstart" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{{request.user.photo.url}}" class="rounded-circle" height="35"
                 alt="User Logo" loading="lazy" />
             </a>
-            <ul class="dropdown-menu  me-5">
+            <ul class="dropdown-menu">
               <li>
                 <a class="dropdown-item" href="{% url 'dashboard' %}">
                   <i class="fa-solid fa-user-astronaut"></i>&nbsp; Dashboard</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'image_gen_dalle' %}">
+                  <i class="fa-solid fa-robot"></i>&nbsp; Image Gen DALLE2</a>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -208,6 +212,7 @@
  
 <script>
   $(document).ready(function () {
+    
     // Initialize tooltips
     var tooltipTriggerList = [].slice.call(
       document.querySelectorAll('[data-bs-toggle="tooltip"]')

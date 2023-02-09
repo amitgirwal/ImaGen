@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}  AI Image Generator  {% endblock %}
+{% block content %}
+<style>
+    body {
+        background-color: #272e34  !important;
+    }
+</style>
+
+<!-- AI Image Generator -->
+<div class="container my-5">
+    <div class="row g-3 text-light">
+        <div class="col-12 col-sm-12 col-md-6" >
+            <div class="card showdow-lg rounded p-3 bg-dark" style="box-shadow: rgba(9, 197, 216, 0.62) 0px 4px 10px 0px;">
+                <form action="{% url 'image_gen' %}" method="POST">
+                    <h3 class="text-center mx-auto">
+                        AI Image Generator using DALL·E 2
+                    </h3>
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button class="btn btn-outline-info w-100 btn-lg" type="submit">
+                        <i class="fa-solid fa-robot"></i>&nbsp;
+                       Generate Image
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            {% if uploaded_file_url %}
+            <div class="card showdow-lg rounded p-3 bg-dark text-light d-block text-center" style="box-shadow: rgba(9, 197, 216, 0.62) 0px 4px 10px 0px;">
+                <img 
+                class="card-img-top"
+                src="/media/{{ img_name }}" 
+                alt="download image"
+                style="width: 300px;"
+                >
+                <div class="p-2 mt-2">
+                    <h4 class="text-center mx-auto">AI Image Generator</h4>
+                    <h5 class="fw-bold text-danger my-3">{{text|title}}</h5>
+                    <a class="btn btn-info w-100 btn-lg" href="/media/{{ img_name }}" download><i
+                          class="fa-solid fa-download"></i> &nbsp; Download </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+ 
